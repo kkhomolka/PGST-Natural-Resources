@@ -1,7 +1,6 @@
 ## Loading packages
 require(pacman)
 p_load(tidyverse, oce, leaflet, sf)
-require(ocedata)
 
 ## Importing data to work with 
 read_xlsx("/Users/khadijahhomolka/Documents/R/exo_cast_022223.xlsx")
