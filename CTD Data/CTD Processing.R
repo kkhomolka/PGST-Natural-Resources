@@ -2,14 +2,18 @@
 require(pacman)
 p_load(tidyverse, oce, leaflet, sf, devtools, driftR, scales)
 
-# install.packages("devtools")
-#devtools::install_github("shaughnessyar/driftR")
+install.packages("devtools")
+devtools::install_github("shaughnessyar/driftR")
 
-## Importing data to work with 
+## Remember to set your working directory!
+
+#Importing data to work with 
 ctd_data <- dr_read("./EXO_SD_13D101118_010820_183642.xlsx", "EXO", defineVar = TRUE, cleanVar = TRUE)
+
 
 ctd_clean <- subset(ctd_data, depth_m > 0.5)
 
+#Preliminary plotting of the depth profile 
 ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
   geom_point() +
   scale_y_reverse() +
