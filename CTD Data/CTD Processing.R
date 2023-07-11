@@ -18,6 +18,14 @@ ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
   theme_classic(base_size = 10) +
   theme(legend.position = "none")
 
+#Plotting dissolved oxygen vs. depth 
+ggplot(ctd_clean, aes(x=odo_mg_l, y=depth_m)) +
+  geom_point() +
+  scale_y_reverse() +
+  xlab("Dissolved Oxygen (mg/L") + 
+  ylab("Depth (m)") + 
+  theme_classic(base_size = 10) +
+  theme(legend.position = "none")
 
 
 
