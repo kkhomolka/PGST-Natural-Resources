@@ -1,6 +1,6 @@
 ## Loading packages
 require(pacman)
-p_load(tidyverse, oce, leaflet, sf, devtools, driftR)
+p_load(tidyverse, oce, leaflet, sf, devtools, driftR, scales)
 
 # install.packages("devtools")
 #devtools::install_github("shaughnessyar/driftR")
@@ -12,9 +12,11 @@ ctd_clean <- subset(ctd_data, depth_m > 0.5)
 
 ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
   geom_point() +
+  scale_y_reverse() +
   xlab("Time") + 
   ylab("Depth (m)") + 
-  theme_minimal()
+  theme_classic(base_size = 10) +
+  theme(legend.position = "none")
 
 
 
