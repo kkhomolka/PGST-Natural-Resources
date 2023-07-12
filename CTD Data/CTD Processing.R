@@ -31,7 +31,14 @@ ggplot(ctd_clean, aes(x=odo_mg_l, y=depth_m)) +
   theme_classic(base_size = 10) +
   theme(legend.position = "none")
 
-
+##trying to isolate the upcast 
+#looks like I need to make a ctd object using {oce} before I can do anything 
+ctd_clean_upcast <- ctdTrim("depth_m", 
+                            method = "upcast", 
+                            removeDepthInversions = FALSE,
+                            parameters = NULL,
+                            indices = FALSE,
+                            debug = getOption("oceDebug"))
 
 
        
