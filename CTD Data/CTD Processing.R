@@ -15,7 +15,7 @@ ctd_data <- dr_read("./EXO_SD_13D101118_010820_183642.xlsx", "EXO", defineVar = 
 ctd_clean <- subset(ctd_data, depth_m > 0.5)
 
 #How to find the max value of a column
-max(ctd_clean$press_psi_a, na.rm = TRUE)
+max_press <- max(ctd_clean$press_psi_a, na.rm = TRUE)
 max(ctd_clean$depth_m, na.rm = TRUE)
 
 
@@ -58,14 +58,27 @@ ggplot(ctd_clean, aes(x=odo_mg_l, y=press_psi_a))+
    labs(x = expression(~Dissolved~Oxygen~(mg/L)),
         y = expression(~Pressure~(psi)))
 
+##Removing unwanted columns and combining date and time into a new col
 ctd_clean2 <- ctd_clean %>% select(-c(time_fract_sec, fault_code, battery_v, cable_pwr_v))
 
 ctd_clean3 <- ctd_clean2 %>% 
-  mutate(datetime = ymd(date_mm_dd_yyyy) + hms(paste(time_hh_mm_ss, time_fract_sec, sep = ".")))
+  mutate(datetime = ymd(date_mm_dd_yyyy) + hms(paste(time_hh_mm_ss, sep = ".")))
 
+#isolating the downcast by finding the index number where pressure starts to decrease
+downcast_start_index <- which(diff(ctd_clean3$press_psi_a) < 0)[1]
+downcast <- ctd_clean3[1:downcast_start_index, ]
+print(downcast)
 
-ctd_long <- pivot_longer(ctd_clean3, cols = everything(),
-               names_to = "variable",
-               values_to = "value")
+#subtracting the downcast from the larger df
+upcast <- ctd_clean3[-(1:downcast_start_index-1), ]
 
-
+#Plotting the downcast, which is in fact, the better cast to use 
+ggplot(downcast, aes(x=odo_mg_l, y=press_psi_a))+
+  geom_path(col = "blue")+
+  scale_y_reverse()+
+  scale_x_continuous(position = "top")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 12, colour = 1),
+        axis.title = element_text(size = 14, colour = 1))+
+  labs(x = expression(~Dissolved~Oxygen~(mg/L)),
+       y = expression(~Pressure~(psi)))
