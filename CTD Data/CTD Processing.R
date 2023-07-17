@@ -1,6 +1,6 @@
 ## Loading packages
 require(pacman)
-pacman::p_load(tidyverse, oce, leaflet, sf, gsw, magrittr, devtools, driftR, scales, lubridate)
+p_load(tidyverse, oce, leaflet, sf, gsw, magrittr, devtools, driftR, scales, lubridate)
 
 install.packages("devtools")
 devtools::install_github("shaughnessyar/driftR")
@@ -72,8 +72,8 @@ print(downcast)
 #subtracting the downcast from the larger df
 upcast <- ctd_clean3[-(1:downcast_start_index-1), ]
 
-#Plotting the downcast, which is in fact, the better cast to use 
-ggplot(downcast, aes(x=odo_mg_l, y=press_psi_a))+
+#Plotting the upcast  
+ggplot(upcast, aes(x=odo_mg_l, y=depth_m))+
   geom_path(col = "blue")+
   scale_y_reverse()+
   scale_x_continuous(position = "top")+
@@ -81,4 +81,15 @@ ggplot(downcast, aes(x=odo_mg_l, y=press_psi_a))+
   theme(axis.text = element_text(size = 12, colour = 1),
         axis.title = element_text(size = 14, colour = 1))+
   labs(x = expression(~Dissolved~Oxygen~(mg/L)),
-       y = expression(~Pressure~(psi)))
+       y = expression(~Depth~(m)))
+
+#Plotting the downcast 
+ggplot(downcast, aes(x=odo_mg_l, y=depth_m))+
+  geom_path(col = "blue")+
+  scale_y_reverse()+
+  scale_x_continuous(position = "top")+
+  theme_bw()+
+  theme(axis.text = element_text(size = 12, colour = 1),
+        axis.title = element_text(size = 14, colour = 1))+
+  labs(x = expression(~Dissolved~Oxygen~(mg/L)),
+       y = expression(~Depth~(m)))
