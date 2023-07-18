@@ -10,15 +10,13 @@ remotes::install_github("dankelley/ocedata", ref = "main")
 
 ## Remember to set your working directory!
 
-#Importing data to work with 
+###Importing data to work with 
 ctd_data <- dr_read("./EXO_SD_13D101118_010820_183642.xlsx", "EXO", defineVar = TRUE, cleanVar = TRUE)
 ctd_clean <- subset(ctd_data, depth_m > 0.5)
 
-#How to find the max value of a column
+##How to find the max value of a column
 max_press <- max(ctd_clean$press_psi_a, na.rm = TRUE)
 max(ctd_clean$depth_m, na.rm = TRUE)
-
-
 
 #Preliminary plotting of the depth profile 
 ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
@@ -93,3 +91,4 @@ ggplot(downcast, aes(x=odo_mg_l, y=depth_m))+
         axis.title = element_text(size = 14, colour = 1))+
   labs(x = expression(~Dissolved~Oxygen~(mg/L)),
        y = expression(~Depth~(m)))
+
