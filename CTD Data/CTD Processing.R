@@ -1,4 +1,5 @@
 #Remember to set your working directory!
+setwd("~/GitHub/PGST-Natural-Resources/CTD Data")
 
 ##If you need to install the {driftR} package 
 install.packages("devtools")
@@ -14,6 +15,7 @@ p_load(tidyverse, oce, leaflet, sf, gsw, magrittr, devtools, driftR, scales, lub
 
 #Using the {driftR} package to import 
 ctd_data <- dr_read("./EXO_SD_13D101118_010820_183642.xlsx", "EXO", defineVar = TRUE, cleanVar = TRUE)
+
 ctd_clean <- subset(ctd_data, depth_m > 0.5)
 
 ## 1.1 Exploring and cleaning the data------------------------------------------------------------------------------------------------ 
@@ -38,7 +40,7 @@ upcast <- ctd_clean3[-(1:downcast_start_index-1), ]
 
 ## 2.1 Plotting----------------------------------------------------------------------------------------------------------
 
-#Preliminary plotting of the upcast + downcast depth profile 
+#Preliminary plotting of the upcast + downcast depth profile, note that you can see the 1min soak periods 
 ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
   geom_point() +
   scale_y_reverse() +
@@ -47,6 +49,7 @@ ggplot(ctd_clean, aes(x=time_hh_mm_ss, y=depth_m)) +
   theme_classic(base_size = 10) +
   theme(legend.position = "none")
 
+#Upcast + downcast profile using DO vs. Pressure
 ggplot(ctd_clean, aes(x=odo_mg_l, y=press_psi_a))+
   geom_path(col = "blue")+
   scale_y_reverse()+
@@ -57,38 +60,15 @@ ggplot(ctd_clean, aes(x=odo_mg_l, y=press_psi_a))+
   labs(x = expression(~Dissolved~Oxygen~(mg/L)),
        y = expression(~Pressure~(psi)))
 
-#Checking to see if the downcast truly separated  
-ggplot(downcast, aes(x=odo_mg_l, y=depth_m)) +
+#Now let's plot the DO from just the downcast to check if the downcast truly separated  
+ggplot(downcast, aes(x=odo_mg_l, y=press_psi_a)) +
   geom_point() +
   ylim(max("depth_m"))+
   scale_y_reverse() +
-  xlab("Dissolved Oxygen (mg/L") + 
   theme_classic(base_size = 10) +
-  theme(legend.position = "none")
-
-##trying to isolate the upcast 
-#looks like I need to make a ctd object using {oce} before I can do anything... 
-#ctd_clean_upcast <- ctdTrim("depth_m", 
-                            #method = "upcast", 
-                            #removeDepthInversions = FALSE,
-                            #parameters = NULL,
-                            #indices = FALSE,
-                            #debug = getOption("oceDebug"))
-
-
-##Removing unwanted columns and combining date and time into a new col
-ctd_clean2 <- ctd_clean %>% select(-c(time_fract_sec, fault_code, battery_v, cable_pwr_v))
-
-ctd_clean3 <- ctd_clean2 %>% 
-  mutate(datetime = ymd(date_mm_dd_yyyy) + hms(paste(time_hh_mm_ss, sep = ".")))
-
-#isolating the downcast by finding the index number where pressure starts to decrease
-downcast_start_index <- which(diff(ctd_clean3$press_psi_a) < 0)[1]
-downcast <- ctd_clean3[1:downcast_start_index, ]
-print(downcast)
-
-#subtracting the downcast from the larger df
-upcast <- ctd_clean3[-(1:downcast_start_index-1), ]
+  theme(legend.position = "none")+
+  labs(x = expression(~Dissolved~Oxygen~(mg/L)),
+       y = expression(~Presure~(psi)))
 
 ## 2.2 Data exploration plots and making the aesthetics better--------------------------------------------------------
 
