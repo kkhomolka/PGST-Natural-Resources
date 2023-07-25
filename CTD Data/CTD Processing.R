@@ -94,3 +94,24 @@ ggplot(downcast, aes(x=odo_mg_l, y=depth_m))+
   labs(x = expression(~Dissolved~Oxygen~(mg/L)),
        y = expression(~Depth~(m)))
 
+#Let's make some facet plots!
+downcast_pivot <- pivot_longer(downcast, cols= c(4:25), names_to = "variable", values_to = "values")
+
+
+
+#Adding a new column that contains the numeric representation of the POSIXct datetime
+ctd_clean3 <- ctd_clean3 %>% mutate(numeric_datetime = as.numeric(datetime))
+
+#Doing the same thing for the downcast
+downcast <- downcast %>% mutate(numeric_datetime = as.numeric(datetime))
+
+ggplot(data = downcast, mapping = aes(y = depth_m))+
+  geom_path(aes(x = temp_c, color = "Temperature (C)"))+
+  geom_path(aes(x = sal_psu, color = "Salinity (psu)"))+
+  geom_path(aes(x = odo_mg_l, color = "Dissolved Oxygen (mg/L)"))+
+  labs(title = "Water Quality Variables vs. Depth", 
+       x = "Variables",
+       y = "Depth (m)")+
+  scale_color_manual(name = "Variables",
+                     values = c("Temperature (C)" = "red","Salinity (psu)" = "black", "Dissolved Oxygen (mg/L)" = "blue"))
+
