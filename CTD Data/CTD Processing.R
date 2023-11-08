@@ -115,3 +115,4 @@ ggplot(data = downcast, mapping = aes(y = depth_m))+
   scale_color_manual(name = "Variables",
                      values = c("Temperature (C)" = "red","Salinity (psu)" = "black", "Dissolved Oxygen (mg/L)" = "blue"))
 
+#testing
