@@ -3,7 +3,7 @@
 ## Load packages
 pacman::p_load(pwr, 
                ggplot2, 
-               tidyverse, 
+               tidyr, 
                dplyr,
                cowsay,
                lubridate)
@@ -40,31 +40,46 @@ TAST_files_clean$Date <- as.Date(TAST_files_clean$Date, format = "%m/%d/%y")
 
 ## filter data by date 
 bydate_TAST_files <- TAST_files_clean %>% 
-  filter((Date >= as.Date("2023-05-23") & Date <= as.Date("2023-05-26")) |
+  filter((Date >= as.Date("2023-05-29") & Date <= as.Date("2023-06-02")) |
            Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-09"))
 
 ##create ON and OFF stratum
 TAST_ON <- subset(bydate_TAST_files, bydate_TAST_files$`TAST status` == "ON")
 TAST_OFF <- subset(bydate_TAST_files, bydate_TAST_files$`TAST status` == "OFF")
 
+# 4. Graphing ------------------------------------------------------------------
 
 ## let's try and graph the number of ON and OFF hours 
-bytime_TAST_files <- bydate_TAST_files %>%
-  filter(`TAST status`%in% c("ON", "OFF"))
+#bytime_TAST_files <- bydate_TAST_files %>%
+ # filter(`TAST status`%in% c("ON", "OFF"))
 
 ## calculate the duration of each status 
 bytime_TAST_files <- bydate_TAST_files %>%
   group_by(Date, `TAST status`) %>%
-  summarise(Duration = sum(difftime(lead(`File timestamp`, default = last(`File timestamp`)), `File timestamp`, units = "secs"), na.rm = TRUE))
+  summarise(Duration = sum(difftime(lead(`File timestamp`, default = last(`File timestamp`)), `File timestamp`, units = "hours"), na.rm = TRUE))
 
-#pivot wider
+## pivot wider
 wide_bytime_TAST_files <- bytime_TAST_files %>%
   pivot_wider(names_from = `TAST status`, values_from = Duration)
 
-wide_bytime_TAST_files$ON <- as.difftime(wide_bytime_TAST_files$ON, units = "secs", origin = as.POSIXct("1970-01-01"))
-wide_bytime_TAST_files$OFF <- as.difftime(wide_bytime_TAST_files$OFF, units = "secs", origin = as.POSIXct("1970-01-01"))
-wide_bytime_TAST_files[is.na(wide_bytime_TAST_files)] <- 0
+## replace the NAs with 0 but we have to do it in duration format
+wide_bytime_TAST_files[is.na(wide_bytime_TAST_files)] <- as.difftime(0, units = "hours")
 
-# Sum the durations for each day
-wide_bytime_TAST_files <- wide_bytime_TAST_files %>%
-  mutate(Total_ON = cumsum(ON), Total_OFF = cumsum(OFF))
+## cumsum will only work for numeric values, not difftime. So we need to convert
+wide_bytime_TAST_files$ON_numeric <- as.numeric(wide_bytime_TAST_files$ON)
+wide_bytime_TAST_files$OFF_numeric <- as.numeric(wide_bytime_TAST_files$OFF)
+
+## pivot longer 
+forplot_bytime_TAST <- wide_bytime_TAST_files %>%
+  pivot_longer(cols = c(ON_numeric, OFF_numeric), names_to = "Status", values_to = "Cumulative_Time")
+
+## let's graph
+ggplot(forplot_bytime_TAST, aes(x = Date, y = Cumulative_Time, fill = Status)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Cumulative ON/OFF Times by Day",
+       x = "Date",
+       y = "Cumulative Time (hours)",
+       fill = "Status") +
+  scale_fill_manual(values = c("ON_numeric" = "blue", "OFF_numeric" = "red")) +
+  scale_x_date(breaks = unique(forplot_bytime_TAST$Date), date_labels = "%m-%d")+
+                 theme_minimal()
