@@ -55,6 +55,7 @@ TAST_OFF <- subset(bydate_TAST_files, bydate_TAST_files$`TAST status` == "OFF")
 
 ## calculate the duration of each status 
 bytime_TAST_files <- bydate_TAST_files %>%
+  arrange(`File timestamp`) %>% #this will order the times chronologically so there's no negative values
   group_by(Date, `TAST status`) %>%
   summarise(Duration = sum(difftime(lead(`File timestamp`, default = last(`File timestamp`)), `File timestamp`, units = "hours"), na.rm = TRUE))
 
