@@ -74,7 +74,7 @@ wide_bytime_TAST_files$OFF_numeric <- as.numeric(wide_bytime_TAST_files$OFF)
 forplot_bytime_TAST <- wide_bytime_TAST_files %>%
   pivot_longer(cols = c(ON_numeric, OFF_numeric), names_to = "Status", values_to = "Cumulative_Time")
 
-## let's graph
+## let's graph cumulative ON/OFF times by day 
 ggplot(forplot_bytime_TAST, aes(x = Date, y = Cumulative_Time, fill = Status)) +
   geom_bar(stat = "identity", position = "stack") +
   labs(title = "Cumulative ON/OFF Times by Day",
@@ -84,3 +84,4 @@ ggplot(forplot_bytime_TAST, aes(x = Date, y = Cumulative_Time, fill = Status)) +
   scale_fill_manual(values = c("ON_numeric" = "blue", "OFF_numeric" = "red")) +
   scale_x_date(breaks = unique(forplot_bytime_TAST$Date), date_labels = "%m-%d")+
                  theme_minimal()
+
