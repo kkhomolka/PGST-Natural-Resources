@@ -10,12 +10,6 @@ pacman::p_load(pwr,
                tidyverse,
                openxlsx)
 
-## Welcome
-say("Welcome To All Things TAST!", 
-    by = "shark", 
-    what_color = "green", 
-    by_color = "blue")
-
 ## Set working directory
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
@@ -89,71 +83,7 @@ Forage_TAST_OFF <- Forage_TAST_OFF[-rows_remove_off, ]
 write.csv(Forage_TAST_ON, "TAST ON Forage Times by Date.csv")
 write.csv(Forage_TAST_OFF, "TAST OFF Forage Times by Date.csv")
 
-# 5. Save for Later ------------------------------------------------------------
-## we have to create a dataframe for each date range to be able to filter the times 
-## Define date ranges
-date_ranges <- list(
-  c("2023-05-30", "2023-06-01"),
-  c("2023-06-05", "2023-06-07"),
-  c("2023-06-12", "2023-06-14"),
-  c("2023-06-14", "2023-06-16"),
-  c("2023-06-20", "2023-06-22"))
-
-## Create a list of data frames for each date range
-dates_range_list <- lapply(date_ranges, function(dates) {
-  bydate_TAST_files %>%
-    filter(Date >= as.Date(dates[1]) & Date <= as.Date(dates[2]))})
-
-## Assign names to the list elements
-names(dates_range_list) <- paste("df", 1:length(dates_range_list), sep = "")
-
-## Print the first few rows of each data frame
-for (i in seq_along(dates_range_list)) {
-  cat("Data Frame:", names(dates_range_list)[i], "\n")
-  print(head(dates_range_list[[i]]))}
-
-## Now we have to define the foraging time ranges 
-time_ranges <- list(
-  c("05:00:00", "10:00:00"),
-  c("15:00:00", "21:00:00"))
-
-# Convert time range values to POSIXct
-time_ranges <- lapply(time_ranges, function(range) {
-  as.POSIXct(strptime(range, format = "%H:%M:%S"), tz = "UTC")})
-
-## Filter each data frame in the list for the time ranges
-time_range_forage <- lapply(dates_range_list, function(df) {
-  df %>%
-    filter((as.POSIXct(`File timestamp`, format = "%H:%M:%S") >= time_ranges[[1]][1] &
-              as.POSIXct(`File timestamp`, format = "%H:%M:%S") <= time_ranges[[1]][2]) |
-             (as.POSIXct(`File timestamp`, format = "%H:%M:%S") >= time_ranges[[2]][1] &
-                as.POSIXct(`File timestamp`, format = "%H:%M:%S") <= time_ranges[[2]][2]))})
-
-# Assign names to the filtered list elements
-names(time_range_forage) <- paste("filtered_df", 1:length(time_range_forage), sep = "")
-
-# Print the first few rows of each filtered data frame
-for (i in seq_along(time_range_forage)) {
-  cat("Filtered Data Frame:", names(time_range_forage)[i], "\n")
-  print(head(time_range_forage[[i]]))}
-
-# Create separate data frames in the global environment
-list2env(time_range_forage, envir = .GlobalEnv)
-
-
-
-
-
-## filter by seal foraging time windows 
-bydate_forage_TAST <- bydate_TAST_files %>%
-  filter(`File timestamp`>= as.difftime("05:00:00") & `File timestamp`<= as.difftime("10:00:00")|
-  `File timestamp`>= as.difftime("15:00:00") & `File timestamp`<= as.difftime("21:00:00"))
-          
-
-
-
-
-# 6. Graphing Combined ---------------------------------------------------------
+# 6. Graphing ON/OFF by Date & Time --------------------------------------------
 
 ## calculate the duration of each status 
 bytime_TAST_files <- bydate_TAST_files %>%
@@ -183,7 +113,7 @@ ggplot(forplot_bytime_TAST, aes(x = Date, y = Cumulative_Time, fill = Status)) +
        x = "Date",
        y = "Cumulative Time (hours)",
        fill = "Status") +
-  scale_fill_manual(values = c("ON_numeric" = "blue", "OFF_numeric" = "red")) +
+  scale_fill_manual(values = c("ON_numeric" = "green", "OFF_numeric" = "pink")) +
   scale_x_date(breaks = unique(forplot_bytime_TAST$Date), date_labels = "%m-%d")+
   theme_minimal()
 
