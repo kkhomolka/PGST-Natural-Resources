@@ -6,7 +6,9 @@ pacman::p_load(pwr,
                tidyr, 
                dplyr,
                cowsay,
-               lubridate)
+               lubridate,
+               tidyverse,
+               openxlsx)
 
 ## Welcome
 say("Welcome To All Things TAST!", 
@@ -60,10 +62,32 @@ bydate_forage <- bydate_TAST %>%
 Forage_TAST_ON <- subset(bydate_forage, bydate_forage$`TAST status` == "ON")
 Forage_TAST_OFF <- subset(bydate_forage, bydate_forage$`TAST status` == "OFF")
 
-##removing rows by index number that we do not want to include 
-rows_remove <- c(85:89,181,272:332)
-Forage_TAST_ON <- Forage_TAST_ON[-rows_remove, ]
 
+##removing 6/14/23 because there are no ON times on that day
+Forage_TAST_ON <- Forage_TAST_ON %>% 
+  filter((Date >= as.Date("2023-05-30") & Date <= as.Date("2023-05-31")) |
+           Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-06")|
+           Date >= as.Date("2023-06-12") & Date <= as.Date("2023-06-13")|
+           Date >= as.Date("2023-06-20") & Date <= as.Date("2023-06-21"))
+
+## removing overlapping times that were not filtered out for ON
+rows_remove_ON <- c(85:89,181)
+Forage_TAST_ON <- Forage_TAST_ON[-rows_remove_ON, ]
+
+## removing overlapping dates for OFF
+Forage_TAST_OFF <- Forage_TAST_OFF %>% 
+  filter((Date >= as.Date("2023-05-30") & Date <= as.Date("2023-05-31")) |
+           Date >= as.Date("2023-06-06") & Date <= as.Date("2023-06-07")|
+           Date >= as.Date("2023-06-13") & Date <= as.Date("2023-06-14")|
+           Date >= as.Date("2023-06-20") & Date <= as.Date("2023-06-21"))
+
+## removing overlapping times that were not filtered out for OFF
+rows_remove_off <- c(202:249)
+Forage_TAST_OFF <- Forage_TAST_OFF[-rows_remove_off, ]
+
+## export the final dataframes
+write.csv(Forage_TAST_ON, "TAST ON Forage Times by Date.csv")
+write.csv(Forage_TAST_OFF, "TAST OFF Forage Times by Date.csv")
 
 # 5. Save for Later ------------------------------------------------------------
 ## we have to create a dataframe for each date range to be able to filter the times 
@@ -129,7 +153,7 @@ bydate_forage_TAST <- bydate_TAST_files %>%
 
 
 
-# 6. Graphing ------------------------------------------------------------------
+# 6. Graphing Combined ---------------------------------------------------------
 
 ## calculate the duration of each status 
 bytime_TAST_files <- bydate_TAST_files %>%
@@ -162,5 +186,4 @@ ggplot(forplot_bytime_TAST, aes(x = Date, y = Cumulative_Time, fill = Status)) +
   scale_fill_manual(values = c("ON_numeric" = "blue", "OFF_numeric" = "red")) +
   scale_x_date(breaks = unique(forplot_bytime_TAST$Date), date_labels = "%m-%d")+
   theme_minimal()
-
 
