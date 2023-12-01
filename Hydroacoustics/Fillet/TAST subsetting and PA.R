@@ -40,8 +40,11 @@ TAST_files_clean$Date <- as.Date(TAST_files_clean$Date, format = "%m/%d/%y")
 
 ## filter data by date 
 bydate_TAST_files <- TAST_files_clean %>% 
-  filter((Date >= as.Date("2023-05-29") & Date <= as.Date("2023-06-02")) |
-           Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-09"))
+  filter((Date >= as.Date("2023-05-30") & Date <= as.Date("2023-06-01")) |
+           Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-09")|
+           Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-07")|
+           Date >= as.Date("2023-06-12") & Date <= as.Date("2023-06-16")|
+           Date >= as.Date("2023-06-20") & Date <= as.Date("2023-06-22"))
 
 ##create ON and OFF stratum
 TAST_ON <- subset(bydate_TAST_files, bydate_TAST_files$`TAST status` == "ON")
