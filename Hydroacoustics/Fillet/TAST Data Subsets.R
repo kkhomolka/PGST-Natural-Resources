@@ -72,7 +72,7 @@ rows_remove_ON <- c(85:89,181,272:287)
 Forage_TAST_ON <- Forage_TAST_ON[-rows_remove_ON, ]
 
 ## step 3: export the final data frame
-write.csv(Forage_TAST_ON, "TAST ON Forage Times by Date.csv")
+write.csv(Forage_TAST_ON, "TAST ON Forage Times by Date Subset.csv")
 
 # 6. Cleaning TAST OFF Data Set ------------------------------------------------
 
@@ -88,7 +88,7 @@ rows_remove_off <- c(166:213)
 Forage_TAST_OFF <- Forage_TAST_OFF[-rows_remove_off, ]
 
 ## step 3: export the final dataframe
-write.csv(Forage_TAST_OFF, "TAST OFF Forage Times by Date.csv")
+write.csv(Forage_TAST_OFF, "TAST OFF Forage Times by Date Subset.csv")
 
 # 7. Optional Code for Graphing ------------------------------------------------
 
@@ -101,18 +101,18 @@ merged_duration <- merged_forage %>%
   group_by(Date, `TAST status`) %>%
   summarise(Duration = sum(difftime(lead(`File timestamp`, default = last(`File timestamp`)), `File timestamp`, units = "hours"), na.rm = TRUE))
 
-## pivot wider
+## pivot df wider
 wide_merged <- merged_duration %>%
   pivot_wider(names_from = `TAST status`, values_from = Duration)
 
-## replace the NAs with 0 but we have to do it in duration format
+## replace the NAs with 0 but we have to do it in duration format so it's consistent
 wide_merged[is.na(wide_merged)] <- as.difftime(0, units = "hours")
 
 ## cumsum will only work for numeric values, not difftime, so we need to convert
 wide_merged$ON_numeric <- as.numeric(wide_merged$ON)
 wide_merged$OFF_numeric <- as.numeric(wide_merged$OFF)
 
-## pivot longer to make it graphable
+## pivot df longer to format it for graphing (keeping 'wide_merged' name even though we're pivoting)
 wide_merged <- wide_merged %>%
   pivot_longer(cols = c(ON_numeric, OFF_numeric), names_to = "Status", values_to = "Cumulative_Time")
 
