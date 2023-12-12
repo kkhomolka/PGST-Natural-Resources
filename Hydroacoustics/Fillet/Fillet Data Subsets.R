@@ -42,7 +42,7 @@ fillet_OFF <- subset(fillet_files_clean, fillet_files_clean$`Fillet status` == "
 
 ## step 1: filter data by desired date ranges
 ### these date ranges were chosen based on the ON/OFF schedule of the TAST
-bydate_TAST <- TAST_files_clean %>% 
+bydate_fillet <- fillet_files_clean %>% 
   filter((Date >= as.Date("2023-05-30") & Date <= as.Date("2023-05-31")) |
            Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-07")|
            Date >= as.Date("2023-06-12") & Date <= as.Date("2023-06-14")|
@@ -50,18 +50,18 @@ bydate_TAST <- TAST_files_clean %>%
 
 ## step 2: filter by seal foraging time windows
 ### these time ranges were determined by previous data collected at HCB
-bydate_forage <- bydate_TAST %>%
+bydate_forage <- bydate_fillet %>%
   filter(`File timestamp`>= as.difftime("05:00:00") & `File timestamp`<= as.difftime("10:00:00")|
            `File timestamp`>= as.difftime("15:00:00") & `File timestamp`<= as.difftime("21:00:00"))
 
 ## step 3: create ON and OFF stratum using the forage time df
-Forage_TAST_ON <- subset(bydate_forage, bydate_forage$`TAST status` == "ON")
-Forage_TAST_OFF <- subset(bydate_forage, bydate_forage$`TAST status` == "OFF")
+Forage_fillet_ON <- subset(bydate_forage, bydate_forage$`Fillet status` == "ON")
+Forage_fillet_OFF <- subset(bydate_forage, bydate_forage$`Fillet status` == "OFF")
 
 # 5. Cleaning TAST ON Data Set -------------------------------------------------
 
 ## step 1: removing 6/14/23 because there are no ON times on that day
-Forage_TAST_ON <- Forage_TAST_ON %>% 
+Forage_fillet_ON <- Forage_fillet_ON %>% 
   filter((Date >= as.Date("2023-05-30") & Date <= as.Date("2023-05-31")) |
            Date >= as.Date("2023-06-05") & Date <= as.Date("2023-06-06")|
            Date >= as.Date("2023-06-12") & Date <= as.Date("2023-06-13")|
