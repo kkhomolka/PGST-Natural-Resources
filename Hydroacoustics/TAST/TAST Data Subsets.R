@@ -123,7 +123,9 @@ ggplot(wide_merged, aes(x = Date, y = Cumulative_Time, fill = Status)) +
        x = "Date",
        y = "Cumulative Time (hours)",
        fill = "Status") +
-  scale_fill_manual(values = c("ON_numeric" = "green", "OFF_numeric" = "pink")) +
+  scale_fill_manual(values = c("ON_numeric" = "blue", "OFF_numeric" = "red")) +
   scale_x_date(breaks = unique(wide_merged$Date), date_labels = "%m-%d")+
   theme_minimal()
+
+##export figure
 
