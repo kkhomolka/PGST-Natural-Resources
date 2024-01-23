@@ -1,9 +1,9 @@
 File,Date,Time_In_1,Time_Out_1,Time_In_2,Time_Out_2,Time_In_3,Time_Out_3,Time_In_4,Time_Out_4,Time_In_5,Time_Out_5,Time_In_6,Time_Out_6,Cumulative_Time_m,Cumulative_Time_s,Tast_Status,Seal_Presence,Notes
-May_24_2023_144714_1079,5/30/2023,11:52:43 AM,11:54:01 AM,,,,,,,,,,,01:18,77.70,Off,Y,Seal scares school of fish then sits around a while
-May_24_2023_144714_1082,5/30/2023,12:22:22 PM,12:22:27 PM,,,,,,,,,,,00:06,5.70,Off,Y,Swims toward school of fish and dips out of view
-May_24_2023_144714_1100,5/30/2023,2:35:56 PM,2:36:06 PM,,,,,,,,,,,00:10,9.60,Off,U,Looks like a large fish to me
-May_24_2023_144714_1105,5/30/2023,3:17:36 PM,3:17:59 PM,,,,,,,,,,,00:23,23.30,Off,Y,"Could be Seal, could be Porpoise"
-May_24_2023_144714_1108,5/30/2023,3:38:41 PM,3:39:46 PM,,,,,,,,,,,01:06,65.70,Off,Y,Slowly drifts in then accelerates
+May_24_2023_144714_1079,5/30/2023,11:52:43 AM,11:54:01 AM,,,,,,,,,,,01:18,77.70,OFF,Y,Seal scares school of fish then sits around a while
+May_24_2023_144714_1082,5/30/2023,12:22:22 PM,12:22:27 PM,,,,,,,,,,,00:06,5.70,OFF,Y,Swims toward school of fish and dips out of view
+May_24_2023_144714_1100,5/30/2023,2:35:56 PM,2:36:06 PM,,,,,,,,,,,00:10,9.60,OFF,U,Looks like a large fish to me
+May_24_2023_144714_1105,5/30/2023,3:17:36 PM,3:17:59 PM,,,,,,,,,,,00:23,23.30,OFF,Y,"Could be Seal, could be Porpoise"
+May_24_2023_144714_1108,5/30/2023,3:38:41 PM,3:39:46 PM,,,,,,,,,,,01:06,65.70,OFF,Y,Slowly drifts in then accelerates
 May_24_2023_144714_1341,5/31/2023,10:17:34 PM,10:17:57 PM,,,,,,,,,,,00:23,23.00,OFF,Y,Foraging but signal is a little bit broken up. Movent looks like seal
 May_24_2023_144714_1344,5/31/2023,10:47:07 PM,10:47:50 PM,,,,,,,,,,,00:43,43.00,OFF,Y,Not many fish. Seal swims across frame
 May_24_2023_144714_1357,5/31/2023,12:29:11 AM,12:29:32 AM,,,,,,,,,,,00:21,21.40,OFF,Y,Appears to be chasing
@@ -64,9 +64,7 @@ Jun_21_2023_145422_35,6/21/2023,2:41:39 AM,2:42:17 AM,2:46:56 AM,2:47:31 AM,,,,,
 Jun_21_2023_145422_36,6/21/2023,2:54:38 AM,2:54:46 AM,,,,,,,,,,,00:08,8.10,OFF,Y,Fast swim into school of fish
 Jun_21_2023_145422_39,6/21/2023,3:12:42 AM,3:12:53 AM,3:13:36 AM,3:13:42 AM,,,,,,,,,00:16,15.90,OFF,Y,Very fast swim throughs
 Jun_21_2023_145422_40,6/21/2023,3:25:07 AM,3:25:14 AM,,,,,,,,,,,00:07,6.90,OFF,Y,fast swim through. Faint but size and speed looks like seal to me
-,,,,,,,,,,,,,,00:00,0.00,OFF,,
-Not labeled as seals present,,,,,,,,,,,,,,,0.00,OFF,,
-May_24_2023_144714_1080,5/30/2023,,,,,,,,,,,,,00:00,0.00,OFF,N,No Seals present
+May_24_2023_144714_1080,5/30/2023,,,,,,,,,,,,,00:00,0.00,OFF,N,"No Seals present; start of files labeled ""no seal present"""
 May_24_2023_144714_1081,5/30/2023,,,,,,,,,,,,,00:00,0.00,OFF,N,No Seals present
 May_24_2023_144714_1083,5/30/2023,,,,,,,,,,,,,00:00,0.00,OFF,N,No Seals present
 May_24_2023_144714_1084,5/30/2023,,,,,,,,,,,,,00:00,0.00,OFF,N,No Seals present
