@@ -33,7 +33,11 @@ TAST_OFF_Times_clean$Date <- as.Date(TAST_OFF_Times_clean$Date, format = "%m/%d/
 #convert date from a continuous variable to a categorical
 TAST_OFF_Times_clean$Date <- as.factor(TAST_OFF_Times_clean$Date)
 
-# 3. Read in ON Files ----------------------------------------------------------
+#filter out unknown seals
+TAST_OFF_Times_clean <- TAST_OFF_Times_clean %>% 
+  filter(Seal_Presence %in% c("N", "Y"))
+
+# 3. Loading ON Files ----------------------------------------------------------
 
 ## read in file and remove empty rows
 TAST_ON_Times <- read_csv("Seal_presence_time_TAST_ON_KH.csv")
@@ -48,6 +52,10 @@ TAST_ON_Times_clean$Date <- as.Date(TAST_ON_Times_clean$Date, format = "%m/%d/%Y
 
 #convert date from a continuous variable to a categorical
 TAST_ON_Times_clean$Date <- as.factor(TAST_ON_Times_clean$Date)
+
+#filter out unknown seals
+TAST_ON_Times_clean <- TAST_ON_Times_clean %>% 
+  filter(Seal_Presence %in% c("N", "Y"))
 
 # 4. Check for duplicates or redundancies ---------------------------------------
 
@@ -166,23 +174,11 @@ ggplot(box_stats_combined, aes(x = Tast_Status, y = mean, fill = Tast_Status, gr
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, position = position_dodge(width = 0.6)) +
   scale_fill_manual(values = c("ON" = "mediumturquoise", "OFF" = "mediumpurple2")) +
   labs(
-    title = "Bar Chart of Cumulative Time by TAST Status with Error Bars",
+    title = "Non-Normalized Cumulative Time of Seal Presence",
     x = "TAST Status",
     y = "Cumulative Time (s)")+
   theme_classic()+
   theme(legend.position = "none")+
   theme(plot.title = element_text(hjust = 0.5))
-
-
-combined_ON_OFF %>%
-  mutate(Shortened_Date = format(Date, "%b %d")) %>%  # Create a new column with shortened dates
-  ggplot(aes(x = Shortened_Date, y = Cumulative_Time_s, fill = Tast_Status)) +
-  geom_boxplot(width = 0.2, fill = "mediumpurple2", color = "black", outlier.shape = NA) +
-  geom_jitter(width = 0.2, size = 0.9, color = "black", alpha = 0.3) +
-  facet_wrap(~Tast_Status) +
-  ggtitle("Non-Normalized Cumulative Time of Seal Presence") +
-  labs(x = "Date", y = "Cumulative Time (secs)") +
-  theme_grey() +
-  theme(legend.position = "none")
 
 
