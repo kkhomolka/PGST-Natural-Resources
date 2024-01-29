@@ -11,13 +11,13 @@ pacman::p_load(pwr,
                openxlsx,
                readxl)
 
-## Set working directory for WORK
+## Set working directory for KK WORK
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
-##Set working directory for HOME 
+## Set working directory for KK HOME 
 setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
-# 2. Loading OFF Files --------------------------------------------------------
+# 2. Loading OFF Files ---------------------------------------------------------
 
 ## read in file and remove empty rows
 TAST_OFF_Times <- read_csv("Seal_presence_time_TAST_OFF_KH.csv")
@@ -30,10 +30,10 @@ TAST_OFF_Times_clean$Date <- as.Date(TAST_OFF_Times_clean$Date, format = "%m/%d/
 #TAST_OFF_Times_clean <- TAST_OFF_Times_clean %>%
   #select_if(function(col) any(!is.na(col)))
 
-#convert date from a continuous variable to a categorical
-TAST_OFF_Times_clean$Date <- as.factor(TAST_OFF_Times_clean$Date)
+## convert date from a continuous variable to a character variable for graphing
+TAST_OFF_Times_clean$Date <- as.character(TAST_OFF_Times_clean$Date)
 
-#filter out unknown seals
+## filter out unknown "U" seals
 TAST_OFF_Times_clean <- TAST_OFF_Times_clean %>% 
   filter(Seal_Presence %in% c("N", "Y"))
 
@@ -50,14 +50,14 @@ TAST_ON_Times_clean$Date <- as.Date(TAST_ON_Times_clean$Date, format = "%m/%d/%Y
 #TAST_ON_Times_clean <- TAST_ON_Times_clean %>%
   #select_if(function(col) any(!is.na(col)))
 
-#convert date from a continuous variable to a categorical
-TAST_ON_Times_clean$Date <- as.factor(TAST_ON_Times_clean$Date)
+## convert date from a continuous variable to a character variable for graphing
+TAST_ON_Times_clean$Date <- as.character(TAST_ON_Times_clean$Date)
 
-#filter out unknown seals
+## filter out unknown seals
 TAST_ON_Times_clean <- TAST_ON_Times_clean %>% 
   filter(Seal_Presence %in% c("N", "Y"))
 
-# 4. Check for duplicates or redundancies ---------------------------------------
+# 4. Check for duplicates or redundancies --------------------------------------
 
 #check OFF
 duplicates_OFF <- TAST_OFF_Times_clean[duplicated(TAST_OFF_Times_clean[, c('File')]), ]
@@ -67,24 +67,24 @@ duplicates_ON <- TAST_ON_Times_clean[duplicated(TAST_ON_Times_clean[, c('File')]
 
 # 5. Combine dataframes and group by date --------------------------------------
 
-#bind both dataframes together into one 
+## bind both dataframes together into one 
 combined_ON_OFF <- rbind(TAST_OFF_Times_clean, TAST_ON_Times_clean)
 
 #removing 0 from the Cumulative_Time_s column
 #combined_ON_OFF <- combined_ON_OFF %>% 
   #filter(Cumulative_Time_s != 0)
 
-#summarize to calculate sum of cumulative time for ON
+## summarize to calculate sum of cumulative time for ON
 summarized_ON <- TAST_ON_Times_clean %>%
   group_by(Date) %>%
   summarize(Cumulative_Time_sum = sum(Cumulative_Time_s))
 
-#summarize to calculate sum of cumulative time for OFF
+## summarize to calculate sum of cumulative time for OFF
 summarized_OFF <- TAST_OFF_Times_clean %>%
   group_by(Date) %>%
   summarize(Cumulative_Time_sum = sum(Cumulative_Time_s))
 
-#calculate stats for ON
+## calculate stats for ON
 box_stats_ON <- TAST_ON_Times_clean %>% 
   group_by(Tast_Status) %>% 
   summarise(
@@ -94,7 +94,7 @@ box_stats_ON <- TAST_ON_Times_clean %>%
     lower = mean(Cumulative_Time_s) - sd(Cumulative_Time_s),
     upper = mean(Cumulative_Time_s) + sd(Cumulative_Time_s))
 
-#calculate stats for OFF
+## calculate stats for OFF
 box_stats_OFF <- TAST_OFF_Times_clean %>% 
   group_by(Tast_Status) %>% 
   summarise(
@@ -104,7 +104,7 @@ box_stats_OFF <- TAST_OFF_Times_clean %>%
     lower = mean(Cumulative_Time_s) - sd(Cumulative_Time_s),
     upper = mean(Cumulative_Time_s) + sd(Cumulative_Time_s))
 
-#binding the stats together for ON and OFF
+## binding the stats together for ON and OFF
 box_stats_combined <- rbind(box_stats_OFF, box_stats_ON)
 
 # 6. Draft Graphing ------------------------------------------------------------
@@ -141,7 +141,10 @@ ggplot(combined_ON_OFF, aes(x = Tast_Status, y = Cumulative_Time_s)) +
 
 # 7. Good Graphing -------------------------------------------------------------
 
-## Plot a violin plot with customized boxplot points using different colors for "ON" and "OFF"
+## If the x-axis dates aren't plotting in chronological order, make sure that the
+## dates have been converted using as.character(); dates, numeric & factor will not work
+
+## Violin Plot
 ggplot(combined_ON_OFF, aes(x = Tast_Status, y = Cumulative_Time_s, fill = Tast_Status)) +
   geom_violin(width = 1, alpha = 0.5, color = "black") +
   geom_boxplot(width = 0.2, fill = "white", color = "black", outlier.shape = NA) +
@@ -155,20 +158,20 @@ ggplot(combined_ON_OFF, aes(x = Tast_Status, y = Cumulative_Time_s, fill = Tast_
   theme(legend.position = "none")+
   theme(plot.title = element_text(hjust = 0.5))
   
-#boxplots 
+## Boxplot 
 combined_ON_OFF %>%
-  ggplot(aes(Date, Cumulative_Time_s, fill = Tast_Status))+
-  geom_boxplot(width = 0.2, fill = "mediumpurple2", color = "black", outlier.shape = NA)+
-  geom_jitter(width = 0.2, size = 0.9, color = "black", alpha = 0.3)+
-  facet_wrap(~Tast_Status)+
-  ggtitle("Non-Normalized Cumulative Time of Seal Presence")+
-  labs(x = "Date", y = "Cumulative Time (secs)")+
-  theme_grey()+
-    theme(legend.position = "none")+
-  theme(axis.text.x=element_text(angle=30, hjust=1))+
+  ggplot(aes(x = forcats::fct_reorder(Date, Cumulative_Time_s), y = Cumulative_Time_s, fill = Tast_Status)) +
+  geom_boxplot(width = 0.2, fill = "mediumpurple2", color = "black", outlier.shape = NA) +
+  geom_jitter(width = 0.2, size = 0.9, color = "black", alpha = 0.3) +
+  facet_wrap(~Tast_Status) +
+  ggtitle("Non-Normalized Cumulative Time of Seal Presence") +
+  labs(x = "Date", y = "Cumulative Time (secs)") +
+  theme_grey() +
+  theme(legend.position = "none") +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   theme(plot.title = element_text(hjust = 0.5))
 
-# Create a boxplot from the summarized statistics
+## Manual Boxplot by Tast Status
 ggplot(box_stats_combined, aes(x = Tast_Status, y = mean, fill = Tast_Status, group = Tast_Status)) +
   geom_bar(stat = "identity", width = 0.6) +
   geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.2, position = position_dodge(width = 0.6)) +
@@ -180,5 +183,12 @@ ggplot(box_stats_combined, aes(x = Tast_Status, y = mean, fill = Tast_Status, gr
   theme_classic()+
   theme(legend.position = "none")+
   theme(plot.title = element_text(hjust = 0.5))
+
+
+# 8. Backup code 
+
+#converting dates to characters for plotting
+combined_ON_OFF$Date <- as.character(combined_ON_OFF$Date)
+
 
 
