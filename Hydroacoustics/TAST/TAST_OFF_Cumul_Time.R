@@ -107,45 +107,16 @@ box_stats_OFF <- TAST_OFF_Times_clean %>%
 ## binding the stats together for ON and OFF
 box_stats_combined <- rbind(box_stats_OFF, box_stats_ON)
 
-# 6. Draft Graphing ------------------------------------------------------------
 
-boxplot(Cumulative_Time_sum ~ Date, data = summarized_df,
-        main = "Cumulative Seal Presence",
-        xlab = "Date",
-        ylab = "Non-normalized Cumulative Time (s)")
-
-ggplot(summarized_df, aes(x = Date, y = Cumulative_Time_sum)) +
-  geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Cumulative Seal Presence",
-       x = "Date",
-       y = "Non-normalized Cumulative Time (s)") +
-      theme_minimal()
-
-combined_ON_OFF %>%
-  ggplot(aes(Date, Cumulative_Time_s, fill = Tast_Status))+
-  geom_boxplot()+
-  geom_jitter()+
-  facet_wrap(~Tast_Status)+
-  ggtitle("Non-normalized Cumulative Seal Presence")+
-  theme_minimal()
-
-ggplot(combined_ON_OFF, aes(x = Tast_Status, y = Cumulative_Time_s)) +
-  geom_violin(fill = "lightblue", color = "blue") +
-  geom_boxplot(width = 0.2, fill = "white", color = "black", outlier.shape = NA) +
-  geom_jitter(width = 0.2, size = 1, color = "blue", alpha = 0.4)+
-  labs(title = "Non-Normalized Cumulative Time of Seal Presence", 
-       x = "Tast Status", 
-       y = "Cumulative Time (s)")+
-  theme_minimal()
-
-
-# 7. Good Graphing -------------------------------------------------------------
+# 7. Graphing ------------------------------------------------------------------
 
 ## If the x-axis dates aren't plotting in chronological order, make sure that the
 ## dates have been converted using as.character(); dates, numeric & factor will not work
 
 ## Violin Plot
-ggplot(combined_ON_OFF, aes(x = Tast_Status, y = Cumulative_Time_s, fill = Tast_Status)) +
+
+combined_ON_OFF %>% 
+ggplot(aes(x = Tast_Status, y = Cumulative_Time_s, fill = Tast_Status)) +
   geom_violin(width = 1, alpha = 0.5, color = "black") +
   geom_boxplot(width = 0.2, fill = "white", color = "black", outlier.shape = NA) +
   geom_jitter(width = 0.2, size = 0.9, color = "black", alpha = 0.3) +
@@ -169,7 +140,9 @@ combined_ON_OFF %>%
   theme_grey() +
   theme(legend.position = "none") +
   theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+print(boxplot1)
 
 ## Manual Boxplot by Tast Status
 ggplot(box_stats_combined, aes(x = Tast_Status, y = mean, fill = Tast_Status, group = Tast_Status)) +
@@ -185,10 +158,33 @@ ggplot(box_stats_combined, aes(x = Tast_Status, y = mean, fill = Tast_Status, gr
   theme(plot.title = element_text(hjust = 0.5))
 
 
-# 8. Backup code 
+# 8. Miscellaneous code -------------------------------------------------------- 
 
 #converting dates to characters for plotting
 combined_ON_OFF$Date <- as.character(combined_ON_OFF$Date)
+
+## boxplot code (there are many ways to make a boxplot I'm learning)
+boxplot(Cumulative_Time_sum ~ Date, data = summarized_df,
+        main = "Cumulative Seal Presence",
+        xlab = "Date",
+        ylab = "Non-normalized Cumulative Time (s)")
+
+## bar graph 
+ggplot(summarized_df, aes(x = Date, y = Cumulative_Time_sum)) +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(title = "Cumulative Seal Presence",
+       x = "Date",
+       y = "Non-normalized Cumulative Time (s)") +
+  theme_minimal()
+
+## trying boxplot with jittering and facet wrap
+combined_ON_OFF %>%
+  ggplot(aes(Date, Cumulative_Time_s, fill = Tast_Status))+
+  geom_boxplot()+
+  geom_jitter()+
+  facet_wrap(~Tast_Status)+
+  ggtitle("Non-normalized Cumulative Seal Presence")+
+  theme_minimal()
 
 
 
