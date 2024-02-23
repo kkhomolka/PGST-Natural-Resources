@@ -57,13 +57,6 @@ TAST_ON_Times_clean$Date <- as.character(TAST_ON_Times_clean$Date)
 TAST_ON_Times_clean <- TAST_ON_Times_clean %>% 
   filter(Seal_Presence %in% c("N", "Y"))
 
-# 4. Check for duplicates or redundancies --------------------------------------
-
-#check OFF
-duplicates_OFF <- TAST_OFF_Times_clean[duplicated(TAST_OFF_Times_clean[, c('File')]), ]
-
-#check ON
-duplicates_ON <- TAST_ON_Times_clean[duplicated(TAST_ON_Times_clean[, c('File')]), ]
 
 # 5. Combine dataframes and group by date --------------------------------------
 
@@ -107,6 +100,10 @@ box_stats_OFF <- TAST_OFF_Times_clean %>%
 ## binding the stats together for ON and OFF
 box_stats_combined <- rbind(box_stats_OFF, box_stats_ON)
 
+# 6. Statistical Tests ---------------------------------------------------------
+
+## two sample t-test
+x <- 
 
 # 7. Graphing ------------------------------------------------------------------
 
