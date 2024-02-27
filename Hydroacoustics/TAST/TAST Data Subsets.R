@@ -116,6 +116,13 @@ wide_merged$OFF_numeric <- as.numeric(wide_merged$OFF)
 wide_merged <- wide_merged %>%
   pivot_longer(cols = c(ON_numeric, OFF_numeric), names_to = "Status", values_to = "Cumulative_Time")
 
+#for normalization - finding the sum of all the ON hours combined/OFF hours combined 
+on_rows <- wide_merged$Status == "ON_numeric"
+sum_on_hours <- sum(wide_merged$Cumulative_Time[on_rows])
+
+off_rows <- wide_merged$Status == "OFF_numeric"
+sum_off_hours <- sum(wide_merged$Cumulative_Time[off_rows])
+
 ## let's graph cumulative ON/OFF times by day 
 ggplot(wide_merged, aes(x = Date, y = Cumulative_Time, fill = Status)) +
   geom_bar(stat = "identity", position = "stack") +
@@ -128,6 +135,7 @@ ggplot(wide_merged, aes(x = Date, y = Cumulative_Time, fill = Status)) +
   theme_grey()+
   theme(axis.text.x=element_text(angle=30, hjust=1))+
   theme(plot.title = element_text(hjust = 0.5))
+
 
 
 
