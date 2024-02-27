@@ -12,7 +12,7 @@ pacman::p_load(pwr,
                readxl)
 
 ## Set working directory for KK WORK
-setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_combined")
+setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
 ## Set working directory for KK HOME 
 setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -40,7 +40,8 @@ TAST_combined <- TAST_combined %>%
          TAST_Status,
          Date_M,
          Process_ID)
-  
+
+TAST_combined %>% mutate(TAST_combined, Normalized_time_in_beam = Time)  
   
   
   
