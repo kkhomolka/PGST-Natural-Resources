@@ -70,7 +70,8 @@ TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S"
 
 # round time to the nearest hour and add :00 
 TAST_combined$DateTime_PST_rounded <- hour(TAST_combined$DateTime_PST)
-TAST_combined$DateTime_PST_rounded <- paste0(TAST_combined$DateTime_PST_rounded, ":00")
+#TAST_combined$DateTime_PST_rounded <- paste0(TAST_combined$DateTime_PST_rounded, ":00")
+#TAST_combined$DateTime_PST_rounded <- as.numeric(TAST_combined$DateTime_PST_rounded)
 
 # 5. Plotting ------------------------------------------------------------------
 
@@ -115,7 +116,7 @@ TAST_cor <- TAST_combined %>%
 TAST_cor <- TAST_combined %>% 
   select(where(is.numeric)) %>% 
   drop_na() %>% 
-  select(-DateTime_PST_rounded, -Process_ID, -Target_depth_mean)
+  select(-Process_ID, -Target_depth_mean)
 
 # basic correlation function, using spearman method for categorical variables with assigned factors 
 cor(TAST_cor, method = "spearman")
