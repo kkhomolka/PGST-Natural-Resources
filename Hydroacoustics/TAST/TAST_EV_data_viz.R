@@ -66,9 +66,9 @@ TAST_combined$DateTime_UTC <- as.POSIXct(paste(TAST_combined$Date_M, TAST_combin
 TAST_combined$DateTime_PST <- as.POSIXct(TAST_combined$DateTime_UTC, tz = "America/Los_Angeles")
 
 # remove date and just have Time_PST
-TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
+#TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
 
-# round time to the nearest hour and add :00 
+# round time to the nearest hour
 TAST_combined$DateTime_PST_rounded <- hour(TAST_combined$DateTime_PST)
 #TAST_combined$DateTime_PST_rounded <- paste0(TAST_combined$DateTime_PST_rounded, ":00")
 #TAST_combined$DateTime_PST_rounded <- as.numeric(TAST_combined$DateTime_PST_rounded)
@@ -101,14 +101,14 @@ TAST_combined %>%
 
 #  TEST trying to plot the time axis differently 
 TAST_combined %>% 
-  ggplot(aes(DateTime_UTC, Normalized_time_in_beam, color = TAST_Status))+
+  ggplot(aes(DateTime_PST, Normalized_time_in_beam, color = TAST_Status))+
   geom_jitter(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
   ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window")+
   scale_color_manual(values = c("ON" = "darkgreen", "OFF" = "darkred")) +
   labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)")+
   theme_classic()+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_datetime(date_labels = "%H", date_breaks = "8 hour")
+  scale_x_datetime(date_labels = "%H", date_breaks = "1 hour")
   
 time <- hour(TAST_combined$DateTime_PST)
 plot(time, TAST_combined$Normalized_time_in_beam)
