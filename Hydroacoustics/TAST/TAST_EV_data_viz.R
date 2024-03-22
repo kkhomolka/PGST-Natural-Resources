@@ -79,8 +79,9 @@ TAST_combined$DateTime_PST_rounded <- hour(TAST_combined$DateTime_PST)
 TAST_combined %>% 
   ggplot(aes(DateTime_PST_rounded, Normalized_time_in_beam, color = TAST_Status))+
   geom_point(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
+  #geom_jitter(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
   ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window")+
-  scale_color_manual(values = c("ON" = "darkgreen", "OFF" = "darkred")) +
+  scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
   labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)")+
   theme_classic()+
   theme(plot.title = element_text(hjust = 0.5))+
@@ -137,12 +138,19 @@ TAST_cor <- TAST_combined %>%
 
 # basic correlation function, using spearman method for categorical variables with assigned factors 
 cor(TAST_cor, method = "spearman")
-  
+
+library(wesanderson)  
 pal <- wes_palette("Darjeeling2", 21, type = "continuous")
 
 matrix <- cor(TAST_cor) %>% 
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
            type = "lower", shade.col = c("blue", "tan"))
+
+
+
+
+
+
 
 # 7. Subsetting by TAST pinging frequency --------------------------------------
 
