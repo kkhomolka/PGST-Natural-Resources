@@ -14,7 +14,8 @@ pacman::p_load(pwr,
                cowplot,
                changepoint,
                strucchange,
-               ggpubr)
+               ggpubr,
+               stats)
 
 ## Set working directory for KK WORK
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -50,11 +51,20 @@ TAST_combined <- TAST_combined %>%
 ON_norm <- 154200
 OFF_norm <- 147060
 
-# create normalization column for time in beam 
+# create normalization column for time in beam and multiplied by 10^5 to
+# improve the readability when plotting 
 TAST_combined <- TAST_combined %>% 
   mutate(Normalized_time_in_beam = if_else(TAST_Status == "ON", 
-                                           Time_in_beam / ON_norm, 
-                                           Time_in_beam / OFF_norm))
+                                           Time_in_beam / ON_norm * 10^5, 
+                                           Time_in_beam / OFF_norm * 10^5))
+
+# assign numeric factors for TAST status
+TAST_combined <- TAST_combined %>% 
+  mutate(TAST_Status_numeric = case_when(
+    TAST_Status == "ON" ~ 1,
+    TAST_Status == "OFF" ~ 0,
+    TRUE ~ NA_integer_))
+
 
 # 4. Time Conversions ----------------------------------------------------------
 
@@ -146,13 +156,37 @@ matrix <- cor(TAST_cor) %>%
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
            type = "lower", shade.col = c("blue", "tan"))
 
+# 7. Statistics-----------------------------------------------------------------
+
+# Principal Component Analysis (make sure 'stats' package is loaded)
+pca_result <- prcomp(TAST_combined[,c("Target_range_mean",
+                                      "Normalized_time_in_beam",
+                                      #"TAST_Status_numeric",
+                                      "Fish_track_change_in_range",
+                                      "Speed_4D_mean_unsmoothed")],
+                                      scale. = TRUE)
+# extract principal components
+pc_scores <- pca_result$x
+
+# trying ggplot method
+autoplot(pca_result, 
+         data = TAST_combined, 
+         color = "TAST_Status",
+         loadings = TRUE,
+         loadings.colour = "black",
+         loadings.label = TRUE,
+         loadings.label.size = 3,
+         main = "Principal Component Analysis")
 
 
+# One-way ANOVA
+anova_result <- aov(Target_range_mean ~ TAST_Status, data = TAST_combined)
+summary(anova_result)
 
+# two sample t-test
+t_test <- t.test(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
+print(t_test)
 
-
-
-# 7. Subsetting by TAST pinging frequency --------------------------------------
 
 
 
