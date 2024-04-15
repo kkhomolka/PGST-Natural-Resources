@@ -44,3 +44,5 @@ for (file in files) {
 
 write.csv(combined_data, "TAST_OFF_EV_Export_combined.csv", row.names = FALSE)
 
+# DONE!
+
