@@ -15,7 +15,9 @@ pacman::p_load(pwr,
                changepoint,
                strucchange,
                ggpubr,
-               stats)
+               stats,
+               ggfortify,
+               vegan)
 
 ## Set working directory for KK WORK
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -45,6 +47,7 @@ TAST_combined <- TAST_combined %>%
          Target_range_mean, 
          Fish_track_change_in_range,
          Speed_4D_mean_unsmoothed,
+         Tortuosity_3D,
          Time_in_beam)
 
 # create normalization variables
@@ -133,8 +136,15 @@ TAST_combined %>%
   ggplot(aes(Time_in_beam, color = TAST_Status))+
   geom_density()+
   ggtitle("Normalized Seal Time in Beam")
+
+# 6. NMDS ----------------------------------------------------------------------
+numeric_data <- TAST_combined[sapply(TAST_combined, is.numeric)]
+nmds_result <- metaMDS(numeric_data)
+nmds_plot <- ordiplot(nmds_result, type = "p")
+nmds_plot <- ordiplot(nmds_plot, display = "TAST_Status_numeric")
+
   
-# 6. Correlation Plots ---------------------------------------------------------
+# 7. Correlation Plots ---------------------------------------------------------
 
 # assigning factors and isolating numeric values only 
 TAST_cor <- TAST_combined %>% 
@@ -156,12 +166,13 @@ matrix <- cor(TAST_cor) %>%
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
            type = "lower", shade.col = c("blue", "tan"))
 
-# 7. Statistics-----------------------------------------------------------------
+# 8. Statistics-----------------------------------------------------------------
 
 # Principal Component Analysis (make sure 'stats' package is loaded)
 pca_result <- prcomp(TAST_combined[,c("Target_range_mean",
                                       "Normalized_time_in_beam",
                                       #"TAST_Status_numeric",
+                                      "Tortuosity_3D",
                                       "Fish_track_change_in_range",
                                       "Speed_4D_mean_unsmoothed")],
                                       scale. = TRUE)
@@ -180,7 +191,7 @@ autoplot(pca_result,
 
 
 # One-way ANOVA
-anova_result <- aov(Target_range_mean ~ TAST_Status, data = TAST_combined)
+anova_result <- aov(Tortuosity_3D ~ DateTime_PST, data = TAST_combined)
 summary(anova_result)
 
 # two sample t-test
