@@ -31,8 +31,8 @@ TAST_ON <- read.csv("TAST_ON_EV_Export_combined.csv")
 TAST_OFF <- read.csv("TAST_OFF_EV_Export_combined.csv")
 
 # reformat the dates 
-TAST_ON$Date_M <- as.Date(TAST_ON$Date_M, format = "%m/%d/%Y")
-TAST_OFF$Date_M <- as.Date(TAST_OFF$Date_M, format = "%m/%d/%Y")
+#TAST_ON$Date_M <- as.Date(TAST_ON$Date_M, format = "%m/%d/%Y")
+#TAST_OFF$Date_M <- as.Date(TAST_OFF$Date_M, format = "%m/%d/%Y")
 
 # 3. Combine dfs and filter ----------------------------------------------------
 
@@ -71,65 +71,81 @@ TAST_combined <- TAST_combined %>%
 
 # 4. Time Conversions ----------------------------------------------------------
 
-# need to convert the time from UTC to PST
-# Combine Date and Time_M columns into a single datetime column in UTC
-TAST_combined$DateTime_UTC <- as.POSIXct(paste(TAST_combined$Date_M, TAST_combined$Time_M), tz = "UTC", format = "%Y-%m-%d %H:%M:%OS")
+# Combine "Date_M" and "Time_M" columns into a single datetime string
+datetime_string <- paste(TAST_combined$Date_M, TAST_combined$Time_M)
+
+# Convert datetime string to POSIXct format
+TAST_combined$DateTime_POSIXct <- as.POSIXct(datetime_string, format = "%m/%d/%Y %H:%M:%S")
+
+print(class(TAST_combined$DateTime_POSIXct))
+
+TAST_combined$DateTime_PST <- with_tz(TAST_combined$DateTime_POSIXct, "America/Los_Angeles")
 
 # Convert UTC to PST
 TAST_combined$DateTime_PST <- as.POSIXct(TAST_combined$DateTime_UTC, tz = "America/Los_Angeles")
 
 # remove date and just have Time_PST
-#TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
+TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
 
-# round time to the nearest hour
-TAST_combined$DateTime_PST_rounded <- hour(TAST_combined$DateTime_PST)
-#TAST_combined$DateTime_PST_rounded <- paste0(TAST_combined$DateTime_PST_rounded, ":00")
-#TAST_combined$DateTime_PST_rounded <- as.numeric(TAST_combined$DateTime_PST_rounded)
+# adding an arbitary date to Time_PST so I can plot everything on the same day
+date <- "2024-04-15"
+TAST_combined$DateTime_PST_Plotting <- paste(date, TAST_combined$Time_PST, sep = " ")
+TAST_combined$DateTime_PST_Plotting <- as.POSIXct(TAST_combined$DateTime_PST_Plotting, format = "%Y-%m-%d %H:%M:%S")
 
-# 5. Plotting ------------------------------------------------------------------
+# 5. Reading in & formatting BlueView Time in Beam Files -----------------------
+
+# Reading in files
+BV_TAST_ON <- read_excel("Seal_presence_time_spreadsheet_tast_ON_foraging_window_finalized.xlsx")
+BV_TAST_OFF <- read_excel("Seal_presence_time_spreadsheet_tast_OFF_foraging_window_finalized.xlsx")
+
+# Bind files together into one
+BV_combined <- rbind(BV_TAST_OFF, BV_TAST_ON)
+
+BV_combined <- BV_combined %>% 
+  select(File,
+         File_Timestamp,
+         Date,
+         Cumulative_Time_s,
+         TAST_Status)
+
+# use same normalization variables as EV files
+ON_norm <- 154200
+OFF_norm <- 147060
+
+# create normalization column for time in beam and multiplied by 10^5 to
+# improve the readability when plotting 
+BV_combined <- BV_combined %>% 
+  mutate(BV_Normalized_time_in_beam = if_else(TAST_Status == "ON", 
+                                           Cumulative_Time_s / ON_norm * 10^5, 
+                                           Cumulative_Time_s / OFF_norm * 10^5))
+
+# remove na's
+BV_combined <- na.omit(BV_combined)
+
+# 6. Plotting ------------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
-TAST_combined %>% 
-  ggplot(aes(DateTime_PST_rounded, Normalized_time_in_beam, color = TAST_Status))+
-  geom_point(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
-  #geom_jitter(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
-  ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window")+
+TAST_combined %>%
+  mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
+  ggplot(aes(Time_of_day, Normalized_time_in_beam, color = TAST_Status)) +
+  geom_point(size = 2.5, alpha = 0.4) +
+  ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window") +
   scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
-  labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)")+
-  theme_classic()+
-  theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_continuous(breaks = seq(min(TAST_combined$DateTime_PST_rounded), 
-                                  max(TAST_combined$DateTime_PST_rounded)))
+  labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5))
 
-# Time_in_beam by DateTime
-TAST_combined %>% 
-  ggplot(aes(DateTime_PST, Normalized_time_in_beam, color = TAST_Status))+
-  geom_point(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
-  ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window")+
-  scale_color_manual(values = c("ON" = "darkgreen", "OFF" = "darkred")) +
-  labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)")+
-  theme_classic()+
-  theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_continuous(breaks = seq(min(TAST_combined$DateTime_PST_rounded), 
-                                  max(TAST_combined$DateTime_PST_rounded)))
 
-#  TEST trying to plot the time axis differently 
-TAST_combined %>% 
-  ggplot(aes(DateTime_PST, Normalized_time_in_beam, color = TAST_Status))+
-  geom_jitter(aes(color = TAST_Status), size = 2.5, alpha = 0.4)+
-  ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window")+
-  scale_color_manual(values = c("ON" = "darkgreen", "OFF" = "darkred")) +
-  labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)")+
-  theme_classic()+
-  theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_datetime(date_labels = "%H", date_breaks = "1 hour")
-  
-time <- hour(TAST_combined$DateTime_PST)
-plot(time, TAST_combined$Normalized_time_in_beam)
-
-TAST_combined %>% 
-  ggplot(aes(time, Normalized_time_in_beam))+
-  geom_point()
+# Time_in_beam by Hour of Day
+TAST_combined %>%
+  mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
+  ggplot(aes(Time_of_day, Tortuosity_3D, color = TAST_Status)) +
+  geom_point(size = 2.5, alpha = 0.4) +
+  ggtitle("Tortuosity by Peak Foraging Time Window") +
+  scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
+  labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5))
 
 # Time_in_beam density plot
 TAST_combined %>% 
@@ -137,14 +153,59 @@ TAST_combined %>%
   geom_density()+
   ggtitle("Normalized Seal Time in Beam")
 
-# 6. NMDS ----------------------------------------------------------------------
+# Box plots - Tortuosity
+TAST_combined %>% ggplot(aes(TAST_Status, Tortuosity_3D, fill = TAST_Status))+
+  geom_boxplot()+
+  ggtitle("3-Dimensional Tortuosity")+
+  labs(x = "TAST Status", y = "3-Dimensional Tortuosity")+
+  scale_fill_manual(values = wes_palette("Darjeeling2", 2))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Box plots - Time in Beam 
+BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_Status))+
+  geom_boxplot()+
+  ggtitle("Normalized Time in Beam from BlueView Analysis")+
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)")+
+  scale_fill_manual(values = wes_palette("Darjeeling2", 2))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Linear relationships - Tortuosity
+ggplot(TAST_combined, aes(DateTime_PST_Plotting, Tortuosity_3D))+
+  geom_point()+
+  geom_smooth(method = "lm", se=F)+
+  facet_wrap(~TAST_Status)
+
+# Linear relationships - Time in Beam 
+library(ggplot2)
+library(ggpmisc)
+
+# Assuming your dataframe is called 'TAST_combined'
+
+ggplot(TAST_combined, aes(DateTime_PST_Plotting, Time_in_beam)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~TAST_Status) +
+  theme_minimal() +
+  stat_regline_equation(label.x = "right", label.y = "top", aes(label = paste(..eq.label.., paste("R^2 =", sprintf("%.2f", ..rr.label..)), sep = "*`, `")))
+
+
+
+# Linear relationships - Time in Beam vs. Tortuosity
+ggplot(TAST_combined, aes(Time_in_beam, Tortuosity_3D))+
+  geom_point()+
+  geom_smooth(method = "lm", se=F)+
+  facet_wrap(~TAST_Status)
+
+# 7. NMDS ----------------------------------------------------------------------
 numeric_data <- TAST_combined[sapply(TAST_combined, is.numeric)]
 nmds_result <- metaMDS(numeric_data)
 nmds_plot <- ordiplot(nmds_result, type = "p")
 nmds_plot <- ordiplot(nmds_plot, display = "TAST_Status_numeric")
 
   
-# 7. Correlation Plots ---------------------------------------------------------
+# 8. Correlation Plots ---------------------------------------------------------
 
 # assigning factors and isolating numeric values only 
 TAST_cor <- TAST_combined %>% 
@@ -166,7 +227,7 @@ matrix <- cor(TAST_cor) %>%
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
            type = "lower", shade.col = c("blue", "tan"))
 
-# 8. Statistics-----------------------------------------------------------------
+# 9. Statistics-----------------------------------------------------------------
 
 # Principal Component Analysis (make sure 'stats' package is loaded)
 pca_result <- prcomp(TAST_combined[,c("Target_range_mean",
