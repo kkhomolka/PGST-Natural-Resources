@@ -74,17 +74,16 @@ TAST_combined <- TAST_combined %>%
 # Combine "Date_M" and "Time_M" columns into a single datetime string
 datetime_string <- paste(TAST_combined$Date_M, TAST_combined$Time_M)
 
-# Convert datetime string to POSIXct format
-TAST_combined$DateTime_POSIXct <- as.POSIXct(datetime_string, format = "%m/%d/%Y %H:%M:%S")
+# Convert datetime string to POSIXct format in UTC
+TAST_combined$DateTime_POSIXct <- as.POSIXct(datetime_string, format = "%m/%d/%Y %H:%M:%S", tz = "UTC")
 
-print(class(TAST_combined$DateTime_POSIXct))
-
+# Convert to PST time zone
 TAST_combined$DateTime_PST <- with_tz(TAST_combined$DateTime_POSIXct, "America/Los_Angeles")
 
-# Convert UTC to PST
-TAST_combined$DateTime_PST <- as.POSIXct(TAST_combined$DateTime_UTC, tz = "America/Los_Angeles")
+# Print to check to make sure that the object class is "POSIXct"
+#print(class(TAST_combined$DateTime_PST))
 
-# remove date and just have Time_PST
+# remove date and just have Time_PST, FYI this will make the object a character class
 TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
 
 # adding an arbitary date to Time_PST so I can plot everything on the same day
@@ -122,7 +121,76 @@ BV_combined <- BV_combined %>%
 # remove na's
 BV_combined <- na.omit(BV_combined)
 
-# 6. Plotting ------------------------------------------------------------------
+# Log transforming time in beam to avoid removing outliers
+#BV_combined <- BV_combined %>% 
+  #mutate(LOG_BV_Normalized_time_in_beam = log(BV_Normalized_time_in_beam))
+
+
+
+# Idenitfying and removing outliers 
+# Calculate the first quartile (Q1) and third quartile (Q3)
+Q1 <- quantile(BV_combined$BV_Normalized_time_in_beam, 0.25)
+Q3 <- quantile(BV_combined$BV_Normalized_time_in_beam, 0.75)
+
+# Calculate the interquartile range (IQR)
+IQR <- Q3 - Q1
+
+# Define the lower and upper bounds for identifying outliers
+lower_bound <- Q1 - 3.0 * IQR
+upper_bound <- Q3 + 3.0 * IQR
+
+# Identify outliers
+outliers <- BV_combined$BV_Normalized_time_in_beam < lower_bound | 
+  BV_combined$BV_Normalized_time_in_beam > upper_bound
+
+# Display the identified outliers
+outlier_values <- BV_combined[outliers, "BV_Normalized_time_in_beam"]
+print(outlier_values)
+
+# Identify the top 3 outliers
+top_outliers <- head(sort(BV_combined$BV_Normalized_time_in_beam[outliers], 
+                          decreasing = TRUE), 3)
+
+# Remove the top 3 outliers from the dataframe
+BV_combined <- BV_combined[!BV_combined$BV_Normalized_time_in_beam %in% top_outliers, ]
+
+
+# 6. BV Plotting ---------------------------------------------------------------
+
+# Violin plot
+BV_combined %>% 
+  ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
+  geom_violin()+
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)")+
+  theme_minimal()+
+  scale_fill_manual(values = wes_palette("Darjeeling2", 2))
+
+# Filter out non-zero values for boxplot
+BV_non_zero_data <- BV_combined[BV_combined$BV_Normalized_time_in_beam != 0, ]
+
+# Create the boxplot for non-zero values
+ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
+  geom_boxplot()+
+  labs(x = "TAST_Status", y = "BV Normalized Time in Beam (Non-zero Values)")+
+  theme_minimal()
+
+# Create the bar chart for # of zero values
+BV_combined %>%
+  group_by(TAST_Status) %>%
+  summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
+  ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
+  geom_bar(stat = "identity", fill = wes_palette("Darjeeling2", 2)) +
+  labs(x = NULL, y = "Count of Zero Values") +
+  theme_minimal()
+
+#quantile-quantile plot
+ggplot(BV_combined, aes(sample = BV_Normalized_time_in_beam))+
+  stat_qq()+
+  stat_qq_line()+
+  theme_minimal()
+
+
+# 6. EV Plotting ---------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
 TAST_combined %>%
@@ -173,27 +241,6 @@ BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_
 
 # Linear relationships - Tortuosity
 ggplot(TAST_combined, aes(DateTime_PST_Plotting, Tortuosity_3D))+
-  geom_point()+
-  geom_smooth(method = "lm", se=F)+
-  facet_wrap(~TAST_Status)
-
-# Linear relationships - Time in Beam 
-library(ggplot2)
-library(ggpmisc)
-
-# Assuming your dataframe is called 'TAST_combined'
-
-ggplot(TAST_combined, aes(DateTime_PST_Plotting, Time_in_beam)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  facet_wrap(~TAST_Status) +
-  theme_minimal() +
-  stat_regline_equation(label.x = "right", label.y = "top", aes(label = paste(..eq.label.., paste("R^2 =", sprintf("%.2f", ..rr.label..)), sep = "*`, `")))
-
-
-
-# Linear relationships - Time in Beam vs. Tortuosity
-ggplot(TAST_combined, aes(Time_in_beam, Tortuosity_3D))+
   geom_point()+
   geom_smooth(method = "lm", se=F)+
   facet_wrap(~TAST_Status)
