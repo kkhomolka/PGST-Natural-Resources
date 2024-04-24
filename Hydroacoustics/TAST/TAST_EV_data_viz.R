@@ -172,6 +172,7 @@ BV_non_zero_data <- BV_combined[BV_combined$BV_Normalized_time_in_beam != 0, ]
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
   geom_boxplot()+
   labs(x = "TAST_Status", y = "BV Normalized Time in Beam (Non-zero Values)")+
+  geom_bar(stat = "identity", fill = wes_palette("Darjeeling2", 1)) +
   theme_minimal()
 
 # Create the bar chart for # of zero values
