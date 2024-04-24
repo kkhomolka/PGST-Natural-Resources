@@ -17,7 +17,11 @@ pacman::p_load(pwr,
                ggpubr,
                stats,
                ggfortify,
-               vegan)
+               vegan,
+               wesanderson)
+
+# Aesthetics color palette
+pal <- wes_palette("AsteroidCity1", 2, type = "continuous")
 
 ## Set working directory for KK WORK
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -29,10 +33,6 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
 TAST_ON <- read.csv("TAST_ON_EV_Export_combined.csv")
 TAST_OFF <- read.csv("TAST_OFF_EV_Export_combined.csv")
-
-# reformat the dates 
-#TAST_ON$Date_M <- as.Date(TAST_ON$Date_M, format = "%m/%d/%Y")
-#TAST_OFF$Date_M <- as.Date(TAST_OFF$Date_M, format = "%m/%d/%Y")
 
 # 3. Combine dfs and filter ----------------------------------------------------
 
@@ -121,12 +121,6 @@ BV_combined <- BV_combined %>%
 # remove na's
 BV_combined <- na.omit(BV_combined)
 
-# Log transforming time in beam to avoid removing outliers
-#BV_combined <- BV_combined %>% 
-  #mutate(LOG_BV_Normalized_time_in_beam = log(BV_Normalized_time_in_beam))
-
-
-
 # Idenitfying and removing outliers 
 # Calculate the first quartile (Q1) and third quartile (Q3)
 Q1 <- quantile(BV_combined$BV_Normalized_time_in_beam, 0.25)
@@ -154,6 +148,8 @@ top_outliers <- head(sort(BV_combined$BV_Normalized_time_in_beam[outliers],
 # Remove the top 3 outliers from the dataframe
 BV_combined <- BV_combined[!BV_combined$BV_Normalized_time_in_beam %in% top_outliers, ]
 
+# Filter out non-zero values for boxplot
+BV_non_zero_data <- BV_combined[BV_combined$BV_Normalized_time_in_beam != 0, ]
 
 # 6. BV Plotting ---------------------------------------------------------------
 
@@ -161,37 +157,29 @@ BV_combined <- BV_combined[!BV_combined$BV_Normalized_time_in_beam %in% top_outl
 BV_combined %>% 
   ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
   geom_violin()+
-  labs(x = "TAST Status", y = "Normalized Time in Beam (s)")+
-  theme_minimal()+
-  scale_fill_manual(values = wes_palette("Darjeeling2", 2))
-
-# Filter out non-zero values for boxplot
-BV_non_zero_data <- BV_combined[BV_combined$BV_Normalized_time_in_beam != 0, ]
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence")+
+  theme_cowplot()+
+  scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
+  guides(fill = "none")
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot()+
-  labs(x = "TAST_Status", y = "BV Normalized Time in Beam (Non-zero Values)")+
-  geom_bar(stat = "identity", fill = wes_palette("Darjeeling2", 1)) +
-  theme_minimal()
+  geom_boxplot(fill = wes_palette("AsteroidCity1", 2))+
+  labs(x = "TAST Status", y = "Normalized Time in Beam", title = "Duration of Seal Presence")+
+  theme_cowplot()+
+  guides(fill = "none")
 
 # Create the bar chart for # of zero values
 BV_combined %>%
   group_by(TAST_Status) %>%
   summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
-  geom_bar(stat = "identity", fill = wes_palette("Darjeeling2", 2)) +
-  labs(x = NULL, y = "Count of Zero Values") +
-  theme_minimal()
+  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2)) +
+  labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
+  theme_cowplot()+
+  guides(fill = "none")
 
-#quantile-quantile plot
-ggplot(BV_combined, aes(sample = BV_Normalized_time_in_beam))+
-  stat_qq()+
-  stat_qq_line()+
-  theme_minimal()
-
-
-# 6. EV Plotting ---------------------------------------------------------------
+# 7. EV Plotting ---------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
 TAST_combined %>%
@@ -227,7 +215,7 @@ TAST_combined %>% ggplot(aes(TAST_Status, Tortuosity_3D, fill = TAST_Status))+
   geom_boxplot()+
   ggtitle("3-Dimensional Tortuosity")+
   labs(x = "TAST Status", y = "3-Dimensional Tortuosity")+
-  scale_fill_manual(values = wes_palette("Darjeeling2", 2))+
+  scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
   theme_minimal()+
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -236,7 +224,7 @@ BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_
   geom_boxplot()+
   ggtitle("Normalized Time in Beam from BlueView Analysis")+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)")+
-  scale_fill_manual(values = wes_palette("Darjeeling2", 2))+
+  scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
   theme_minimal()+
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -246,14 +234,14 @@ ggplot(TAST_combined, aes(DateTime_PST_Plotting, Tortuosity_3D))+
   geom_smooth(method = "lm", se=F)+
   facet_wrap(~TAST_Status)
 
-# 7. NMDS ----------------------------------------------------------------------
+# 8. NMDS ----------------------------------------------------------------------
 numeric_data <- TAST_combined[sapply(TAST_combined, is.numeric)]
 nmds_result <- metaMDS(numeric_data)
 nmds_plot <- ordiplot(nmds_result, type = "p")
 nmds_plot <- ordiplot(nmds_plot, display = "TAST_Status_numeric")
 
   
-# 8. Correlation Plots ---------------------------------------------------------
+# 9. Correlation Plots ---------------------------------------------------------
 
 # assigning factors and isolating numeric values only 
 TAST_cor <- TAST_combined %>% 
@@ -273,7 +261,7 @@ pal <- wes_palette("Darjeeling2", 21, type = "continuous")
 
 matrix <- cor(TAST_cor) %>% 
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
-           type = "lower", shade.col = c("blue", "tan"))
+           type = "lower", shade.col = wes_palette("AsteroidCity1"))
 
 # 9. Statistics-----------------------------------------------------------------
 
@@ -295,8 +283,15 @@ autoplot(pca_result,
          loadings = TRUE,
          loadings.colour = "black",
          loadings.label = TRUE,
+         loadings.label.colour = "black",
          loadings.label.size = 3,
-         main = "Principal Component Analysis")
+         loadings.label.vjust = -0.5,
+         loadings.label.hjust = -0.01,
+         main = "Principal Component Analysis")+
+  scale_color_manual(values = pal)+
+  theme_cowplot()
+  
+  
 
 
 # One-way ANOVA
