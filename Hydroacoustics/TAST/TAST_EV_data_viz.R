@@ -18,7 +18,8 @@ pacman::p_load(pwr,
                stats,
                ggfortify,
                vegan,
-               wesanderson)
+               wesanderson,
+               ggrepel)
 
 # Aesthetics color palette
 pal <- wes_palette("AsteroidCity1", 2, type = "continuous")
@@ -160,24 +161,54 @@ BV_combined %>%
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence")+
   theme_cowplot()+
   scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
-  guides(fill = "none")
+  guides(fill = "none")+
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
+
+# messing with aesthetics for violin plot 
+BV_combined %>% 
+  ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status)) +
+  geom_violin() +
+  geom_jitter(aes(color = TAST_Status), alpha = 0.2) +  # Use the same fill aesthetic mapping and set transparency to 10%
+  geom_jitter(aes(color = TAST_Status), shape = 1, alpha = 0.5) +  # Outline points with shape = 1 (circle) and set transparency to 10%
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence") +
+  theme_cowplot() +
+  scale_fill_manual(values = wes_palette("AsteroidCity1", 2)) +
+  scale_color_manual(values = wes_palette("AsteroidCity1", 2)) +  # Match jitter point colors with violin plot colors
+  guides(fill = "none", color = "none") +  # Remove legends for fill and color aesthetics
+  theme(
+    text = element_text(size = 18),
+    axis.text = element_text(size = 18),
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 25, vjust = 2.0))
+
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
   geom_boxplot(fill = wes_palette("AsteroidCity1", 2))+
-  labs(x = "TAST Status", y = "Normalized Time in Beam", title = "Duration of Seal Presence")+
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
-  guides(fill = "none")
+  guides(fill = "none")+
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
 
 # Create the bar chart for # of zero values
 BV_combined %>%
   group_by(TAST_Status) %>%
   summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
-  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2)) +
+  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2), color = "black") +
   labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
-  theme_cowplot()+
-  guides(fill = "none")
+  theme_cowplot() +
+  guides(fill = "none") +
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
 
 # 7. EV Plotting ---------------------------------------------------------------
 
@@ -246,21 +277,18 @@ nmds_plot <- ordiplot(nmds_plot, display = "TAST_Status_numeric")
 # assigning factors and isolating numeric values only 
 TAST_cor <- TAST_combined %>% 
   mutate(Status_numeric = case_when(TAST_Status == "ON" ~ 1,
-                                    TAST_Status == "OFF" ~ 2))
+                                    TAST_Status == "OFF" ~ 0))
 
 TAST_cor <- TAST_combined %>% 
   select(where(is.numeric)) %>% 
   drop_na() %>% 
-  select(-Process_ID, -Target_depth_mean)
+  select(-Process_ID, -Target_depth_mean, -Time_in_beam)
 
 # basic correlation function, using spearman method for categorical variables with assigned factors 
 cor(TAST_cor, method = "spearman")
 
-library(wesanderson)  
-pal <- wes_palette("Darjeeling2", 21, type = "continuous")
-
 matrix <- cor(TAST_cor) %>% 
-  corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 45, tl.col = "black",
+  corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 20, tl.col = "black",
            type = "lower", shade.col = wes_palette("AsteroidCity1"))
 
 # 9. Statistics-----------------------------------------------------------------
@@ -284,18 +312,22 @@ autoplot(pca_result,
          loadings.colour = "black",
          loadings.label = TRUE,
          loadings.label.colour = "black",
-         loadings.label.size = 3,
-         loadings.label.vjust = -0.5,
+         loadings.label.size = 5,
+         loadings.label.vjust = -0.2,
          loadings.label.hjust = -0.01,
          main = "Principal Component Analysis")+
-  scale_color_manual(values = pal)+
-  theme_cowplot()
+  scale_color_manual(values = pal, guide = "none")+ #remove guide = "none" if you want to have a legend
+  theme_cowplot()+
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
   
-  
+ 
 
 
 # One-way ANOVA
-anova_result <- aov(Tortuosity_3D ~ DateTime_PST, data = TAST_combined)
+anova_result <- aov(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
 summary(anova_result)
 
 # two sample t-test
