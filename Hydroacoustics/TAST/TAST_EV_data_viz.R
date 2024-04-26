@@ -157,15 +157,16 @@ BV_non_zero_data <- BV_combined[BV_combined$BV_Normalized_time_in_beam != 0, ]
 # Violin plot
 BV_combined %>% 
   ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
-  geom_violin()+
+  geom_violin(width = 0.6)+
+  geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence")+
   theme_cowplot()+
   scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
   guides(fill = "none")+
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
 # messing with aesthetics for violin plot 
 BV_combined %>% 
@@ -178,30 +179,34 @@ BV_combined %>%
   scale_fill_manual(values = wes_palette("AsteroidCity1", 2)) +
   scale_color_manual(values = wes_palette("AsteroidCity1", 2)) +  # Match jitter point colors with violin plot colors
   guides(fill = "none", color = "none") +  # Remove legends for fill and color aesthetics
-  theme(
-    text = element_text(size = 18),
-    axis.text = element_text(size = 18),
-    axis.title = element_text(size = 20),
-    plot.title = element_text(size = 25, vjust = 2.0))
+  ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
+  geom_boxplot(fill = wes_palette("AsteroidCity1", 2), width = 0.6)+
+  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
+  theme_cowplot()+
+  guides(fill = "none")+
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot(fill = wes_palette("AsteroidCity1", 2))+
+  geom_boxplot(fill = wes_palette("AsteroidCity1", 2), width = 0.6)+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
 # Create the bar chart for # of zero values
 BV_combined %>%
   group_by(TAST_Status) %>%
   summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
-  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2), color = "black") +
+  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2), color = "black", width = 0.6) +
   labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
   theme_cowplot() +
   guides(fill = "none") +
@@ -232,7 +237,7 @@ BV_proportions_long <- BV_proportions %>%
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
-  geom_bar(stat = "identity", width = 0.6)+
+  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 4), color = "black", width = 0.6)+
   labs(title = "Proportion of Seal Presence vs. Absence",
             x = "TAST Status",
             y= "Proportion")+
@@ -240,10 +245,26 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
   scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
                     name = NULL, 
                     labels = c("Seal Absence", "Seal Presence"))+
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
+
+ggplot(BV_proportions_long, aes(x = TAST_Status, 
+                                y = Proportion, 
+                                fill = Value_Type)) +
+  geom_bar(stat = "identity", color = "black", width = 0.6) +
+  labs(title = "Proportion of Seal Presence vs. Absence",
+       x = "TAST Status",
+       y = "Proportion") +
+  theme_cowplot() +
+  scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
+                    labels = c("Seal Absence", "Seal Presence")) +
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
+
 
 
 # 7. EV Plotting ---------------------------------------------------------------
@@ -326,6 +347,7 @@ cor(TAST_cor, method = "spearman")
 matrix <- cor(TAST_cor) %>% 
   corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 20, tl.col = "black",
            type = "lower", shade.col = wes_palette("AsteroidCity1"))
+
 
 # 9. Statistics-----------------------------------------------------------------
 
