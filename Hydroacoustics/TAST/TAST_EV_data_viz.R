@@ -210,6 +210,42 @@ BV_combined %>%
         axis.title = element_text(size = 20),
         plot.title = element_text(size = 25, vjust = 2.0))
 
+# normalize the bar chart and stack it 
+BV_proportions <- BV_combined %>% 
+  group_by(TAST_Status) %>% 
+  summarise(Count_Zero = sum(BV_Normalized_time_in_beam == 0),
+            Count_Nonzero = sum(BV_Normalized_time_in_beam > 0)) %>% 
+  mutate(Total_Count = Count_Zero + Count_Nonzero)
+
+#Calculate proportions
+BV_proportions <- BV_proportions %>%
+  mutate(Count_Proportion_Zero = Count_Zero / Total_Count,
+         Count_Proportion_Nonzero = Count_Nonzero / Total_Count)
+
+# pivot longer for plotting
+BV_proportions_long <- BV_proportions %>%
+  pivot_longer(cols = c(Count_Proportion_Zero, Count_Proportion_Nonzero),
+               names_to = "Value_Type",
+               values_to = "Proportion")
+
+# Stacked barplot
+ggplot(BV_proportions_long, aes(x = TAST_Status, 
+                                y = Proportion, 
+                                fill = Value_Type)) +
+  geom_bar(stat = "identity", width = 0.6)+
+  labs(title = "Proportion of Seal Presence vs. Absence",
+            x = "TAST Status",
+            y= "Proportion")+
+  theme_cowplot()+
+  scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
+                    name = NULL, 
+                    labels = c("Seal Absence", "Seal Presence"))+
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
+
+
 # 7. EV Plotting ---------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
