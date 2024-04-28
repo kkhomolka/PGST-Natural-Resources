@@ -161,7 +161,7 @@ BV_combined %>%
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence")+
   theme_cowplot()+
-  scale_fill_manual(values = wes_palette("AsteroidCity1", 2))+
+  scale_fill_manual(values = wes_palette("AsteroidCity1")[3:4])+
   guides(fill = "none")+
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -192,7 +192,7 @@ BV_combined %>%
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot(fill = wes_palette("AsteroidCity1", 2), width = 0.6)+
+  geom_boxplot(fill = wes_palette("AsteroidCity1")[3:4], width = 0.6)+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
@@ -259,12 +259,13 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
        y = "Proportion") +
   theme_cowplot() +
   scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
-                    labels = c("Seal Absence", "Seal Presence")) +
+                    labels = c("Seal Presence", "Seal Absence")) +
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
         axis.title = element_text(size = 20, family = "Calibri"),
+        legend.title = element_text(size = 0),
+        legend.key.size = unit(1.5, "lines"),
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
-
 
 
 # 7. EV Plotting ---------------------------------------------------------------
@@ -392,6 +393,15 @@ summary(anova_result)
 t_test <- t.test(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
 print(t_test)
 
+#two sample t-test for BV time in beam 
+t_test2 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_combined)
+print(t_test2)
 
+anova_result2 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_combined)
+summary(anova_result2)
 
+t_test3 <- t.test(Target_range_mean ~ TAST_Status, data = TAST_combined)
+print(t_test3)
 
+anova_result3 <- aov(Tortuosity_3D ~ TAST_Status, data = TAST_combined)
+summary(anova_result3)
