@@ -405,3 +405,9 @@ print(t_test3)
 
 anova_result3 <- aov(Tortuosity_3D ~ TAST_Status, data = TAST_combined)
 summary(anova_result3)
+
+t_test4 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
+print(t_test4)
+
+anova_result4 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
+summary(anova_result4)
