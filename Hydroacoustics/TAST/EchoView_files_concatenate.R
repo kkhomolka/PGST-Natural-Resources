@@ -12,9 +12,10 @@ pacman::p_load(pwr,
                readxl,
                purrr)
 
-## Set working directory for KK WORK
+## Set working directory for KK WORK - old wd() greyed out below 
 #setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_Tast_ON")
 setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_full_day")
+
 # 2. ON Files ---------------------------------------------------------------------
 
 files <- list.files(pattern = "*.csv")
@@ -26,7 +27,9 @@ for (file in files) {
   combined_data <- rbind(combined_data, data)
 }
 
+#previous export name greyed out below 
 #write.csv(combined_data, "TAST_ON_EV_Export_combined.csv", row.names = FALSE)
+
 write.csv(combined_data, "TAST_Combined_EV_Export_fullday.csv", row.names = FALSE)
 
 # 3. OFF Files -----------------------------------------------------------------
