@@ -12,8 +12,9 @@ pacman::p_load(pwr,
                readxl,
                purrr)
 
-## Set working directory for KK WORK
-setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_Tast_ON")
+## Set working directory for KK WORK - old wd() greyed out below 
+#setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_Tast_ON")
+setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_full_day/TAST_ON_fullday")
 
 # 2. ON Files ---------------------------------------------------------------------
 
@@ -26,12 +27,12 @@ for (file in files) {
   combined_data <- rbind(combined_data, data)
 }
 
-write.csv(combined_data, "TAST_ON_EV_Export_combined.csv", row.names = FALSE)
+write.csv(combined_data, "TAST_ON_EV_Export_fullday.csv", row.names = FALSE)
 
 # 3. OFF Files -----------------------------------------------------------------
 
 #change the wd() to read all files in the OFF folder 
-setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_Tast_OFF")
+setwd("Z:/NR-Research/2023 Hood Canal Bridge/2023 TAST project/TAST Echoview Analysis/EV_Data_Export/EV_data_exports_full_day/TAST_OFF_fullday")
 
 files <- list.files(pattern = "*.csv")
 
@@ -42,7 +43,7 @@ for (file in files) {
   combined_data <- rbind(combined_data, data)
 }
 
-write.csv(combined_data, "TAST_OFF_EV_Export_combined.csv", row.names = FALSE)
+write.csv(combined_data, "TAST_OFF_EV_Export_fullday.csv", row.names = FALSE)
 
 # DONE!
 
