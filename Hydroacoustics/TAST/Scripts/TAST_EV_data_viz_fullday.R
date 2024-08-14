@@ -44,7 +44,9 @@ BV_fullday <- BV_fullday %>%
 
 #Need to fix the date
 BV_fullday$Date <- as.Date(BV_fullday$Date)
+
 time_part <- format(BV_fullday$File_Timestamp, format = "%H:%M:%S")
+
 BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%Y-%m-%d %H:%M:%S")
 
 #Need to determine the cumulative time in beam for ON/OFF Status to determine
@@ -52,11 +54,20 @@ BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%
 
 BV_cumul <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
-  summarise(Total_Time_s = sum(Cumulative_Time_s))
+  summarise(Total_Beam_Time_s = sum(Cumulative_Time_s))
 
 #Need to determine the total time of each treatment duration
+BV_fullday <- BV_fullday %>% 
+  arrange(DateTime)
 
+times <- as.difftime(BV_fullday$File_Timestamp, format = "%H:%M:%S")
 
+time_diffs <- BV_fullday %>%
+  arrange(DateTime) %>%
+  group_by(TAST_Status) %>%
+  mutate(Time_Diff = lead(DateTime) - DateTime) %>%
+  filter(!is.na(Time_Diff)) %>%
+  summarize(Total_Hours = sum(as.numeric(Time_Diff, units = "hours")))
 
 # use same normalization variables as EV files
 ON_norm <- 154200
