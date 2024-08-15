@@ -269,6 +269,7 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
         axis.title = element_text(size = 20, family = "Calibri"),
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
+#Same color stacked barplot
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
@@ -286,27 +287,45 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
         legend.key.size = unit(1.5, "lines"),
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
+# Bin cumulative time in beam by hour of the day and then plot 
+# Extract the hour from the DateTime_PST column and sum Time_in_beam for each hour
+hourly_sum <- TAST_combined %>%
+  mutate(hour = hour(DateTime_PST)) %>%
+  group_by(TAST_Status, hour) %>%                     
+  summarise(total_time_in_beam = sum(Time_in_beam, na.rm = TRUE)) %>% 
+  ungroup()
+
+ggplot(hourly_sum, aes(x = hour, y = total_time_in_beam, fill = TAST_Status)) +
+  geom_col() +
+  scale_x_continuous(breaks = 0:23) +  # Ensure x-axis shows each hour of the day
+  labs(
+    x = "Hour of Day",
+    y = "Cumulative Time in Beam (s)",
+    title = "Total Time in Beam for Each Hour of the Day"
+  ) +
+  theme_minimal(base_size = 15)+
+  scale_fill_brewer(palette = "Set1")
 
 # 7. EV Plotting ---------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
 TAST_combined %>%
-  mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
+  mutate(Time_of_day = hour(DateTime_PST)) %>%  # Extract hour component
   ggplot(aes(Time_of_day, Time_in_beam, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
-  ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window") +
+  ggtitle("Seal Time in Beam Over 24 hrs") +
   scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
-  labs(x = "Hour of Day", y = "Normalized Seal Time in Beam (s)") +
+  labs(x = "Hour of Day", y = "Seal Time in Beam (s)") +
   theme_classic() +
   theme(plot.title = element_text(hjust = 0.5))
 
 
-# Time_in_beam by Hour of Day
+# Tortuosity by Hour of Day
 TAST_combined %>%
-  mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
+  mutate(Time_of_day = hour(DateTime_PST)) %>%  # Extract hour component
   ggplot(aes(Time_of_day, Tortuosity_3D, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
-  ggtitle("Tortuosity by Peak Foraging Time Window") +
+  ggtitle("Tortuosity Over 24 hrs") +
   scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
   labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
   theme_classic() +
@@ -316,7 +335,8 @@ TAST_combined %>%
 TAST_combined %>% 
   ggplot(aes(Time_in_beam, color = TAST_Status))+
   geom_density()+
-  ggtitle("Normalized Seal Time in Beam")
+  ggtitle("Seal Time in Beam")+
+  labs(x = "Time in Beam (s)", y = "Density")
 
 # Box plots - Tortuosity
 TAST_combined %>% ggplot(aes(TAST_Status, Tortuosity_3D, fill = TAST_Status))+
@@ -337,7 +357,7 @@ BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_
   theme(plot.title = element_text(hjust = 0.5))
 
 # Linear relationships - Tortuosity
-ggplot(TAST_combined, aes(DateTime_PST_Plotting, Tortuosity_3D))+
+ggplot(TAST_combined, aes(DateTime_PST, Tortuosity_3D))+
   geom_point()+
   geom_smooth(method = "lm", se=F)+
   facet_wrap(~TAST_Status)
@@ -373,8 +393,8 @@ matrix <- cor(TAST_cor) %>%
 
 # Principal Component Analysis (make sure 'stats' package is loaded)
 pca_result <- prcomp(TAST_combined[,c("Target_range_mean",
-                                      "Normalized_time_in_beam",
-                                      #"TAST_Status_numeric",
+                                      "Time_in_beam",
+                                      "TAST_Status_numeric",
                                       "Tortuosity_3D",
                                       "Fish_track_change_in_range",
                                       "Speed_4D_mean_unsmoothed")],
@@ -391,8 +411,8 @@ autoplot(pca_result,
          loadings.label = TRUE,
          loadings.label.colour = "black",
          loadings.label.size = 5,
-         loadings.label.vjust = -0.2,
-         loadings.label.hjust = -0.01,
+         loadings.label.vjust = 1,
+         loadings.label.hjust = 0.5,
          main = "Principal Component Analysis")+
   scale_color_manual(values = pal, guide = "none")+ #remove guide = "none" if you want to have a legend
   theme_cowplot()+
@@ -405,11 +425,11 @@ autoplot(pca_result,
 
 
 # One-way ANOVA
-anova_result <- aov(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
+anova_result <- aov(Time_in_beam ~ TAST_Status, data = TAST_combined)
 summary(anova_result)
 
 # two sample t-test
-t_test <- t.test(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
+t_test <- t.test(Time_in_beam ~ TAST_Status, data = TAST_combined)
 print(t_test)
 
 #two sample t-test for BV time in beam 
@@ -430,3 +450,6 @@ print(t_test4)
 
 anova_result4 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
 summary(anova_result4)
+
+t_test5 <- t.test(Tortuosity_3D ~ TAST_Status, data = TAST_combined)
+print(t_test5)
