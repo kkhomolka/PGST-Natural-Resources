@@ -135,8 +135,7 @@ TAST_combined <- TAST_combined %>%
 ON_norm <- 1.12
 OFF_norm <- 1
 
-# create normalization column for time in beam and multiplied by 10^5 to
-# improve the readability when plotting 
+# create normalization column for time in beam
 TAST_combined <- TAST_combined %>% 
   mutate(Normalized_time_in_beam = if_else(TAST_Status == "ON", 
                                            Time_in_beam * ON_norm, 
@@ -213,7 +212,7 @@ BV_fullday %>%
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
   geom_boxplot(fill = wes_palette("AsteroidCity1")[3:4], width = 0.6)+
-  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
+  labs(x = "TAST Status", y = "Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
   theme(text = element_text(size = 18, family = "Calibri"),
@@ -224,7 +223,7 @@ ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
 # Create the bar chart for # of zero values
 BV_fullday %>%
   group_by(TAST_Status) %>%
-  summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
+  summarise(Count_Zero_Values = sum(Cumulative_Time_s == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
   geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2), color = "black", width = 0.6) +
   labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
@@ -238,8 +237,8 @@ BV_fullday %>%
 # normalize the bar chart and stack it 
 BV_proportions <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
-  summarise(Count_Zero = sum(BV_Normalized_time_in_beam == 0),
-            Count_Nonzero = sum(BV_Normalized_time_in_beam > 0)) %>% 
+  summarise(Count_Zero = sum(Cumulative_Time_s == 0),
+            Count_Nonzero = sum(Cumulative_Time_s > 0)) %>% 
   mutate(Total_Count = Count_Zero + Count_Nonzero)
 
 #Calculate proportions
@@ -290,10 +289,16 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
 
 # 7. EV Plotting ---------------------------------------------------------------
 
+TAST_combined %>% 
+  
+
+
+
+
 # Time_in_beam by Hour of Day
 TAST_combined %>%
   mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
-  ggplot(aes(Time_of_day, Normalized_time_in_beam, color = TAST_Status)) +
+  ggplot(aes(Time_of_day, Time_in_beam, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
   ggtitle("Normalized Seal Time in Beam by Peak Foraging Time Window") +
   scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
