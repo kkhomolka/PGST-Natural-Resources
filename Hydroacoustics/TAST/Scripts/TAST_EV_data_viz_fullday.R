@@ -289,12 +289,6 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
 
 # 7. EV Plotting ---------------------------------------------------------------
 
-TAST_combined %>% 
-  
-
-
-
-
 # Time_in_beam by Hour of Day
 TAST_combined %>%
   mutate(Time_of_day = hour(DateTime_PST_Plotting)) %>%  # Extract hour component
@@ -419,10 +413,10 @@ t_test <- t.test(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
 print(t_test)
 
 #two sample t-test for BV time in beam 
-t_test2 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
+t_test2 <- t.test(Cumulative_Time_s ~ TAST_Status, data = BV_fullday)
 print(t_test2)
 
-anova_result2 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
+anova_result2 <- aov(Cumulative_Time_s ~ TAST_Status, data = BV_fullday)
 summary(anova_result2)
 
 t_test3 <- t.test(Target_range_mean ~ TAST_Status, data = TAST_combined)
