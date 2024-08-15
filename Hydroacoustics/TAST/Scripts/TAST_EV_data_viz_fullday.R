@@ -35,6 +35,7 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 # Reading in file
 BV_fullday <- read_excel("TAST_full_day_and_foraging_window_seal_presence.xlsx")
 
+# Selecting columns of interest
 BV_fullday <- BV_fullday %>% 
   select(File,
          File_Timestamp,
@@ -42,78 +43,74 @@ BV_fullday <- BV_fullday %>%
          Cumulative_Time_s,
          TAST_Status)
 
-#Need to fix the date
+#Reformatting the dates
 BV_fullday$Date <- as.Date(BV_fullday$Date)
 
+ # Extracting the time component and pasting it with the correct date because
+# of Excel adding 1899-12-31 to each time entry...
 time_part <- format(BV_fullday$File_Timestamp, format = "%H:%M:%S")
-
 BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%Y-%m-%d %H:%M:%S")
 
-#Need to determine the cumulative time in beam for ON/OFF Status to determine
-#the normalization factors for both statuses
+## 3. Removing Outliers --------------------------------------------------------
 
+# remove na's
+BV_fullday <- na.omit(BV_fullday)
+
+# Function to identify and remove the top 3 outliers for a given vector
+remove_top_outliers <- function(data, column_name) {
+  # Calculate the first quartile (Q1) and third quartile (Q3)
+  Q1 <- quantile(data[[column_name]], 0.25, na.rm = TRUE)
+  Q3 <- quantile(data[[column_name]], 0.75, na.rm = TRUE)
+  
+  # Calculate the interquartile range (IQR)
+  IQR <- Q3 - Q1
+  
+  # Define the lower and upper bounds for identifying outliers
+  lower_bound <- Q1 - 3.0 * IQR
+  upper_bound <- Q3 + 3.0 * IQR
+  
+  # Identify outliers
+  outliers <- data[[column_name]] < lower_bound | data[[column_name]] > upper_bound
+  
+  # Identify the top 3 outliers
+  top_outliers <- head(sort(data[[column_name]][outliers], decreasing = TRUE), 3)
+  
+  # Remove the top 3 outliers from the data
+  data <- data[!data[[column_name]] %in% top_outliers, ]
+  
+  return(data)
+}
+
+# Apply the function to each TAST_Status group
+BV_fullday <- BV_fullday %>%
+  group_by(TAST_Status) %>%
+  group_modify(~ remove_top_outliers(.x, "Cumulative_Time_s")) %>%
+  ungroup()
+
+## 4. Normalizing --------------------------------------------------------------
+
+# Need to determine the cumulative time in beam for ON/OFF Status to normalize
 BV_cumul <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
   summarise(Total_Beam_Time_s = sum(Cumulative_Time_s))
 
-#Need to determine the total time of each treatment duration
-BV_fullday <- BV_fullday %>% 
-  arrange(DateTime)
-
-times <- as.difftime(BV_fullday$File_Timestamp, format = "%H:%M:%S")
-
-time_diffs <- BV_fullday %>%
-  arrange(DateTime) %>%
-  group_by(TAST_Status) %>%
-  mutate(Time_Diff = lead(DateTime) - DateTime) %>%
-  filter(!is.na(Time_Diff)) %>%
-  summarize(Total_Hours = sum(as.numeric(Time_Diff, units = "hours")))
-
 # use same normalization variables as EV files
-ON_norm <- 154200
-OFF_norm <- 147060
+ON_norm <- 1.12 #this was calculated by dividing total OFF time / total ON time
+OFF_norm <- 1 #this is 1 because it was total OFF time / total OFF time
 
 # create normalization column for time in beam and multiplied by 10^5 to
 # improve the readability when plotting 
 BV_fullday <- BV_fullday %>% 
   mutate(BV_Normalized_time_in_beam = if_else(TAST_Status == "ON", 
-                                              Cumulative_Time_s / ON_norm * 10^5, 
-                                              Cumulative_Time_s / OFF_norm * 10^5))
+                                              Cumulative_Time_s * ON_norm, 
+                                              Cumulative_Time_s * OFF_norm))
 
-# remove na's
-BV_fullday <- na.omit(BV_fullday)
-
-# Idenitfying and removing outliers 
-# Calculate the first quartile (Q1) and third quartile (Q3)
-Q1 <- quantile(BV_fullday$BV_Normalized_time_in_beam, 0.25)
-Q3 <- quantile(BV_fullday$BV_Normalized_time_in_beam, 0.75)
-
-# Calculate the interquartile range (IQR)
-IQR <- Q3 - Q1
-
-# Define the lower and upper bounds for identifying outliers
-lower_bound <- Q1 - 3.0 * IQR
-upper_bound <- Q3 + 3.0 * IQR
-
-# Identify outliers
-outliers <- BV_fullday$BV_Normalized_time_in_beam < lower_bound | 
-  BV_fullday$BV_Normalized_time_in_beam > upper_bound
-
-# Display the identified outliers
-outlier_values <- BV_fullday[outliers, "BV_Normalized_time_in_beam"]
-print(outlier_values)
-
-# Identify the top 3 outliers
-top_outliers <- head(sort(BV_fullday$BV_Normalized_time_in_beam[outliers], 
-                          decreasing = TRUE), 3)
-
-# Remove the top 3 outliers from the dataframe
-BV_fullday <- BV_fullday[!BV_fullday$BV_Normalized_time_in_beam %in% top_outliers, ]
+## 5. Create non-zero values for BV normalized and non-normalized --------------
 
 # Filter out non-zero values for boxplot
-BV_non_zero_data <- BV_fullday[BV_fullday $BV_Normalized_time_in_beam != 0, ]
+BV_non_zero_data <- BV_fullday[BV_fullday$Cumulative_Time_s != 0, ]
 
-# 3. Read in Files -------------------------------------------------------------
+# 6. Read in Files -------------------------------------------------------------
 
 TAST_ON <- read.csv("TAST_ON_EV_Export_fullday.csv")
 TAST_OFF <- read.csv("TAST_OFF_EV_Export_fullday.csv")
@@ -134,16 +131,16 @@ TAST_combined <- TAST_combined %>%
          Tortuosity_3D,
          Time_in_beam)
 
-# create normalization variables
-ON_norm <- 154200
-OFF_norm <- 147060
+# create normalization factor
+ON_norm <- 1.12
+OFF_norm <- 1
 
 # create normalization column for time in beam and multiplied by 10^5 to
 # improve the readability when plotting 
 TAST_combined <- TAST_combined %>% 
   mutate(Normalized_time_in_beam = if_else(TAST_Status == "ON", 
-                                           Time_in_beam / ON_norm * 10^5, 
-                                           Time_in_beam / OFF_norm * 10^5))
+                                           Time_in_beam * ON_norm, 
+                                           Time_in_beam * OFF_norm))
 
 # assign numeric factors for TAST status
 TAST_combined <- TAST_combined %>% 
@@ -178,11 +175,11 @@ TAST_combined$DateTime_PST_Plotting <- as.POSIXct(TAST_combined$DateTime_PST_Plo
 # 6. BV Plotting ---------------------------------------------------------------
 
 # Violin plot
-BV_combined %>% 
-  ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
+BV_fullday %>% 
+  ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status))+
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
-  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence")+
+  labs(x = "TAST Status", y = "Time in Beam (s)", title = "Duration of Seal Presence")+
   theme_cowplot()+
   scale_fill_manual(values = wes_palette("AsteroidCity1")[3:4])+
   guides(fill = "none")+
@@ -192,8 +189,8 @@ BV_combined %>%
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
 # messing with aesthetics for violin plot 
-BV_combined %>% 
-  ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status)) +
+BV_fullday %>% 
+  ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status)) +
   geom_violin() +
   geom_jitter(aes(color = TAST_Status), alpha = 0.2) +  # Use the same fill aesthetic mapping and set transparency to 10%
   geom_jitter(aes(color = TAST_Status), shape = 1, alpha = 0.5) +  # Outline points with shape = 1 (circle) and set transparency to 10%
@@ -225,7 +222,7 @@ ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
 # Create the bar chart for # of zero values
-BV_combined %>%
+BV_fullday %>%
   group_by(TAST_Status) %>%
   summarise(Count_Zero_Values = sum(BV_Normalized_time_in_beam == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
@@ -239,7 +236,7 @@ BV_combined %>%
         plot.title = element_text(size = 25, vjust = 2.0))
 
 # normalize the bar chart and stack it 
-BV_proportions <- BV_combined %>% 
+BV_proportions <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
   summarise(Count_Zero = sum(BV_Normalized_time_in_beam == 0),
             Count_Nonzero = sum(BV_Normalized_time_in_beam > 0)) %>% 
@@ -417,10 +414,10 @@ t_test <- t.test(Normalized_time_in_beam ~ TAST_Status, data = TAST_combined)
 print(t_test)
 
 #two sample t-test for BV time in beam 
-t_test2 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_combined)
+t_test2 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
 print(t_test2)
 
-anova_result2 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_combined)
+anova_result2 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
 summary(anova_result2)
 
 t_test3 <- t.test(Target_range_mean ~ TAST_Status, data = TAST_combined)
