@@ -160,16 +160,13 @@ TAST_combined$DateTime_POSIXct <- as.POSIXct(datetime_string, format = "%m/%d/%Y
 # Convert to PST time zone
 TAST_combined$DateTime_PST <- with_tz(TAST_combined$DateTime_POSIXct, "America/Los_Angeles")
 
-# Print to check to make sure that the object class is "POSIXct"
-#print(class(TAST_combined$DateTime_PST))
-
 # remove date and just have Time_PST, FYI this will make the object a character class
 TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
 
 # adding an arbitary date to Time_PST so I can plot everything on the same day
-date <- "2024-04-15"
-TAST_combined$DateTime_PST_Plotting <- paste(date, TAST_combined$Time_PST, sep = " ")
-TAST_combined$DateTime_PST_Plotting <- as.POSIXct(TAST_combined$DateTime_PST_Plotting, format = "%Y-%m-%d %H:%M:%S")
+#date <- "2024-04-15"
+#TAST_combined$DateTime_PST_Plotting <- paste(date, TAST_combined$Time_PST, sep = " ")
+#TAST_combined$DateTime_PST_Plotting <- as.POSIXct(TAST_combined$DateTime_PST_Plotting, format = "%Y-%m-%d %H:%M:%S")
 
 # 6. BV Plotting ---------------------------------------------------------------
 
@@ -301,7 +298,7 @@ ggplot(hourly_sum, aes(x = hour, y = total_time_in_beam, fill = TAST_Status)) +
   labs(
     x = "Hour of Day",
     y = "Cumulative Time in Beam (s)",
-    title = "Total Time in Beam for Each Hour of the Day"
+    title = "Cumulative Time in Beam for Each Hour of the Day"
   ) +
   theme_minimal(base_size = 15)+
   scale_fill_brewer(palette = "Set1")
