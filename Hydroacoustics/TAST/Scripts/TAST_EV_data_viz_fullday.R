@@ -19,7 +19,8 @@ pacman::p_load(pwr,
                ggfortify,
                vegan,
                wesanderson,
-               ggrepel)
+               ggrepel,
+               ggformula)
 
 # Aesthetics color palette
 pal <- wes_palette("AsteroidCity1", 2, type = "continuous")
@@ -303,6 +304,7 @@ ggplot(hourly_sum, aes(x = hour, y = total_time_in_beam, fill = TAST_Status)) +
   theme_minimal(base_size = 15)+
   scale_fill_brewer(palette = "Set1")
 
+
 # 7. EV Plotting ---------------------------------------------------------------
 
 # Time_in_beam by Hour of Day
@@ -354,9 +356,8 @@ BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_
   theme(plot.title = element_text(hjust = 0.5))
 
 # Linear relationships - Tortuosity
-ggplot(TAST_combined, aes(DateTime_PST, Tortuosity_3D))+
+ggplot(TAST_combined, aes(Time_PST, Tortuosity_3D))+
   geom_point()+
-  geom_smooth(method = "lm", se=F)+
   facet_wrap(~TAST_Status)
 
 # 8. NMDS ----------------------------------------------------------------------
