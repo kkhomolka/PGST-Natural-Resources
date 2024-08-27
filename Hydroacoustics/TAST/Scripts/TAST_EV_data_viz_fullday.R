@@ -47,7 +47,7 @@ BV_fullday <- BV_fullday %>%
 #Reformatting the dates
 BV_fullday$Date <- as.Date(BV_fullday$Date)
 
- # Extracting the time component and pasting it with the correct date because
+# Extracting the time component and pasting it with the correct date because
 # of Excel adding 1899-12-31 to each time entry...
 time_part <- format(BV_fullday$File_Timestamp, format = "%H:%M:%S")
 BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%Y-%m-%d %H:%M:%S")
@@ -90,10 +90,12 @@ BV_fullday <- BV_fullday %>%
 
 ## 4. Normalizing --------------------------------------------------------------
 
-# Need to determine the cumulative time in beam for ON/OFF Status to normalize
+# Need to determine the cumulative time in beam for ON/OFF Status to normalize,
+# and also find the average for each status (not counting the zero values)
 BV_cumul <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
-  summarise(Total_Beam_Time_s = sum(Cumulative_Time_s))
+  summarise(Total_Beam_Time_s = sum(Cumulative_Time_s),
+            Avg_Beam_Time_s = mean(Cumulative_Time_s[Cumulative_Time_s !=0]))
 
 # use same normalization variables as EV files
 ON_norm <- 1.12 #this was calculated by dividing total OFF time / total ON time
@@ -164,11 +166,6 @@ TAST_combined$DateTime_PST <- with_tz(TAST_combined$DateTime_POSIXct, "America/L
 # remove date and just have Time_PST, FYI this will make the object a character class
 TAST_combined$Time_PST <- format(TAST_combined$DateTime_PST, format = "%H:%M:%S")
 
-# adding an arbitary date to Time_PST so I can plot everything on the same day
-#date <- "2024-04-15"
-#TAST_combined$DateTime_PST_Plotting <- paste(date, TAST_combined$Time_PST, sep = " ")
-#TAST_combined$DateTime_PST_Plotting <- as.POSIXct(TAST_combined$DateTime_PST_Plotting, format = "%Y-%m-%d %H:%M:%S")
-
 # 6. BV Plotting ---------------------------------------------------------------
 
 # Violin plot
@@ -184,28 +181,6 @@ BV_fullday %>%
         axis.text = element_text(size = 18, family = "Calibri"),
         axis.title = element_text(size = 20, family = "Calibri"),
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
-
-# messing with aesthetics for violin plot 
-BV_fullday %>% 
-  ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status)) +
-  geom_violin() +
-  geom_jitter(aes(color = TAST_Status), alpha = 0.2) +  # Use the same fill aesthetic mapping and set transparency to 10%
-  geom_jitter(aes(color = TAST_Status), shape = 1, alpha = 0.5) +  # Outline points with shape = 1 (circle) and set transparency to 10%
-  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Duration of Seal Presence") +
-  theme_cowplot() +
-  scale_fill_manual(values = wes_palette("AsteroidCity1", 2)) +
-  scale_color_manual(values = wes_palette("AsteroidCity1", 2)) +  # Match jitter point colors with violin plot colors
-  guides(fill = "none", color = "none") +  # Remove legends for fill and color aesthetics
-  ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot(fill = wes_palette("AsteroidCity1", 2), width = 0.6)+
-  labs(x = "TAST Status", y = "Normalized Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
-  theme_cowplot()+
-  guides(fill = "none")+
-  theme(text = element_text(size = 18, family = "Calibri"),
-        axis.text = element_text(size = 18, family = "Calibri"),
-        axis.title = element_text(size = 20, family = "Calibri"),
-        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
-
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
@@ -285,6 +260,28 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
         legend.key.size = unit(1.5, "lines"),
         plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
 
+#Only plotting the count_nonzero data for HCB management meeting
+BV_mini <- data.frame(
+  TAST_Status = c("ON", "OFF"),
+  Count_Nonzero = c(75,192))
+
+ggplot(BV_mini, aes(x = TAST_Status, 
+                                y = Count_Nonzero,
+                           fill = TAST_Status)) +
+  geom_bar(stat = "identity",width = 0.6) +
+  labs(x = "TAST Status",
+       y = "Number of Seal Observations") +
+  theme_cowplot() +
+  scale_fill_manual(values = friendly_pal("zesty_four")[3:4], 
+                    labels = c("TAST OFF", "TAST ON")) +
+  theme(text = element_text(size = 18, family = "Calibri"),
+        axis.text = element_text(size = 18, family = "Calibri"),
+        axis.title = element_text(size = 20, family = "Calibri"),
+        legend.title = element_text(size = 0),
+        legend.key.size = unit(1.5, "lines"),
+        plot.title = element_text(size = 25, family = "Calibri", vjust = 2.0))
+
+
 # Bin cumulative time in beam by hour of the day and then plot 
 # Extract the hour from the DateTime_PST column and sum Time_in_beam for each hour
 hourly_sum <- TAST_combined %>%
@@ -295,14 +292,27 @@ hourly_sum <- TAST_combined %>%
 
 ggplot(hourly_sum, aes(x = hour, y = total_time_in_beam, fill = TAST_Status)) +
   geom_col() +
-  scale_x_continuous(breaks = 0:23) +  # Ensure x-axis shows each hour of the day
+  scale_x_continuous(breaks = 0:23) +  
   labs(
     x = "Hour of Day",
     y = "Cumulative Time in Beam (s)",
-    title = "Cumulative Time in Beam for Each Hour of the Day"
-  ) +
-  theme_minimal(base_size = 15)+
-  scale_fill_brewer(palette = "Set1")
+    title = "Cumulative Time in Beam for Each Hour of the Day",
+    fill = "TAST Status")+
+  theme_classic(base_size = 15)+
+  theme(axis.text = element_text(color = "black"))+
+  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])
+
+#Sum of BV cumulative time in beam, and then finding the average to plot
+ggplot(BV_cumul, aes(x = TAST_Status, y = Avg_Beam_Time_s, fill = TAST_Status)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "TAST Status",
+    y = "Average Time in Beam (s)",
+    fill = "TAST Status")+
+  theme_classic(base_size = 15)+
+  theme(axis.text = element_text(color = "black"))+
+  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])
+
 
 
 # 7. EV Plotting ---------------------------------------------------------------
