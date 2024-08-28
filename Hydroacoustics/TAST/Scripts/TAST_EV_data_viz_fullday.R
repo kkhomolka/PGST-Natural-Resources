@@ -186,7 +186,7 @@ BV_fullday %>%
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot(fill = wes_palette("AsteroidCity1")[3:4], width = 0.6)+
+  geom_boxplot(fill = friendly_pal("zesty_four")[3:4], width = 0.6)+
   labs(x = "TAST Status", y = "Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
@@ -337,7 +337,7 @@ TAST_combined %>%
   ggplot(aes(Time_of_day, Tortuosity_3D, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
   ggtitle("Tortuosity Over 24 hrs") +
-  scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
+  scale_color_manual(values = friendly_pal("zesty_four")[3:4]) +
   labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
   theme_classic() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -359,7 +359,7 @@ TAST_combined %>% ggplot(aes(TAST_Status, Tortuosity_3D, fill = TAST_Status))+
   theme(plot.title = element_text(hjust = 0.5))
 
 # Box plots - Time in Beam 
-BV_combined %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_Status))+
+BV_fullday %>% ggplot(aes(TAST_Status, BV_Normalized_time_in_beam, fill = TAST_Status))+
   geom_boxplot()+
   ggtitle("Normalized Time in Beam from BlueView Analysis")+
   labs(x = "TAST Status", y = "Normalized Time in Beam (s)")+
