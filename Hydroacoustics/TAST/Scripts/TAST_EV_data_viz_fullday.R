@@ -173,9 +173,11 @@ BV_fullday %>%
   ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status))+
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
-  labs(x = "TAST Status", y = "Time in Beam (s)", title = "Duration of Seal Presence")+
+  labs(x = "TAST Status", 
+       y = "Time in Beam (s)", 
+       title = "Duration of Seal Presence")+
   theme_cowplot()+
-  scale_fill_manual(values = wes_palette("AsteroidCity1")[3:4])+
+  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])+
   guides(fill = "none")+
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -246,12 +248,12 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
-  geom_bar(stat = "identity", color = "black", width = 0.6) +
+  geom_bar(stat = "identity", width = 0.6) +
   labs(title = "Proportion of Seal Presence vs. Absence",
        x = "TAST Status",
        y = "Proportion") +
   theme_cowplot() +
-  scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
+  scale_fill_manual(values = friendly_pal("zesty_four")[3:4], 
                     labels = c("Seal Presence", "Seal Absence")) +
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -418,18 +420,17 @@ autoplot(pca_result,
          loadings.colour = "black",
          loadings.label = TRUE,
          loadings.label.colour = "black",
-         loadings.label.size = 5,
-         loadings.label.vjust = 1,
-         loadings.label.hjust = 0.5,
+         loadings.label.size = 4,
+         loadings.label.vjust = -1,
+         loadings.label.hjust = 0.45,
          main = "Principal Component Analysis")+
-  scale_color_manual(values = pal, guide = "none")+ #remove guide = "none" if you want to have a legend
+  scale_color_manual(values = friendly_pal("zesty_four")[3:4])+ #remove guide = "none" if you want to have a legend
+  labs(color = "TAST Status")+
   theme_cowplot()+
   theme(text = element_text(size = 18),
         axis.text = element_text(size = 18),
         axis.title = element_text(size = 20),
         plot.title = element_text(size = 25, vjust = 2.0))
-
-
 
 
 # One-way ANOVA
