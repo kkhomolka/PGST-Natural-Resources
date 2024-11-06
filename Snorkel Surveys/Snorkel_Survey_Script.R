@@ -8,10 +8,6 @@ pacman::p_load(pwr,
                cowsay,
                lubridate,
                tidyverse,
-               openxlsx,
-               readxl,
-               corrplot,
-               cowplot,
                changepoint,
                strucchange,
                ggpubr,
@@ -20,7 +16,8 @@ pacman::p_load(pwr,
                vegan,
                wesanderson,
                ggrepel,
-               ggformula)
+               ggformula,
+               reshape2)
 
 # Aesthetics color palette
 pal <- wes_palette("AsteroidCity1", 2, type = "continuous")
@@ -75,6 +72,8 @@ snorkel$Date <- as.Date(snorkel$Date, format = "%m/%d/%Y")
 # snorkel <- na.omit(snorkel)
 
 ## 4. Selecting ----------------------------------------------------------------
+
+## HABITATS
 high_density <- snorkel %>% 
   filter(Habitat_Type == "High Density Kelp")
 
@@ -88,7 +87,34 @@ rip_rap <- snorkel %>%
   filter(Habitat_Type == "Rip Rap")
 
 all_habitats <- snorkel %>% 
-  filter(Habitat_Type %in% c("High Density Kelp", "Low Density Kelp", "Sandy Area", "Rip Rap"))
+  filter(Habitat_Type %in% c("High Density Kelp", "Low Density Kelp", 
+                             "Sandy Area", "Rip Rap"))
+
+# FISH
+salmon <- snorkel %>% 
+  select("Date","Chum", "Coho", "Pink", "Cutthroat", "Chinook", 
+         "Unknown_Salmon") %>% 
+  mutate(across(Chum:Unknown_Salmon, ~ ifelse(. == "Yes", 1, 0)))
+
+salmon_long <- salmon %>% 
+  pivot_longer(cols = Chum:Unknown_Salmon,
+               names_to = "Juvenile_Salmon_Species",
+               values_to = "Presence")
+
+forage_fish <- snorkel %>% 
+  select("Date", "Herring", "Sand_Lance", "Surf_Smelt", 
+         "Three_Spine_Stickleback","Anchovy", "Unknown_Forage_Fish") %>% 
+  mutate(across(Herring:Unknown_Forage_Fish, ~ ifelse(. == "Yes", 1, 0)))
+
+forage_fish_long <- forage_fish %>% 
+  pivot_longer(cols = Herring:Unknown_Forage_Fish,
+               names_to = "Forage_Fish_Species",
+               values_to = "Presence")
+
+fish_long_combined <- bind_rows(salmon_long %>% mutate(
+  Type = "Juvenile_Salmon_Species"),
+  forage_fish_long %>% mutate(Type = "Forage_Fish_Species"))
+
 ## 5. Plotting -----------------------------------------------------------------
 
 # Facet panels for Habitat Type vs. Overall Kelp Health Metric
@@ -109,7 +135,7 @@ ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type))
   theme_bw()+
   facet_wrap(~ Habitat_Type, scales = "free_y")
 
-#Juvenile salmon
+#Bryozoa
 ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type)) +
   geom_line() +  
   labs(x = "Date", y = "Overall Kelp Health", title = "Kelp Health Over 2024 Growing Season") +
@@ -121,33 +147,23 @@ ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type))
 
 ## 6. Heat Map -----------------------------------------------------------------
 
-# Load the necessary libraries
-library(tidyverse)
+# Create a dot matrix for the salmon_long dataframe
+ggplot(salmon_long, aes(x = Date, y = Juvenile_Salmon_Species)) +
+  geom_point(aes(color = as.factor(Presence)), size = 3) +  # Add points for presence/absence
+  scale_color_manual(values = c("grey", "blue"), labels = c("Absent", "Present"), name = "Presence") +  # Color for presence/absence
+  labs(x = "Date", y = "Salmon Species", title = "Presence of Juvenile Salmon Over Time") +  # Labels for the plot
+  theme_minimal() +  # Clean theme
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels for readability
 
-# Assuming your dataframe is named snorkel
-# Reshape the data to long format for juvenile salmon
-juvenile_salmons_long <- snorkel %>%
-  select(Date, Chum, Coho, Pink, Cutthroat, Chinook, Unknown_Salmon) %>%
-  pivot_longer(cols = -Date, names_to = "Juvenile_Salmon", values_to = "Presence") %>%
-  mutate(Presence = ifelse(Presence == "Yes", 1, 0))  # Convert Yes/No to 1/0
+ggplot(forage_fish_long, aes(x = Date, y = Forage_Fish_Species)) +
+  geom_point(aes(color = as.factor(Presence)), size = 3) +  # Add points for presence/absence
+  scale_color_manual(values = c("grey", "blue"), labels = c("Absent", "Present"), name = "Presence") +  # Color for presence/absence
+  labs(x = "Date", y = "Forage Fish Species", title = "Presence of Forage Fish Over Time") +
+  scale_x_date(date_breaks = "1 week", date_labels = "%b/%d")
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# Reshape the data to long format for forage fish
-forage_fish_long <- snorkel %>%
-  select(Date, Herring, Sand_Lance, Surf_Smelt, Three_Spine_Stickleback, Anchovy, Unknown_Forage_Fish) %>%
-  pivot_longer(cols = -Date, names_to = "Forage_Fish", values_to = "Presence") %>%
-  mutate(Presence = ifelse(Presence == "Yes", 1, 0))  # Convert Yes/No to 1/0
 
-# Combine both datasets
-combined_data <- bind_rows(
-  juvenile_salmons_long %>% mutate(Type = "Juvenile Salmon"),
-  forage_fish_long %>% mutate(Type = "Forage Fish")
-)
 
-# Plotting the heatmap
-ggplot(combined_data, aes(x = Date, y = reorder(Juvenile_Salmon, Juvenile_Salmon), fill = Presence)) +
-  geom_tile(color = "yellow") +  # Create the tiles for the heatmap
-  scale_fill_gradient(low = "yellow", high = "blue", na.value = "grey50", name = "Presence") +
-  facet_wrap(~ Type, scales = "free_y") +  # Create separate facets for Juvenile Salmon and Forage Fish
-  labs(x = "Date", y = "Fish Type", title = "Presence of Fish Species Over Time") +
-  theme_minimal() +  # Apply a clean theme
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Rotate x-axis labels
+
+
