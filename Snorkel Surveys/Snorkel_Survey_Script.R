@@ -129,16 +129,7 @@ ggplot(all_habitats, aes(x = Date, y = Overall_Kelp_Health, color = Habitat_Type
 # Facet panel for Habitat Type vs. Bryozoa
 ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type)) +
   geom_line() +  
-  labs(x = "Date", y = "Overall Kelp Health", title = "Kelp Health Over 2024 Growing Season") +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b")+
-  scale_y_continuous(limits = c(1,5), breaks = 1:5)+
-  theme_bw()+
-  facet_wrap(~ Habitat_Type, scales = "free_y")
-
-#Bryozoa
-ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type)) +
-  geom_line() +  
-  labs(x = "Date", y = "Overall Kelp Health", title = "Kelp Health Over 2024 Growing Season") +
+  labs(x = "Date", y = "Overall Kelp Health", title = "Bryozoa Presence Over 2024 Growing Season") +
   scale_x_date(date_breaks = "1 month", date_labels = "%b")+
   scale_y_continuous(limits = c(1,5), breaks = 1:5)+
   theme_bw()+
@@ -159,11 +150,23 @@ ggplot(forage_fish_long, aes(x = Date, y = Forage_Fish_Species)) +
   geom_point(aes(color = as.factor(Presence)), size = 3) +  # Add points for presence/absence
   scale_color_manual(values = c("grey", "blue"), labels = c("Absent", "Present"), name = "Presence") +  # Color for presence/absence
   labs(x = "Date", y = "Forage Fish Species", title = "Presence of Forage Fish Over Time") +
-  scale_x_date(date_breaks = "1 week", date_labels = "%b/%d")
+  scale_x_date(date_breaks = "1 week", date_labels = "%b/%d")+
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-
+  ggplot(salmon_long, aes(x = Date, y = Juvenile_Salmon_Species)) +
+    geom_point(aes(color = as.factor(Presence)), 
+               size = 3,
+               position = position_jitter(width = 0, height = 0.5)) +  # Add slight vertical jitter
+    scale_color_manual(values = c("grey", "blue"), 
+                       labels = c("Absent", "Present"), 
+                       name = "Presence") +
+    scale_x_date(date_breaks = "2 week", date_labels = "%b/%d")+
+    labs(x = "Date", 
+         y = "Salmon Species", 
+         title = "Presence of Juvenile Salmon Over Time") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
 
