@@ -140,7 +140,7 @@ ggplot(all_habitats, aes(x = Date, y = Bryozoan_Epibiont, color = Habitat_Type))
 ggplot(all_habitats, aes(x = Date, y = Sorus, color = Habitat_Type)) +
   geom_line() +  
   labs(x = "Date", y = "Sorus Development", title = "Sorus Development Over 2024 Growing Season") +
-  scale_x_date(date_breaks = "1 month", date_labels = "%b")+
+  scale_x_date(date_breaks = "2 weeks", date_labels = "%b %d")+
   scale_y_continuous(limits = c(1,5), breaks = 1:5)+
   theme_bw()+
   facet_wrap(~ Habitat_Type, scales = "free_y")
