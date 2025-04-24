@@ -23,7 +23,18 @@ pacman::p_load(pwr,
                ggformula)
 
 # Aesthetics color palette
-pal <- wes_palette("AsteroidCity1", 2, type = "continuous")
+clrblind_pal <- c(
+  "#edbd00",  # golden yellow
+  "#1dd2d3",  # teal
+  "#78b41f",  # green
+  "#7487ff",  # periwinkle
+  "#b41f78"   # magenta
+)
+
+clrblind_pal_fun <- function(n) {
+  if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")
+  clrblind_pal[1:n]}
+
 
 ## Set working directory for KK WORK
 setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -177,7 +188,7 @@ BV_fullday %>%
        y = "Time in Beam (s)", 
        title = "Duration of Seal Presence")+
   theme_cowplot()+
-  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])+
+  scale_fill_manual(values = clrblind_pal[3:4])+
   guides(fill = "none")+
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -186,7 +197,7 @@ BV_fullday %>%
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
-  geom_boxplot(fill = friendly_pal("zesty_four")[3:4], width = 0.6)+
+  geom_boxplot(fill = clrblind_pal[3:4], width = 0.6)+
   labs(x = "TAST Status", y = "Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
@@ -200,7 +211,7 @@ BV_fullday %>%
   group_by(TAST_Status) %>%
   summarise(Count_Zero_Values = sum(Cumulative_Time_s == 0)) %>%
   ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
-  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 2), color = "black", width = 0.6) +
+  geom_bar(stat = "identity", fill = clrblind_pal[3:4], color = "black", width = 0.6) +
   labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
   theme_cowplot() +
   guides(fill = "none") +
@@ -231,7 +242,7 @@ BV_proportions_long <- BV_proportions %>%
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
-  geom_bar(stat = "identity", fill = wes_palette("AsteroidCity1", 4), color = "black", width = 0.6)+
+  geom_bar(stat = "identity", fill = clrblind_pal[2:5], color = "black", width = 0.6)+
   labs(title = "Proportion of Seal Presence vs. Absence",
        x = "TAST Status",
        y= "Proportion")+
@@ -253,7 +264,7 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
        x = "TAST Status",
        y = "Proportion") +
   theme_cowplot() +
-  scale_fill_manual(values = friendly_pal("zesty_four")[3:4], 
+  scale_fill_manual(values = clrblind_pal[3:4], 
                     labels = c("Seal Presence", "Seal Absence")) +
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -272,9 +283,10 @@ ggplot(BV_mini, aes(x = TAST_Status,
                            fill = TAST_Status)) +
   geom_bar(stat = "identity",width = 0.6) +
   labs(x = "TAST Status",
-       y = "Number of Seal Observations") +
+       y = "Number of Seal Observations",
+       title = "~60% Reduction in Seal Observations When TAST was ON") +
   theme_cowplot() +
-  scale_fill_manual(values = friendly_pal("zesty_four")[3:4], 
+  scale_fill_manual(values = clrblind_pal[3:4], 
                     labels = c("TAST OFF", "TAST ON")) +
   theme(text = element_text(size = 18, family = "Calibri"),
         axis.text = element_text(size = 18, family = "Calibri"),
@@ -302,7 +314,7 @@ ggplot(hourly_sum, aes(x = hour, y = total_time_in_beam, fill = TAST_Status)) +
     fill = "TAST Status")+
   theme_classic(base_size = 15)+
   theme(axis.text = element_text(color = "black"))+
-  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])
+  scale_fill_manual(values = clrblind_pal[3:4])
 
 #Sum of BV cumulative time in beam, and then finding the average to plot
 ggplot(BV_cumul, aes(x = TAST_Status, y = Avg_Beam_Time_s, fill = TAST_Status)) +
@@ -310,10 +322,11 @@ ggplot(BV_cumul, aes(x = TAST_Status, y = Avg_Beam_Time_s, fill = TAST_Status)) 
   labs(
     x = "TAST Status",
     y = "Average Time in Beam (s)",
+    title = "~30% Reduction in Time Spent by Seaks in the Study Area",
     fill = "TAST Status")+
   theme_classic(base_size = 15)+
   theme(axis.text = element_text(color = "black"))+
-  scale_fill_manual(values = friendly_pal("zesty_four")[3:4])
+  scale_fill_manual(values = clrblind_pal[3:4])
 
 
 
@@ -325,7 +338,7 @@ TAST_combined %>%
   ggplot(aes(Time_of_day, Time_in_beam, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
   ggtitle("Seal Time in Beam Over 24 hrs") +
-  scale_color_manual(values = c("ON" = "navy", "OFF" = "tan")) +
+  scale_color_manual(values = clrblind_pal[4:5]) +
   labs(x = "Hour of Day", y = "Seal Time in Beam (s)") +
   theme_classic() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -337,7 +350,7 @@ TAST_combined %>%
   ggplot(aes(Time_of_day, Tortuosity_3D, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
   ggtitle("Tortuosity Over 24 hrs") +
-  scale_color_manual(values = friendly_pal("zesty_four")[3:4]) +
+  scale_color_manual(values = clrblind_pal[4:5]) +
   labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
   theme_classic() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -381,6 +394,9 @@ nmds_plot <- ordiplot(nmds_plot, display = "TAST_Status_numeric")
 
 # 9. Correlation Plots ---------------------------------------------------------
 
+#creating gradient for matrix
+clrblind_gradient <- colorRampPalette(clrblind_pal)(200)
+
 # assigning factors and isolating numeric values only 
 TAST_cor <- TAST_combined %>% 
   mutate(Status_numeric = case_when(TAST_Status == "ON" ~ 1,
@@ -392,12 +408,17 @@ TAST_cor <- TAST_combined %>%
   select(-Process_ID, -Target_depth_mean, -Time_in_beam)
 
 # basic correlation function, using spearman method for categorical variables with assigned factors 
-cor(TAST_cor, method = "spearman")
+corrplot(cor(TAST_cor, method = "spearman"), 
+         method = "circle",                   # << this is the key part
+         col = clrblind_gradient,             # gradient color fill
+         addCoef.col = "black",               # add correlation values
+         tl.srt = 20,                         # text label angle
+         tl.col = "black",                    # text color
+         type = "lower",                      # only show lower triangle
+         shade.col = NA)      
 
-matrix <- cor(TAST_cor) %>% 
-  corrplot(addCoef.col = "black", col = COL2("BrBG"), tl.srt = 20, tl.col = "black",
-           type = "lower", shade.col = wes_palette("AsteroidCity1"))
-
+##Can I make it where I can plot ON and OFF separately??
+#To be figured out!
 
 # 9. Statistics-----------------------------------------------------------------
 
@@ -424,9 +445,49 @@ autoplot(pca_result,
          loadings.label.vjust = -1,
          loadings.label.hjust = 0.45,
          main = "Principal Component Analysis")+
-  scale_color_manual(values = friendly_pal("zesty_four")[3:4])+ #remove guide = "none" if you want to have a legend
+  scale_color_manual(values = clrblind_pal[4:5])+ #remove guide = "none" if you want to have a legend
   labs(color = "TAST Status")+
   theme_cowplot()+
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
+
+##CLAUDE AI'S WAY BELOW
+
+# Extract the PC scores and loadings from your PCA result
+pca_data <- as.data.frame(pca_result$x)  # PC scores
+pca_data$TAST_Status <- TAST_combined$TAST_Status  # Add your grouping variable
+
+loadings <- as.data.frame(pca_result$rotation)  # Loadings
+loadings$Variable <- rownames(loadings)  # Add variable names
+
+# Create the PCA plot
+ggplot(pca_data, aes(x = PC1, y = PC2, color = TAST_Status)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = clrblind_pal[4:5]) +
+  
+  # Add loadings as arrows
+  geom_segment(data = loadings, aes(x = 0, y = 0, xend = PC1 * 5, yend = PC2 * 5),
+               arrow = arrow(length = unit(0.2, "cm")), color = "black", inherit.aes = FALSE) +
+  
+  # Add loading labels with repel
+  geom_text_repel(data = loadings, 
+                  aes(x = PC1 * 5, y = PC2 * 5, label = Variable),
+                  color = "black", 
+                  size = 4,
+                  max.overlaps = 20,  # Increase this if some labels are still missing
+                  box.padding = 0.5,  # Adjust for better spacing
+                  point.padding = 0.3,
+                  segment.color = "grey50",
+                  inherit.aes = FALSE) +
+  
+  # Add titles and theme
+  labs(color = "TAST Status",
+       x = paste0("PC1 (", round(pca_result$sdev[1]^2/sum(pca_result$sdev^2) * 100, 1), "%)"),
+       y = paste0("PC2 (", round(pca_result$sdev[2]^2/sum(pca_result$sdev^2) * 100, 1), "%)"),
+       title = "Principal Component Analysis") +
+  theme_cowplot() +
   theme(text = element_text(size = 18),
         axis.text = element_text(size = 18),
         axis.title = element_text(size = 20),
