@@ -46,7 +46,8 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/Fillet/2023")
 # 2. Reading in & formatting BlueView Time in Beam Files -----------------------
 
 # Reading in file
-BV_fullday <- read_excel("2023_FGS_full_days_seal_presence.xlsx", col_types = c("Date" = "text"))
+BV_fullday <- read_csv("2023_FGS_full_days_seal_presence_final.csv", 
+                       col_types = cols(Date = col_date(format = "%Y-%m-%d")))
 
 # Selecting columns of interest
 BV_fullday <- BV_fullday %>% 
