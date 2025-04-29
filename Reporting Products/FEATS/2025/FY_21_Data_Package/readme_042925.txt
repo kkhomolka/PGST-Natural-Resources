@@ -1,0 +1,74 @@
+================================================================================================================================
+This file provides important information regarding the contents and structure of this 
+folder. For questions about the project scope, description, status, or deliverables, 
+please contact the Project Point of Contact. For inquiries about data types, collection, 
+processing, or related code, please reach out to the Data Point of Contact.
+================================================================================================================================
+
+## Folder Structure (Pathway in descending order)
+
+Parent Folder = [FY21_Data_Package]
+	Project Folder = [Fish Guidance System] and [Targeted Acoustic Startle Technology] 
+		Fiscal Year = [FY21]
+			Project Components = [Raw data, SQL Database for Remote Video and Predator Surveys]
+
+--------------------------------------------------------------------------------------------------------------------------------				
+
+## Project Information
+
+Project Name: Hood Canal and Admiralty Inlet Nearshore Assessment with focus on; Assessing Effectiveness of Proposed Mitigation Measures at the Hood Canal Bridge
+
+Project Description: [To better understand the Hood Canal & Admiralty Inlet nearshore and marine systems as they relate 
+to steelhead smolts, other ESA-listed juvenile salmonids, and forage fish with a focus on near-field fish behavior 
+associated with the Hood Canal Bridge and Port Gamble Bay. The goals for this project are to characterize the 
+presence and behavior of juvenile Steelhead, Chinook Salmon, Chum Salmon, forage fish, and their predators, 
+within the vicinity of the Hood Canal Bridge. Methods used during this project will include visual acoustics data 
+collection, predator behavior surveys, and remote underwater video collection, to provide quantitative data 
+which will inform evaluation of the mitigation measures deployed at the Hood Canal Bridge. This project is part 
+of a broader undertaking which sought to understand the fish passage impacts associated with the Hood Canal 
+Bridge during Phase 1 (see the 2016 Hood Canal Bridge Ecosystem Impact Assessment Plan, for a description 
+of how this project is nested within the broader undertaking) and seeks to investigate effectiveness of 
+mitigation strategies in Phase 2. 
+
+Successfully accomplishing the goals listed under our objective will: Provide the Port Gamble S’Klallam Tribe 
+and our partnering organizations with additional tools and information necessary to evaluate mitigation 
+measures to reduce mortality of juvenile salmonids at the Hood Canal Bridge, as well as prioritize restoration 
+and conservation projects, monitor recovery effectiveness, and provide more accurate information to fisheries 
+managers.]
+
+Funding Source:Environmental Protection Agency (EPA)
+
+Project Point of Contact: Hans Daubenberger
+
+Relevant Acronyms: [TAST = Targeted Acoustic Startle Technology; FGS = Fish Guidance System; HCB = Hood Canal Bridge; EV = EchoView ]
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+## Associated Data Information
+
+Data Types:[.xlsx spreadsheets contain seal in/out times and exported data from EchoView; pdf files contain data visualization products, SQL Data Base Files contain tabular data from HCB remote video 
+and predator surveys]
+
+Data Point of Contact:[Khadijah Homolka - PGST Research Scientist]
+
+Usage Notes: [Opening the SQL database requires DB Browser for SQLite; .xlsx files require Excel for an equivalent program]
+
+Processing Scripts: [R was used for data visualization]
+
+Information Sensitivity: [This data is not sensitive, but should not be used out of context]
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+## Readme Updates
+
+**[04/29/2025] - [Created readme file for corresponding data package]
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+## Comments 
+
+[Raw BlueView and EchoView files can be provided at request on a hard drive. The files are too large to store and share using online repositories]
+
+
+
+
