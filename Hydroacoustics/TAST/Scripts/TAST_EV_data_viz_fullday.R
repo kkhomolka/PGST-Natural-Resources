@@ -37,7 +37,7 @@ clrblind_pal_fun <- function(n) {
 
 
 ## Set working directory for KK WORK
-setwd("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
+setwd("Z:/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
 ## Set working directory for KK HOME 
 setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -45,7 +45,7 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 # 2. Reading in & formatting BlueView Time in Beam Files -----------------------
 
 # Reading in file
-BV_fullday <- read_excel("TAST_full_day_and_foraging_window_seal_presence.xlsx")
+BV_fullday <- read_excel("TAST_full_day_and_foraging_window_seal_presence_20260126.xlsx")
 
 # Selecting columns of interest
 BV_fullday <- BV_fullday %>% 
@@ -98,6 +98,19 @@ BV_fullday <- BV_fullday %>%
   group_by(TAST_Status) %>%
   group_modify(~ remove_top_outliers(.x, "Cumulative_Time_s")) %>%
   ungroup()
+
+## Sorting and Wrangling -------------------------------------------------------
+
+# Making sure that data are ordered properly
+BV_fullday <- BV_fullday %>% 
+  arrange(DateTime)
+
+# Calculate file end time and duration
+BV_fullday <- BV_fullday %>%
+  mutate(File_EndTime = lead(DateTime),
+         File_Duration = as.numeric(difftime(File_EndTime, DateTime, units = "secs")))
+
+
 
 ## 4. Normalizing --------------------------------------------------------------
 
