@@ -45,7 +45,7 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 # 2. Reading in & formatting BlueView Time in Beam Files -----------------------
 
 # Reading in file
-BV_fullday <- read_excel("TAST_full_day_and_foraging_window_seal_presence_20260126.xlsx")
+BV_fullday <- read_excel("TAST_2025_seal_for_pp_3.xlsx")
 
 # Selecting columns of interest
 BV_fullday <- BV_fullday %>% 
@@ -67,8 +67,8 @@ BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%
 ## 3. Sorting and Wrangling ----------------------------------------------------
 
 # Making sure that data are ordered properly
-BV_fullday <- BV_fullday %>% 
-  arrange(DateTime)
+#BV_fullday <- BV_fullday %>% 
+ # arrange(DateTime)
 
 # Calculate file end time and duration
 BV_fullday <- BV_fullday %>%
@@ -130,14 +130,10 @@ BV_cumul <- BV_fullday %>%
   summarise(Total_Beam_Time_s = sum(Cumulative_Time_s),
             Avg_Beam_Time_s = mean(Cumulative_Time_s[Cumulative_Time_s !=0]))
 
-# use same normalization variables as EV files
-#ON_norm <- 1.12 #this was calculated by dividing total OFF time / total ON time
-#OFF_norm <- 1 #this is 1 because it was total OFF time / total OFF time
-
-#this was calculated by dividing total ON time analyzed / total OFF time analyzed
-# should only be applied to OFF times to downsample since there are more OFF files
-OFF_norm <- 0.89
-ON_norm <- 1
+#this was calculated by dividing total OFF time analyzed / total ON time analyzed
+# should only be applied to ON times to downsample since there are more ON files
+OFF_norm <- 1
+ON_norm <- 0.476
 
 
 # create normalization column for time in beam and multiplied by 10^5 to
@@ -234,6 +230,7 @@ BV_fullday %>%
         axis.title = element_text(size = 20),
         plot.title = element_text(size = 25, vjust = 2.0))
 
+
 # normalize the bar chart and stack it 
 BV_proportions <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
@@ -256,12 +253,12 @@ BV_proportions_long <- BV_proportions %>%
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
-  geom_bar(stat = "identity", fill = clrblind_pal[2:5], width = 0.6)+
+  geom_bar(stat = "identity", width = 0.6)+
   labs(title = "Proportion of Seal Presence vs. Absence",
        x = "TAST Status",
        y= "Proportion")+
   theme_cowplot()+
-  scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
+  scale_fill_manual(values = clrblind_pal[3:4], 
                     name = NULL, 
                     labels = c("Seal Absence", "Seal Presence"))+
   theme(text = element_text(size = 18, family = "serif"),
@@ -269,28 +266,11 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
         axis.title = element_text(size = 20, family = "serif"),
         plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
 
-#Same color stacked barplot
-ggplot(BV_proportions_long, aes(x = TAST_Status, 
-                                y = Proportion, 
-                                fill = Value_Type)) +
-  geom_bar(stat = "identity", width = 0.6) +
-  labs(title = "Proportion of Seal Presence vs. Absence",
-       x = "TAST Status",
-       y = "Proportion") +
-  theme_cowplot() +
-  scale_fill_manual(values = clrblind_pal[3:4], 
-                    labels = c("Seal Presence", "Seal Absence")) +
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        legend.title = element_text(size = 0),
-        legend.key.size = unit(1.5, "lines"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
 
 #Only plotting the count_nonzero data for HCB management meeting
 BV_mini <- data.frame(
   TAST_Status = c("ON", "OFF"),
-  Count_Nonzero = c(70,194))
+  Count_Nonzero = c(22,61))
 
 ggplot(BV_mini, aes(x = TAST_Status, 
                     y = Count_Nonzero,
@@ -298,9 +278,9 @@ ggplot(BV_mini, aes(x = TAST_Status,
   geom_bar(stat = "identity",width = 0.6) +
   labs(x = "TAST Status",
        y = "Number of Seal Observations",
-       title = "~60% Reduction in Seal Observations When TAST was ON") +
+       title = "~71% Reduction in Seal Observations When TAST was ON") +
   theme_cowplot() +
-  scale_fill_manual(values = clrblind_pal[3:5], 
+  scale_fill_manual(values = clrblind_pal[3:4], 
                     labels = c("TAST OFF", "TAST ON")) +
   theme(text = element_text(size = 18, family = "serif"),
         axis.text = element_text(size = 18, family = "serif"),
@@ -319,19 +299,19 @@ ggplot(BV_non_zero_data, aes(x = BV_Normalized_time_in_beam)) +
   facet_wrap(~TAST_Status)
 
 # Shapiro-Wilk test (if n < 5000)
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_balanced$TAST_Status == "ON"])
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_balanced$TAST_Status == "OFF"])
+shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "ON"])
+shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "OFF"])
 
 # Part 1: Did seals show up? (Binary: presence/absence)
 BV_fullday <- BV_fullday %>%
-  mutate(Seal_Presence = ifelse(BV_Normalized_time_in_beam > 0, 1, 0))
+  mutate(Seal_Presence = ifelse(TAST_Status == "ON", 1, 0))
 
 # Chi-square or Fisher's exact test
 table(BV_fullday$TAST_Status, BV_fullday$Seal_Presence)
 chisq.test(BV_fullday$TAST_Status, BV_fullday$Seal_Presence)
 
 # Part 2: When present, how long? (Non-zero values only)
-BV_nonzero <- BV_balanced %>% filter(BV_Normalized_time_in_beam > 0)
+BV_non_zero_data <- BV_fullday %>% filter(BV_Normalized_time_in_beam > 0)
 
 # Mann-Whitney U test on non-zero durations
 wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)

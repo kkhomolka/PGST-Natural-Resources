@@ -319,20 +319,18 @@ ggplot(BV_non_zero_data, aes(x = BV_Normalized_time_in_beam)) +
   facet_wrap(~TAST_Status)
 
 # Shapiro-Wilk test (if n < 5000)
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_balanced$TAST_Status == "ON"])
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_balanced$TAST_Status == "OFF"])
+shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "ON"])
+shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "OFF"])
 
 # Part 1: Did seals show up? (Binary: presence/absence)
 BV_fullday <- BV_fullday %>%
-  mutate(Seal_Presence = ifelse(BV_Normalized_time_in_beam > 0, 1, 0))
+  mutate(Seal_Presence = ifelse(TAST_Status == "ON", 1, 0))
 
 # Chi-square or Fisher's exact test
 table(BV_fullday$TAST_Status, BV_fullday$Seal_Presence)
 chisq.test(BV_fullday$TAST_Status, BV_fullday$Seal_Presence)
 
 # Part 2: When present, how long? (Non-zero values only)
-BV_nonzero <- BV_balanced %>% filter(BV_Normalized_time_in_beam > 0)
-
 # Mann-Whitney U test on non-zero durations
 wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
 
