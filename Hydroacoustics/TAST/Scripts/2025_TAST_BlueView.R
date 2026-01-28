@@ -355,4 +355,3 @@ print(t_test4)
 
 anova_result4 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
 summary(anova_result4)
-
