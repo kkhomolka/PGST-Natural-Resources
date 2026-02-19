@@ -35,6 +35,11 @@ clrblind_pal_fun <- function(n) {
   if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")
   clrblind_pal[1:n]}
 
+install.packages("showtext")
+library(showtext)
+
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
 
 ## Set working directory for KK WORK
 setwd("Z:/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -45,7 +50,7 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 # 2. Reading in & formatting BlueView Time in Beam Files -----------------------
 
 # Reading in file
-BV_fullday <- read_excel("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST/TAST_Seal_Presence_2026_OSM.xlsx")
+BV_fullday <- read_excel("TAST_Seal_Presence_2026_OSM.xlsx")
 
 # Selecting columns of interest
 BV_fullday <- BV_fullday %>% 
@@ -133,7 +138,7 @@ BV_cumul <- BV_fullday %>%
 #this was calculated by dividing total OFF time analyzed / total ON time analyzed
 # should only be applied to ON times to downsample since there are more ON files
 OFF_norm <- 1
-ON_norm <- 0.476
+ON_norm <- 0.598
 
 
 # create normalization column for time in beam and multiplied by 10^5 to
@@ -195,15 +200,15 @@ BV_fullday %>%
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", 
-       y = "Normalized Time in Beam (s)", 
+       y = "Time in Beam (s)", 
        title = "Duration of Seal Presence")+
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[3:4])+
   guides(fill = "none")+
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
@@ -258,13 +263,13 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
        x = "TAST Status",
        y= "Proportion")+
   theme_cowplot()+
-  scale_fill_manual(values = clrblind_pal[3:4], 
+  scale_fill_manual(values = clrblind_pal[1:2], 
                     name = NULL, 
                     labels = c("Seal Absence", "Seal Presence"))+
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
 
 
 #Only plotting the count_nonzero data for HCB management meeting

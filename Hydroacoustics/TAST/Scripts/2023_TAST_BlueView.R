@@ -24,11 +24,11 @@ pacman::p_load(pwr,
 
 # Aesthetics color palette
 clrblind_pal <- c(
-  "#edbd00",  # golden yellow
-  "#1dd2d3",  # teal
-  "#78b41f",  # green
-  "#7487ff",  # periwinkle
-  "#b41f78"   # magenta
+  "#F58E27",  
+  "#272EF5",  
+  "#78b41f",  
+  "#7487ff",  
+  "#b41f78"   
 )
 
 clrblind_pal_fun <- function(n) {
@@ -196,7 +196,7 @@ BV_non_zero_data <- BV_fullday[BV_fullday$Cumulative_Time_s != 0, ]
 install.packages("showtext")
 library(showtext)
 
-font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
 
 # Violin plot
@@ -262,18 +262,18 @@ BV_proportions_long <- BV_proportions %>%
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
                                 y = Proportion, 
                                 fill = Value_Type)) +
-  geom_bar(stat = "identity", fill = clrblind_pal[2:5], width = 0.6)+
+  geom_bar(stat = "identity", width = 0.6)+
   labs(title = "Proportion of Seal Presence vs. Absence",
        x = "TAST Status",
        y= "Proportion")+
   theme_cowplot()+
-  scale_fill_manual(values = wes_palette("AsteroidCity1")[1:4], 
+  scale_fill_manual(values = clrblind_pal[1:2], 
                     name = NULL, 
                     labels = c("Seal Absence", "Seal Presence"))+
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
 
 #Same color stacked barplot
 ggplot(BV_proportions_long, aes(x = TAST_Status, 
@@ -284,7 +284,7 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
        x = "TAST Status",
        y = "Proportion") +
   theme_cowplot() +
-  scale_fill_manual(values = clrblind_pal[3:4], 
+  scale_fill_manual(values = clrblind_pal[1:2], 
                     labels = c("Seal Presence", "Seal Absence")) +
   theme(text = element_text(size = 24, family = "Times New Roman"),
         axis.text = element_text(size = 24, family = "Times New Roman"),
