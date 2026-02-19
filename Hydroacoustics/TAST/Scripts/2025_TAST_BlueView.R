@@ -45,7 +45,7 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 # 2. Reading in & formatting BlueView Time in Beam Files -----------------------
 
 # Reading in file
-BV_fullday <- read_excel("TAST_2025_seal_for_pp_3.xlsx")
+BV_fullday <- read_excel("~/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST/TAST_Seal_Presence_2026_OSM.xlsx")
 
 # Selecting columns of interest
 BV_fullday <- BV_fullday %>% 

@@ -193,21 +193,27 @@ BV_non_zero_data <- BV_fullday[BV_fullday$Cumulative_Time_s != 0, ]
 
 ## 7. BV Plotting ---------------------------------------------------------------
 
+install.packages("showtext")
+library(showtext)
+
+font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+showtext_auto()
+
 # Violin plot
 BV_fullday %>% 
   ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", 
-       y = "Normalized Time in Beam (s)", 
+       y = "Time in Beam (s)", 
        title = "Duration of Seal Presence")+
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[3:4])+
   guides(fill = "none")+
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
 
 # Create the boxplot for non-zero values
 ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
@@ -280,12 +286,12 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
   theme_cowplot() +
   scale_fill_manual(values = clrblind_pal[3:4], 
                     labels = c("Seal Presence", "Seal Absence")) +
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
         legend.title = element_text(size = 0),
         legend.key.size = unit(1.5, "lines"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
 
 #Only plotting the count_nonzero data for HCB management meeting
 BV_mini <- data.frame(
@@ -347,10 +353,4 @@ BV_non_zero_data %>%
 wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
 
 
-#two sample t-test for BV time in beam 
-t_test4 <- t.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
-print(t_test4)
-
-anova_result4 <- aov(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
-summary(anova_result4)
 

@@ -512,10 +512,62 @@ autoplot(pca_result,
   scale_color_manual(values = clrblind_pal[4:5])+ #remove guide = "none" if you want to have a legend
   labs(color = "TAST Status")+
   theme_cowplot()+
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman"),
+        legend.text = element_text(size = 24, family = "Times New Roman"),
+        legend.title = element_text(size = 24, family = "Times New Roman"))
+
+
+autoplot(pca_result, 
+         data = TAST_combined, 
+         color = "TAST_Status",
+         loadings = TRUE,
+         loadings.colour = "black",
+         main = "Principal Component Analysis")+
+  scale_color_manual(values = clrblind_pal[4:5])+ #remove guide = "none" if you want to have a legend
+  labs(color = "TAST Status")+
+  theme_cowplot()+
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 24, family = "Times New Roman"),
+        axis.title = element_text(size = 24, family = "Times New Roman"),
+        plot.title = element_text(size = 24, family = "Times New Roman"),
+        legend.text = element_text(size = 24, family = "Times New Roman"),
+        legend.title = element_text(size = 24, family = "Times New Roman"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##CLAUDE AI'S WAY BELOW
 
@@ -556,6 +608,18 @@ ggplot(pca_data, aes(x = PC1, y = PC2, color = TAST_Status)) +
         axis.text = element_text(size = 18),
         axis.title = element_text(size = 20),
         plot.title = element_text(size = 25, vjust = 2.0))
+
+install.packages("showtext")
+library(showtext)
+
+font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+showtext_auto()
+
+
+library(showtext)
+font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+showtext_auto()
+
 
 
 # One-way ANOVA
