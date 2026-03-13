@@ -352,5 +352,63 @@ BV_non_zero_data %>%
 # Tests if ON vs OFF differ in overall distribution (including zeros)
 wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
 
+## 9. Mixed-Effects Hurdle Model------------------------------------------------
+
+install.packages("glmmTMB")
+install.packages("DHARMa")   # diagnostics
+install.packages("performance")
+
+library(glmmTMB)
+library(DHARMa)
+library(performance)
+library(dplyr)
+library(reformulas)
+
+# Ensure correct types
+BV_fullday <- BV_fullday %>%
+  mutate(
+    Date         = as.factor(Date),
+    TAST_Status  = factor(TAST_Status, levels = c("OFF", "ON")),  # OFF = reference
+    Seal_Present = as.logical(Seal_Present),
+    DateTime     = as.POSIXct(DateTime)
+  )
+
+#Check shape of non-zero data because this determines what family to use
+#Right-skewed continuous -> truncated_gamma()
+#Relatively normal -> truncated_gaussian()
+BV_fullday %>%
+  filter(BV_Normalized_time_in_beam > 0) %>%
+  ggplot(aes(x = BV_Normalized_time_in_beam)) +
+  geom_histogram(bins = 30, fill = "steelblue") +
+  labs(title = "Distribution of non-zero residency times")
 
 
+# Any negative or zero values in non-absent files?
+BV_fullday %>%
+  filter(Seal_Present == TRUE) %>%
+  summarise(
+    min_val  = min(BV_Normalized_time_in_beam),
+    n_zeros  = sum(BV_Normalized_time_in_beam == 0),
+    n_neg    = sum(BV_Normalized_time_in_beam < 0)
+  )
+
+detach("package:glmmTMB", unload = TRUE)
+library(glmmTMB)
+
+m_hurdle <- glmmTMB(
+  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  ziformula = ~ TAST_Status + (1 | Date),
+  family    = glmmTMB::truncated_gamma(link = "log"),
+  data      = BV_fullday
+)
+
+getNamespaceExports("glmmTMB")
+
+m_hurdle <- glmmTMB(
+  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  ziformula = ~ TAST_Status + (1 | Date),
+  family    = lognormal(link = "log"),
+  data      = BV_fullday
+)
+
+summary(m_hurdle)
