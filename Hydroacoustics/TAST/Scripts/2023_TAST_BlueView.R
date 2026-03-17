@@ -140,8 +140,7 @@ OFF_norm <- 0.89
 ON_norm <- 1
 
 
-# create normalization column for time in beam and multiplied by 10^5 to
-# improve the readability when plotting 
+# create normalization column for time in beam
 BV_fullday <- BV_fullday %>% 
   mutate(BV_Normalized_time_in_beam = if_else(TAST_Status == "ON", 
                                               Cumulative_Time_s * ON_norm, 
@@ -151,38 +150,37 @@ BV_fullday <- BV_fullday %>%
 ## 5. Removing Outliers --------------------------------------------------------
 
 # remove na's
-BV_fullday <- na.omit(BV_fullday)
+#BV_fullday <- na.omit(BV_fullday)
 
 # Function to identify and remove the top 3 outliers for a given vector
-remove_top_outliers <- function(data, column_name) {
+#remove_top_outliers <- function(data, column_name) {
   # Calculate the first quartile (Q1) and third quartile (Q3)
-  Q1 <- quantile(data[[column_name]], 0.25, na.rm = TRUE)
-  Q3 <- quantile(data[[column_name]], 0.75, na.rm = TRUE)
+ # Q1 <- quantile(data[[column_name]], 0.25, na.rm = TRUE)
+ # Q3 <- quantile(data[[column_name]], 0.75, na.rm = TRUE)
   
   # Calculate the interquartile range (IQR)
-  IQR <- Q3 - Q1
+#  IQR <- Q3 - Q1
   
   # Define the lower and upper bounds for identifying outliers
-  lower_bound <- Q1 - 3.0 * IQR
-  upper_bound <- Q3 + 3.0 * IQR
+#  lower_bound <- Q1 - 3.0 * IQR
+#  upper_bound <- Q3 + 3.0 * IQR
   
   # Identify outliers
-  outliers <- data[[column_name]] < lower_bound | data[[column_name]] > upper_bound
+#  outliers <- data[[column_name]] < lower_bound | data[[column_name]] > upper_bound
   
   # Identify the top 3 outliers
-  top_outliers <- head(sort(data[[column_name]][outliers], decreasing = TRUE), 3)
+#  top_outliers <- head(sort(data[[column_name]][outliers], decreasing = TRUE), 3)
   
   # Remove the top 3 outliers from the data
-  data <- data[!data[[column_name]] %in% top_outliers, ]
+#  data <- data[!data[[column_name]] %in% top_outliers, ]
   
-  return(data)
-}
+#  return(data)}
 
 # Apply the function to each TAST_Status group
-BV_fullday <- BV_fullday %>%
-  group_by(TAST_Status) %>%
-  group_modify(~ remove_top_outliers(.x, "Cumulative_Time_s")) %>%
-  ungroup()
+#BV_fullday <- BV_fullday %>%
+#  group_by(TAST_Status) %>%
+#  group_modify(~ remove_top_outliers(.x, "Cumulative_Time_s")) %>%
+#  ungroup()
 
 
 ## 6. Create non-zero values for BV normalized and non-normalized --------------
@@ -201,7 +199,7 @@ showtext_auto()
 
 # Violin plot
 BV_fullday %>% 
-  ggplot(aes(x = TAST_Status, y = BV_Normalized_time_in_beam, fill = TAST_Status))+
+  ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status))+
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", 
@@ -370,12 +368,9 @@ BV_fullday <- BV_fullday %>%
     Date         = as.factor(Date),
     TAST_Status  = factor(TAST_Status, levels = c("OFF", "ON")),  # OFF = reference
     Seal_Present = as.logical(Seal_Present),
-    DateTime     = as.POSIXct(DateTime)
-  )
+    DateTime     = as.POSIXct(DateTime))
 
 #Check shape of non-zero data because this determines what family to use
-#Right-skewed continuous -> truncated_gamma()
-#Relatively normal -> truncated_gaussian()
 BV_fullday %>%
   filter(BV_Normalized_time_in_beam > 0) %>%
   ggplot(aes(x = BV_Normalized_time_in_beam)) +
@@ -389,26 +384,44 @@ BV_fullday %>%
   summarise(
     min_val  = min(BV_Normalized_time_in_beam),
     n_zeros  = sum(BV_Normalized_time_in_beam == 0),
-    n_neg    = sum(BV_Normalized_time_in_beam < 0)
-  )
+    n_neg    = sum(BV_Normalized_time_in_beam < 0))
 
-detach("package:glmmTMB", unload = TRUE)
-library(glmmTMB)
 
+# Run the model!
+#Using non-normalized time in beam because the offset accounts for it already
 m_hurdle <- glmmTMB(
-  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
-  ziformula = ~ TAST_Status + (1 | Date),
-  family    = glmmTMB::truncated_gamma(link = "log"),
-  data      = BV_fullday
-)
-
-getNamespaceExports("glmmTMB")
-
-m_hurdle <- glmmTMB(
-  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  Cumulative_Time_s ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
   ziformula = ~ TAST_Status + (1 | Date),
   family    = lognormal(link = "log"),
-  data      = BV_fullday
-)
+  data      = BV_fullday)
 
 summary(m_hurdle)
+
+# Sanity Check the Stats--------------------------------------------------------
+
+#Going to run DHARMa diagnostics to check if the family used was the right fit
+#Simulate residuals (999 simulations is standard)
+sim_res <- simulateResiduals(m_hurdle, n = 999)
+
+#Main diagnostic plot (2 panels)
+plot(sim_res)
+
+#Test for overdispersion specifically
+testDispersion(sim_res)
+
+#Test for zero inflation
+testZeroInflation(sim_res)
+
+#Now lets check is another family would have a better fit
+#Let's try ziGamma instead of lognormal
+m_hurdle_gamma <- glmmTMB(
+  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  ziformula = ~ TAST_Status + (1 | Date),
+  family    = ziGamma(link = "log"),
+  data      = BV_fullday)
+
+summary(m_hurdle_gamma)
+
+#Akaike Information Criterion(AIC) measures how well a model fits your data while
+#penalizing for complexity (number of parameters)
+AIC(m_hurdle, m_hurdle_gamma)
