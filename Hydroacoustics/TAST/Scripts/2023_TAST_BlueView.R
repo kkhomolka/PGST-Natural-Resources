@@ -20,7 +20,8 @@ pacman::p_load(pwr,
                vegan,
                wesanderson,
                ggrepel,
-               ggformula)
+               ggformula,
+               showtext)
 
 # Aesthetics color palette
 clrblind_pal <- c(
@@ -35,6 +36,9 @@ clrblind_pal_fun <- function(n) {
   if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")
   clrblind_pal[1:n]}
 
+# Font aesthetics
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
 
 ## Set working directory for KK WORK
 setwd("Z:/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -130,9 +134,6 @@ BV_cumul <- BV_fullday %>%
   summarise(Total_Beam_Time_s = sum(Cumulative_Time_s),
             Avg_Beam_Time_s = mean(Cumulative_Time_s[Cumulative_Time_s !=0]))
 
-# use same normalization variables as EV files
-#ON_norm <- 1.12 #this was calculated by dividing total OFF time / total ON time
-#OFF_norm <- 1 #this is 1 because it was total OFF time / total OFF time
 
 #this was calculated by dividing total ON time analyzed / total OFF time analyzed
 # should only be applied to OFF times to downsample since there are more OFF files
@@ -147,55 +148,13 @@ BV_fullday <- BV_fullday %>%
                                               Cumulative_Time_s * OFF_norm))
 
 
-## 5. Removing Outliers --------------------------------------------------------
-
-# remove na's
-#BV_fullday <- na.omit(BV_fullday)
-
-# Function to identify and remove the top 3 outliers for a given vector
-#remove_top_outliers <- function(data, column_name) {
-  # Calculate the first quartile (Q1) and third quartile (Q3)
- # Q1 <- quantile(data[[column_name]], 0.25, na.rm = TRUE)
- # Q3 <- quantile(data[[column_name]], 0.75, na.rm = TRUE)
-  
-  # Calculate the interquartile range (IQR)
-#  IQR <- Q3 - Q1
-  
-  # Define the lower and upper bounds for identifying outliers
-#  lower_bound <- Q1 - 3.0 * IQR
-#  upper_bound <- Q3 + 3.0 * IQR
-  
-  # Identify outliers
-#  outliers <- data[[column_name]] < lower_bound | data[[column_name]] > upper_bound
-  
-  # Identify the top 3 outliers
-#  top_outliers <- head(sort(data[[column_name]][outliers], decreasing = TRUE), 3)
-  
-  # Remove the top 3 outliers from the data
-#  data <- data[!data[[column_name]] %in% top_outliers, ]
-  
-#  return(data)}
-
-# Apply the function to each TAST_Status group
-#BV_fullday <- BV_fullday %>%
-#  group_by(TAST_Status) %>%
-#  group_modify(~ remove_top_outliers(.x, "Cumulative_Time_s")) %>%
-#  ungroup()
-
-
-## 6. Create non-zero values for BV normalized and non-normalized --------------
+## 5. Create non-zero values for BV normalized and non-normalized --------------
 
 # Filter out non-zero values for boxplot
 BV_non_zero_data <- BV_fullday[BV_fullday$Cumulative_Time_s != 0, ]
 
 
-## 7. BV Plotting ---------------------------------------------------------------
-
-install.packages("showtext")
-library(showtext)
-
-font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
-showtext_auto()
+## 6. BV Plotting ---------------------------------------------------------------
 
 # Violin plot
 BV_fullday %>% 
@@ -203,26 +162,31 @@ BV_fullday %>%
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", 
-       y = "Time in Beam (s)", 
-       title = "Duration of Seal Presence")+
+       y = "Residency Time (s)")+
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[3:4])+
   guides(fill = "none")+
-  theme(text = element_text(size = 24, family = "Times New Roman"),
-        axis.text = element_text(size = 24, family = "Times New Roman"),
-        axis.title = element_text(size = 24, family = "Times New Roman"),
-        plot.title = element_text(size = 24, family = "Times New Roman", vjust = 2.0))
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 25)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 25)),
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
+
+ggsave("2023_violin.png")
+
 
 # Create the boxplot for non-zero values
-ggplot(BV_non_zero_data, aes(x = TAST_Status, y = BV_Normalized_time_in_beam)) +
+ggplot(BV_non_zero_data, aes(x = TAST_Status, y = Cumulative_Time_s)) +
   geom_boxplot(fill = clrblind_pal[3:4], width = 0.6)+
   labs(x = "TAST Status", y = "Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
   theme_cowplot()+
   guides(fill = "none")+
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title = element_text(size = 48, family = "Times New Roman"),
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
 
 # Create the bar chart for # of zero values
 BV_fullday %>%
@@ -425,3 +389,17 @@ summary(m_hurdle_gamma)
 #Akaike Information Criterion(AIC) measures how well a model fits your data while
 #penalizing for complexity (number of parameters)
 AIC(m_hurdle, m_hurdle_gamma)
+
+
+
+
+
+
+m_hurdle_1 <- glmmTMB(
+  Seal_Presence_Rate ~ TAST_Status + (1 | Date),
+  ziformula = ~ TAST_Status + (1 | Date),
+  family    = lognormal(link = "log"),
+  data      = BV_fullday)
+
+summary(m_hurdle_1)
+
