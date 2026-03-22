@@ -265,18 +265,76 @@ ggplot(BV_mini, aes(x = TAST_Status,
                     fill = TAST_Status)) +
   geom_bar(stat = "identity",width = 0.6) +
   labs(x = "TAST Status",
-       y = "Number of Seal Observations",
-       title = "~60% Reduction in Seal Observations When TAST was ON") +
+       y = "Seal Observations") +
   theme_cowplot() +
   scale_fill_manual(values = clrblind_pal[3:5], 
                     labels = c("TAST OFF", "TAST ON")) +
-  theme(text = element_text(size = 18, family = "serif"),
-        axis.text = element_text(size = 18, family = "serif"),
-        axis.title = element_text(size = 20, family = "serif"),
+  theme(text = element_text(size = 48, family = "serif"),
+        axis.text = element_text(size = 36, family = "serif"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 20)),
         legend.title = element_text(size = 0),
         legend.key.size = unit(1.5, "lines"),
-        plot.title = element_text(size = 25, family = "serif", vjust = 2.0))
+        plot.title = element_text(size = 48, family = "serif", vjust = 2.0))
 
+ggsave("2023_Obs_reduction_barplot.png")
+
+# Aggregating seal time by monitoring period since status switches midday
+# Aggregate by date and TAST status period
+period_summary <- BV_fullday %>%
+  group_by(Date, TAST_Status) %>%
+  summarise(
+    Cumulative_Time_s     = sum(Cumulative_Time_s),
+    Total_Time_Analyzed_s = sum(File_Duration_s),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    Date = as.Date(Date),
+    Normalized_Seal_Time = Cumulative_Time_s / Total_Time_Analyzed_s
+  )
+
+# Barplot
+period_summary %>%
+  ggplot(aes(x = Date, y = Normalized_Seal_Time, fill = TAST_Status)) +
+  geom_col(position = "dodge", width = 0.8) +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
+  scale_fill_manual(values = clrblind_pal[3:4]) +
+  labs(x = "Date",
+       y = "Normalized Residency Time\n(s seal time / s analyzed)",
+       fill = "TAST Status") +
+  theme_cowplot() +
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 18, family = "Times New Roman"),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_text(size = 24, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 24, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 18, family = "Times New Roman"),
+        legend.title = element_text(size = 24, family = "Times New Roman"))
+
+# Line graph
+period_summary %>%
+  ggplot(aes(x = Date, y = Normalized_Seal_Time, color = TAST_Status, group = TAST_Status)) +
+  geom_point(size = 4) +
+  geom_line() +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
+  scale_color_manual(values = clrblind_pal[3:4]) +
+  labs(x = "Date",
+       y = "Normalized Residency Time",
+       color = "TAST Status") +
+  theme_gray() +
+  theme(text = element_text(size = 24, family = "Times New Roman"),
+        axis.text = element_text(size = 18, family = "Times New Roman"),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_text(size = 24, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 24, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 18, family = "Times New Roman"),
+        legend.title = element_text(size = 24, family = "Times New Roman"))
 
 ## 8. Statistics-----------------------------------------------------------------
 
