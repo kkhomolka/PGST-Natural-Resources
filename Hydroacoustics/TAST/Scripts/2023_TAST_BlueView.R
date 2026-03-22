@@ -321,13 +321,13 @@ ggsave("2023_linegraph.png")
 
 # checking the normality of the data distribution
 # Visual check
-ggplot(BV_non_zero_data, aes(x = BV_Normalized_time_in_beam)) +
+ggplot(BV_non_zero_data, aes(x = Cumulative_Time_s)) +
   geom_histogram() +
   facet_wrap(~TAST_Status)
 
 # Shapiro-Wilk test (if n < 5000)
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "ON"])
-shapiro.test(BV_fullday$BV_Normalized_time_in_beam[BV_fullday$TAST_Status == "OFF"])
+shapiro.test(BV_fullday$Cumulative_Time_s[BV_fullday$TAST_Status == "ON"])
+shapiro.test(BV_fullday$Cumulative_Time_s[BV_fullday$TAST_Status == "OFF"])
 
 # Part 1: Did seals show up? (Binary: presence/absence)
 BV_fullday <- BV_fullday %>%
@@ -339,19 +339,19 @@ chisq.test(BV_fullday$TAST_Status, BV_fullday$Seal_Presence)
 
 # Part 2: When present, how long? (Non-zero values only)
 # Mann-Whitney U test on non-zero durations
-wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_non_zero_data)
+wilcox.test(Cumulative_Time_s ~ TAST_Status, data = BV_non_zero_data)
 
 # Compare medians/means when present
 BV_non_zero_data %>%
   group_by(TAST_Status) %>%
   summarize(
-    median_duration = median(BV_Normalized_time_in_beam),
-    mean_duration = mean(BV_Normalized_time_in_beam),
+    median_duration = median(Cumulative_Time_s),
+    mean_duration = mean(Cumulative_Time_s),
     n = n()
   )
 
 # Tests if ON vs OFF differ in overall distribution (including zeros)
-wilcox.test(BV_Normalized_time_in_beam ~ TAST_Status, data = BV_fullday)
+wilcox.test(Cumulative_Time_s ~ TAST_Status, data = BV_fullday)
 
 ## 9. Mixed-Effects Hurdle Model------------------------------------------------
 
@@ -375,8 +375,8 @@ BV_fullday <- BV_fullday %>%
 
 #Check shape of non-zero data because this determines what family to use
 BV_fullday %>%
-  filter(BV_Normalized_time_in_beam > 0) %>%
-  ggplot(aes(x = BV_Normalized_time_in_beam)) +
+  filter(Cumulative_Time_s > 0) %>%
+  ggplot(aes(x = Cumulative_Time_s)) +
   geom_histogram(bins = 30, fill = "steelblue") +
   labs(title = "Distribution of non-zero residency times")
 
@@ -385,15 +385,14 @@ BV_fullday %>%
 BV_fullday %>%
   filter(Seal_Present == TRUE) %>%
   summarise(
-    min_val  = min(BV_Normalized_time_in_beam),
-    n_zeros  = sum(BV_Normalized_time_in_beam == 0),
-    n_neg    = sum(BV_Normalized_time_in_beam < 0))
+    min_val  = min(Cumulative_Time_s),
+    n_zeros  = sum(Cumulative_Time_s == 0),
+    n_neg    = sum(Cumulative_Time_s < 0))
 
 
 # Run the model!
-#Using non-normalized time in beam because the offset accounts for it already
 m_hurdle <- glmmTMB(
-  Cumulative_Time_s ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  Seal_Presence_Rate ~ TAST_Status + (1 | Date),
   ziformula = ~ TAST_Status + (1 | Date),
   family    = lognormal(link = "log"),
   data      = BV_fullday)
@@ -418,7 +417,7 @@ testZeroInflation(sim_res)
 #Now lets check is another family would have a better fit
 #Let's try ziGamma instead of lognormal
 m_hurdle_gamma <- glmmTMB(
-  BV_Normalized_time_in_beam ~ TAST_Status + offset(log(File_Duration_s)) + (1 | Date),
+  Seal_Presence_Rate ~ TAST_Status + (1 | Date),
   ziformula = ~ TAST_Status + (1 | Date),
   family    = ziGamma(link = "log"),
   data      = BV_fullday)
@@ -429,16 +428,92 @@ summary(m_hurdle_gamma)
 #penalizing for complexity (number of parameters)
 AIC(m_hurdle, m_hurdle_gamma)
 
+## Playing with the model-------------------------------------------------------
+
+# Ok, to tackle the date issue we need to group by status instead
+BV_fullday <- BV_fullday %>%
+  mutate(Period_ID = paste(Date, TAST_Status, sep = "_"))
+
+m_hurdle_period <- glmmTMB(
+  Seal_Presence_Rate ~ TAST_Status + (1 | Date / Period_ID),
+  ziformula = ~ TAST_Status + (1 | Date / Period_ID),
+  family = lognormal(link = "log"),
+  data = BV_fullday)
+
+summary(m_hurdle_period)
+
+# Looking at model residuals over time
+library(forecast)
+
+#Check ACF on your response variable aggregated by day
+period_summary %>%
+  filter(TAST_Status == "OFF") %>%
+  arrange(Date) %>%
+  pull(Normalized_Seal_Time) %>%
+  acf(main = "ACF - TAST OFF periods")
+
+# NEW SIMPLER MODEL APPROACH
+m_period <- glmmTMB(
+  Normalized_Seal_Time ~ TAST_Status + (1 | Date),
+  family = lognormal(link = "log"),
+  data = period_summary)
+
+summary(m_period)
 
 
+#Simulate residuals (999 simulations is standard)
+sim_res_period <- simulateResiduals(m_period, n = 999)
+
+#Main diagnostic plot (2 panels)
+plot(sim_res_period)
+
+#Test for overdispersion specifically
+testDispersion(sim_res_period)
+
+#Test for zero inflation
+testZeroInflation(sim_res_period)
+
+# Check for influential observations - 
+# are June 6/7 driving everything?
+plotResiduals(sim_res_period, form = period_summary$Date)
+
+# Check that TAST effect looks clean
+plotResiduals(sim_res_period, form = period_summary$TAST_Status)
+
+# Simple outlier check
+outliers(sim_res_period)
+
+# Add a numeric time index to period_summary
+period_summary <- period_summary %>%
+  arrange(Date) %>%
+  mutate(Time_index = as.numeric(Date - min(Date)))  # days since first sampling day
+
+# Model with temporal trend
+m_period3 <- glmmTMB(
+  Cumulative_Time_s ~ TAST_Status + Time_index + 
+    offset(log(Total_Time_Analyzed_s)) + (1 | Date),
+  family = lognormal(link = "log"),
+  data = period_summary
+)
+
+summary(m_period3)
+
+sim_res3 <- simulateResiduals(m_period3, n = 999)
+plotResiduals(sim_res3, form = period_summary$Date)
+
+## FINAL MODEL------------------------------------------------------------------
+
+m_GLMM <- glmmTMB(
+  Normalized_Seal_Time ~ TAST_Status + (1 | Date),
+  family = lognormal(link = "log"),
+  data = period_summary)
+
+summary(m_GLMM)
 
 
-
-m_hurdle_1 <- glmmTMB(
-  Seal_Presence_Rate ~ TAST_Status + (1 | Date),
-  ziformula = ~ TAST_Status + (1 | Date),
-  family    = lognormal(link = "log"),
-  data      = BV_fullday)
-
-summary(m_hurdle_1)
-
+# Run the diagnostics
+sim_res_GLMM <- simulateResiduals(m_GLMM, n = 999)
+plot(sim_res_GLMM)
+testDispersion(sim_res_GLMM)
+plotResiduals(sim_res_GLMM, form = period_summary$Date)
+plotResiduals(sim_res_GLMM, form = period_summary$TAST_Status)
