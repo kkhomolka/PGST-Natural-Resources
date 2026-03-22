@@ -292,28 +292,7 @@ period_summary <- BV_fullday %>%
   ) %>%
   mutate(
     Date = as.Date(Date),
-    Normalized_Seal_Time = Cumulative_Time_s / Total_Time_Analyzed_s
-  )
-
-# Barplot
-period_summary %>%
-  ggplot(aes(x = Date, y = Normalized_Seal_Time, fill = TAST_Status)) +
-  geom_col(position = "dodge", width = 0.8) +
-  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
-  scale_fill_manual(values = clrblind_pal[3:4]) +
-  labs(x = "Date",
-       y = "Normalized Residency Time\n(s seal time / s analyzed)",
-       fill = "TAST Status") +
-  theme_cowplot() +
-  theme(text = element_text(size = 24, family = "Times New Roman"),
-        axis.text = element_text(size = 18, family = "Times New Roman"),
-        axis.text.x = element_text(angle = 45, hjust = 1),
-        axis.title.x = element_text(size = 24, family = "Times New Roman",
-                                    margin = margin(t = 20)),
-        axis.title.y = element_text(size = 24, family = "Times New Roman",
-                                    margin = margin(r = 20)),
-        legend.text = element_text(size = 18, family = "Times New Roman"),
-        legend.title = element_text(size = 24, family = "Times New Roman"))
+    Normalized_Seal_Time = Cumulative_Time_s / Total_Time_Analyzed_s)
 
 # Line graph
 period_summary %>%
@@ -323,18 +302,20 @@ period_summary %>%
   scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
   scale_color_manual(values = clrblind_pal[3:4]) +
   labs(x = "Date",
-       y = "Normalized Residency Time",
+       y = "Proportion of Seal Presence",
        color = "TAST Status") +
-  theme_gray() +
-  theme(text = element_text(size = 24, family = "Times New Roman"),
-        axis.text = element_text(size = 18, family = "Times New Roman"),
+  theme_cowplot() +
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
         axis.text.x = element_text(angle = 45, hjust = 1),
-        axis.title.x = element_text(size = 24, family = "Times New Roman",
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(t = 20)),
-        axis.title.y = element_text(size = 24, family = "Times New Roman",
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(r = 20)),
-        legend.text = element_text(size = 18, family = "Times New Roman"),
-        legend.title = element_text(size = 24, family = "Times New Roman"))
+        legend.text = element_text(size = 36, family = "Times New Roman"),
+        legend.title = element_text(size = 36, family = "Times New Roman"))
+
+ggsave("2023_linegraph.png")
 
 ## 8. Statistics-----------------------------------------------------------------
 
