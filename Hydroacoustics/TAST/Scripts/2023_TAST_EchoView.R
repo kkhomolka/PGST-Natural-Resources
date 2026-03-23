@@ -20,21 +20,25 @@ pacman::p_load(pwr,
                vegan,
                wesanderson,
                ggrepel,
-               ggformula)
+               ggformula,
+               showtext)
 
 # Aesthetics color palette
 clrblind_pal <- c(
-  "#edbd00",  # golden yellow
-  "#1dd2d3",  # teal
-  "#78b41f",  # green
-  "#7487ff",  # periwinkle
-  "#b41f78"   # magenta
+  "navy",  
+  "#0B6ED9",  
+  "#78b41f",  
+  "#7487ff",  
+  "#b41f78"   
 )
 
 clrblind_pal_fun <- function(n) {
   if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")
   clrblind_pal[1:n]}
 
+# Font aesthetics
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
 
 ## Set working directory for KK WORK
 setwd("Z:/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
@@ -45,8 +49,8 @@ setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
 
 ## 2. Read in EV Files ---------------------------------------------------------
 
-TAST_ON <- read.csv("TAST_ON_EV_Export_fullday.csv")
-TAST_OFF <- read.csv("TAST_OFF_EV_Export_fullday.csv")
+TAST_ON <- read.csv("spreadsheets/TAST_ON_EV_Export_fullday.csv")
+TAST_OFF <- read.csv("spreadsheets/TAST_OFF_EV_Export_fullday.csv")
 
 ## 3. Combine dfs and filter ----------------------------------------------------
 
@@ -65,14 +69,14 @@ TAST_combined <- TAST_combined %>%
          Time_in_beam)
 
 # create normalization factor
-ON_norm <- 1
-OFF_norm <- 0.89
+#ON_norm <- 1
+#OFF_norm <- 0.89
 
 # create normalization column for time in beam
-TAST_combined <- TAST_combined %>% 
-  mutate(Normalized_time_in_beam = if_else(TAST_Status == "ON", 
-                                           Time_in_beam * ON_norm, 
-                                           Time_in_beam * OFF_norm))
+#TAST_combined <- TAST_combined %>% 
+#  mutate(Normalized_time_in_beam = if_else(TAST_Status == "ON", 
+#                                           Time_in_beam * ON_norm, 
+#                                           Time_in_beam * OFF_norm))
 
 # assign numeric factors for TAST status
 TAST_combined <- TAST_combined %>% 
@@ -103,23 +107,38 @@ TAST_combined %>%
   mutate(Time_of_day = hour(DateTime_PST)) %>%  # Extract hour component
   ggplot(aes(Time_of_day, Time_in_beam, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
-  ggtitle("Seal Time in Beam Over 24 hrs") +
   scale_color_manual(values = clrblind_pal[4:5]) +
-  labs(x = "Hour of Day", y = "Seal Time in Beam (s)") +
-  theme_classic() +
-  theme(plot.title = element_text(hjust = 0.5))
+  labs(x = "Hour of Day", y = "Residency Time (s)") +
+  theme_cowplot() +
+  theme(text = element_text(size = 16, family = "Times New Roman"),
+             axis.text = element_text(size = 12, family = "Times New Roman"),
+             axis.title.x = element_text(size = 16, family = "Times New Roman",
+                                         margin = margin(t = 20)),
+             axis.title.y = element_text(size = 16, family = "Times New Roman",
+                                         margin = margin(r = 20)),
+             legend.text = element_text(size = 12, family = "Times New Roman"),
+             legend.title = element_text(size = 12, family = "Times New Roman"))
 
+ggsave("2023_EV_scatter.png")
 
 # Tortuosity by Hour of Day
 TAST_combined %>%
   mutate(Time_of_day = hour(DateTime_PST)) %>%  # Extract hour component
   ggplot(aes(Time_of_day, Tortuosity_3D, color = TAST_Status)) +
   geom_point(size = 2.5, alpha = 0.4) +
-  ggtitle("Tortuosity Over 24 hrs") +
   scale_color_manual(values = clrblind_pal[4:5]) +
   labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
-  theme_classic() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme_cowplot() +
+  theme(text = element_text(size = 16, family = "Times New Roman"),
+        axis.text = element_text(size = 12, family = "Times New Roman"),
+        axis.title.x = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 12, family = "Times New Roman"),
+        legend.title = element_text(size = 12, family = "Times New Roman"))
+
+ggsave("2023_EV_tortuosity.png")
 
 # Box plots - Tortuosity
 TAST_combined %>% ggplot(aes(TAST_Status, Tortuosity_3D, fill = TAST_Status))+
@@ -200,55 +219,20 @@ autoplot(pca_result,
          loadings.label.colour = "black",
          loadings.label.size = 4,
          loadings.label.vjust = -1,
-         loadings.label.hjust = 0.45,
-         main = "Principal Component Analysis")+
+         loadings.label.hjust = 0.45)+
   scale_color_manual(values = clrblind_pal[4:5])+ #remove guide = "none" if you want to have a legend
   labs(color = "TAST Status")+
   theme_cowplot()+
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+  theme(text = element_text(size = 16, family = "Times New Roman"),
+        axis.text = element_text(size = 12, family = "Times New Roman"),
+        axis.title.x = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 12, family = "Times New Roman"),
+        legend.title = element_text(size = 12, family = "Times New Roman"))
 
-##CLAUDE AI'S WAY BELOW
-
-# Extract the PC scores and loadings from your PCA result
-pca_data <- as.data.frame(pca_result$x)  # PC scores
-pca_data$TAST_Status <- TAST_combined$TAST_Status  # Add your grouping variable
-
-loadings <- as.data.frame(pca_result$rotation)  # Loadings
-loadings$Variable <- rownames(loadings)  # Add variable names
-
-# Create the PCA plot
-ggplot(pca_data, aes(x = PC1, y = PC2, color = TAST_Status)) +
-  geom_point(size = 3) +
-  scale_color_manual(values = clrblind_pal[4:5]) +
-  
-  # Add loadings as arrows
-  geom_segment(data = loadings, aes(x = 0, y = 0, xend = PC1 * 5, yend = PC2 * 5),
-               arrow = arrow(length = unit(0.2, "cm")), color = "black", inherit.aes = FALSE) +
-  
-  # Add loading labels with repel
-  geom_text_repel(data = loadings, 
-                  aes(x = PC1 * 5, y = PC2 * 5, label = Variable),
-                  color = "black", 
-                  size = 4,
-                  max.overlaps = 20,  # Increase this if some labels are still missing
-                  box.padding = 0.5,  # Adjust for better spacing
-                  point.padding = 0.3,
-                  segment.color = "grey50",
-                  inherit.aes = FALSE) +
-  
-  # Add titles and theme
-  labs(color = "TAST Status",
-       x = paste0("PC1 (", round(pca_result$sdev[1]^2/sum(pca_result$sdev^2) * 100, 1), "%)"),
-       y = paste0("PC2 (", round(pca_result$sdev[2]^2/sum(pca_result$sdev^2) * 100, 1), "%)"),
-       title = "Principal Component Analysis") +
-  theme_cowplot() +
-  theme(text = element_text(size = 18),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20),
-        plot.title = element_text(size = 25, vjust = 2.0))
+ggsave("2023_EV_pca.png")
 
 
 # One-way ANOVA
