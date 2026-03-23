@@ -25,8 +25,8 @@ pacman::p_load(pwr,
 
 # Aesthetics color palette
 clrblind_pal <- c(
-  "#F58E27",  
-  "#272EF5",  
+  "navy",  
+  "#0B6ED9",  
   "#78b41f",  
   "#7487ff",  
   "#b41f78"   
@@ -401,6 +401,13 @@ summary(m_hurdle)
 
 # Sanity Check the Stats--------------------------------------------------------
 
+#Check ACF for residual decay
+BV_fullday %>%
+  filter(TAST_Status == "OFF") %>%
+  arrange(Date) %>%
+  pull(Seal_Presence_Rate) %>%
+  acf(main = "ACF - TAST OFF periods")
+
 #Going to run DHARMa diagnostics to check if the family used was the right fit
 #Simulate residuals (999 simulations is standard)
 sim_res <- simulateResiduals(m_hurdle, n = 999)
@@ -442,6 +449,8 @@ m_hurdle_period <- glmmTMB(
 
 summary(m_hurdle_period)
 
+AIC(m_hurdle, m_hurdle_period)
+
 # Looking at model residuals over time
 library(forecast)
 
@@ -459,7 +468,6 @@ m_period <- glmmTMB(
   data = period_summary)
 
 summary(m_period)
-
 
 #Simulate residuals (999 simulations is standard)
 sim_res_period <- simulateResiduals(m_period, n = 999)
@@ -493,15 +501,14 @@ m_period3 <- glmmTMB(
   Cumulative_Time_s ~ TAST_Status + Time_index + 
     offset(log(Total_Time_Analyzed_s)) + (1 | Date),
   family = lognormal(link = "log"),
-  data = period_summary
-)
+  data = period_summary)
 
 summary(m_period3)
 
 sim_res3 <- simulateResiduals(m_period3, n = 999)
 plotResiduals(sim_res3, form = period_summary$Date)
 
-## FINAL MODEL------------------------------------------------------------------
+## GLMM MODEL------------------------------------------------------------------
 
 m_GLMM <- glmmTMB(
   Normalized_Seal_Time ~ TAST_Status + (1 | Date),
@@ -517,3 +524,129 @@ plot(sim_res_GLMM)
 testDispersion(sim_res_GLMM)
 plotResiduals(sim_res_GLMM, form = period_summary$Date)
 plotResiduals(sim_res_GLMM, form = period_summary$TAST_Status)
+
+## Creating AR(1) for Hurdle Model----------------------------------------------
+
+BV_fullday <- BV_fullday %>%
+  arrange(Date, File_Timestamp) %>%
+  mutate(
+    Period_ID = factor(paste(Date, TAST_Status, sep = "_")),
+    TAST_Status = factor(TAST_Status),
+    time_index = as.integer(ave(seq_len(nrow(.)), Period_ID, FUN = seq_along)))
+
+# Quick check - make sure it looks right
+BV_fullday %>%
+  select(Date, TAST_Status, Period_ID, time_index, File_Timestamp) %>%
+  head(20)
+
+#Gotta change to be a factor 
+BV_fullday <- BV_fullday %>%
+  mutate(time_index = factor(time_index))
+
+m_hurdle_ar1_v2 <- glmmTMB(
+  Seal_Presence_Rate ~ TAST_Status +
+    (1 | Date) +
+    ar1(time_index + 0 | Period_ID),
+  ziformula = ~ TAST_Status + (1 | Date),
+  family = lognormal(link = "log"),
+  data = BV_fullday)
+
+summary(m_hurdle_ar1_v2)
+
+sim_res_ar1_v2 <- simulateResiduals(m_hurdle_ar1_v2, n = 999)
+plot(sim_res_ar1_v2)
+testDispersion(sim_res_ar1_v2)
+plotResiduals(sim_res_ar1_v2, form = BV_fullday$Date)
+plotResiduals(sim_res_ar1_v2, form = BV_fullday$TAST_Status)
+outliers(sim_res_ar1_v2)
+
+## Plot model outputs-----------------------------------------------------------
+
+install.packages("ggeffects")
+library(ggeffects)
+
+# Conditional component - predicted presence rate when seals are detected
+pred_conditional <- ggpredict(m_hurdle_ar1_v2, terms = "TAST_Status")
+
+# Zero-inflation component - predicted probability of seal absence
+pred_zi <- ggpredict(m_hurdle_ar1_v2, terms = "TAST_Status", type = "zi_prob")
+
+# Quick check
+print(pred_conditional)
+print(pred_zi)
+
+#Figure 1: Raw data with model predictions overlaid (conditional components)
+#Non-zero files only
+fig_conditional <- BV_fullday %>%
+  filter(Seal_Presence_Rate > 0) %>%  # conditional component = non-zero files only
+  ggplot(aes(x = TAST_Status, y = Seal_Presence_Rate, fill = TAST_Status)) +
+  geom_violin(width = 0.6, alpha = 0.6) +
+  geom_jitter(color = "black", alpha = 0.1, width = 0.1) +
+  geom_pointrange(data = data.frame(pred_conditional) %>% rename(TAST_Status = x),
+                  aes(x = TAST_Status,
+                      y = predicted,
+                      ymin = conf.low,
+                      ymax = conf.high),
+                  color = "black", size = 1.2, linewidth = 1.2,
+                  inherit.aes = FALSE) +
+  scale_fill_manual(values = clrblind_pal[1:2]) +
+  guides(fill = "none") +
+  labs(x = "TAST Status",
+       y = "Seal Presence Rate") +
+  theme_cowplot() +
+  theme(text = element_text(size = 16, family = "Times New Roman"),
+        axis.text = element_text(size = 12, family = "Times New Roman"),
+        axis.title.x = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(r = 20)))
+fig_conditional
+
+ggsave("hurdle_model_violin.png")
+
+#Figure 2: Predicted Probability of seal absence (zero-inflation component)
+fig_zi <- data.frame(pred_zi) %>%
+  rename(TAST_Status = x) %>%
+  ggplot(aes(x = TAST_Status, y = predicted, fill = TAST_Status)) +
+  geom_col(width = 0.5) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high),
+                width = 0.1, linewidth = 1) +
+  scale_fill_manual(values = clrblind_pal[1:2]) +
+  scale_y_continuous(limits = c(0, 1), labels = scales::percent) +
+  guides(fill = "none") +
+  labs(x = "TAST Status",
+       y = "Predicted Probability\nof Seal Absence") +
+  theme_cowplot() +
+  theme(text = element_text(size = 16, family = "Times New Roman"),
+        axis.text = element_text(size = 12, family = "Times New Roman"),
+        axis.title.x = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 16, family = "Times New Roman",
+                                    margin = margin(r = 20)))
+
+fig_zi
+
+ggsave("hurdle_model_prob.png")
+
+#Outputs for manuscript
+# Run these so we have the exact numbers to report
+print(pred_conditional)   # predicted presence rates + 95% CI
+print(pred_zi)            # predicted absence probabilities + 95% CI
+
+# Back-transform the zi intercept for TAST OFF probability
+plogis(1.4519)            # P(absence) TAST OFF
+plogis(1.4519 + 1.0262)   # P(absence) TAST ON
+
+# Outlier check
+BV_fullday %>%
+  slice(620, 621, 741) %>%
+  select(Date, TAST_Status, File_Timestamp,
+         Seal_Presence_Rate, Cumulative_Time_s,
+         File_Duration_s, Period_ID)
+
+# Extract residuals from the model
+resid_ar1_v2 <- residuals(m_hurdle_ar1_v2, type = "pearson")
+
+# ACF on full residual series
+acf(resid_ar1_v2, main = "ACF - Model Residuals (AR1 Hurdle)")
+
