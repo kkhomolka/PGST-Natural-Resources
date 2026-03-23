@@ -110,14 +110,14 @@ TAST_combined %>%
   scale_color_manual(values = clrblind_pal[4:5]) +
   labs(x = "Hour of Day", y = "Residency Time (s)") +
   theme_cowplot() +
-  theme(text = element_text(size = 16, family = "Times New Roman"),
-             axis.text = element_text(size = 12, family = "Times New Roman"),
-             axis.title.x = element_text(size = 16, family = "Times New Roman",
-                                         margin = margin(t = 20)),
-             axis.title.y = element_text(size = 16, family = "Times New Roman",
-                                         margin = margin(r = 20)),
-             legend.text = element_text(size = 12, family = "Times New Roman"),
-             legend.title = element_text(size = 12, family = "Times New Roman"))
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 48, family = "Times New Roman"),
+        legend.title = element_text(size = 48, family = "Times New Roman"))
 
 ggsave("2023_EV_scatter.png")
 
@@ -129,14 +129,14 @@ TAST_combined %>%
   scale_color_manual(values = clrblind_pal[4:5]) +
   labs(x = "Hour of Day", y = "3-Dimensonal Tortuosity") +
   theme_cowplot() +
-  theme(text = element_text(size = 16, family = "Times New Roman"),
-        axis.text = element_text(size = 12, family = "Times New Roman"),
-        axis.title.x = element_text(size = 16, family = "Times New Roman",
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(t = 20)),
-        axis.title.y = element_text(size = 16, family = "Times New Roman",
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(r = 20)),
-        legend.text = element_text(size = 12, family = "Times New Roman"),
-        legend.title = element_text(size = 12, family = "Times New Roman"))
+        legend.text = element_text(size = 48, family = "Times New Roman"),
+        legend.title = element_text(size = 48, family = "Times New Roman"))
 
 ggsave("2023_EV_tortuosity.png")
 
@@ -223,14 +223,14 @@ autoplot(pca_result,
   scale_color_manual(values = clrblind_pal[4:5])+ #remove guide = "none" if you want to have a legend
   labs(color = "TAST Status")+
   theme_cowplot()+
-  theme(text = element_text(size = 16, family = "Times New Roman"),
-        axis.text = element_text(size = 12, family = "Times New Roman"),
-        axis.title.x = element_text(size = 16, family = "Times New Roman",
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(t = 20)),
-        axis.title.y = element_text(size = 16, family = "Times New Roman",
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(r = 20)),
-        legend.text = element_text(size = 12, family = "Times New Roman"),
-        legend.title = element_text(size = 12, family = "Times New Roman"))
+        legend.text = element_text(size = 48, family = "Times New Roman"),
+        legend.title = element_text(size = 48, family = "Times New Roman"))
 
 ggsave("2023_EV_pca.png")
 
