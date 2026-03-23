@@ -650,3 +650,14 @@ resid_ar1_v2 <- residuals(m_hurdle_ar1_v2, type = "pearson")
 # ACF on full residual series
 acf(resid_ar1_v2, main = "ACF - Model Residuals (AR1 Hurdle)")
 
+## Chi-squared error??----------------------------------------------------------
+# Correct version - use the actual Seal_Present column
+BV_fullday <- BV_fullday %>%
+  mutate(Seal_Present = as.integer(Seal_Present))  # TRUE/FALSE to 1/0
+
+# Contingency table of TAST status vs actual seal presence
+seal_table <- table(BV_fullday$TAST_Status, BV_fullday$Seal_Present)
+print(seal_table)
+
+# Chi-square test
+chisq.test(seal_table)
