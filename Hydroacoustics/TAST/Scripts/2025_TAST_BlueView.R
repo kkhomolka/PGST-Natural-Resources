@@ -556,16 +556,16 @@ fig_conditional_2025 <- BV_fullday %>%
                       ymax = conf.high),
                   color = "black", size = 1.2, linewidth = 1.2,
                   inherit.aes = FALSE) +
-  scale_fill_manual(values = clrblind_pal[3:4]) +
+  scale_fill_manual(values = clrblind_pal[1:2]) +
   guides(fill = "none") +
   labs(x = "TAST Status",
-       y = "Seal Presence Rate\n(non-zero files only)") +
+       y = "Seal Presence Rate") +
   theme_cowplot() +
-  theme(text = element_text(size = 24, family = "Times New Roman"),
-        axis.text = element_text(size = 18, family = "Times New Roman"),
-        axis.title.x = element_text(size = 24, family = "Times New Roman",
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(t = 20)),
-        axis.title.y = element_text(size = 24, family = "Times New Roman",
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(r = 20)))
 
 fig_conditional_2025
@@ -578,17 +578,17 @@ fig_zi_2025 <- data.frame(pred_zi_2025) %>%
   geom_col(width = 0.5) +
   geom_errorbar(aes(ymin = conf.low, ymax = conf.high),
                 width = 0.1, linewidth = 1) +
-  scale_fill_manual(values = clrblind_pal[3:4]) +
+  scale_fill_manual(values = clrblind_pal[1:2]) +
   scale_y_continuous(limits = c(0, 1), labels = scales::percent) +
   guides(fill = "none") +
   labs(x = "TAST Status",
-       y = "Predicted Probability\nof Seal Absence") +
+       y = "Predicted Probability of Seal Absence") +
   theme_cowplot() +
-  theme(text = element_text(size = 24, family = "Times New Roman"),
-        axis.text = element_text(size = 18, family = "Times New Roman"),
-        axis.title.x = element_text(size = 24, family = "Times New Roman",
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(t = 20)),
-        axis.title.y = element_text(size = 24, family = "Times New Roman",
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
                                     margin = margin(r = 20)))
 
 fig_zi_2025
