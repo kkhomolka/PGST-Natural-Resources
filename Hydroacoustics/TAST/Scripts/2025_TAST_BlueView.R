@@ -515,8 +515,8 @@ AIC(m_hurdle_2025_v5, m_hurdle_2025_v6)
 # 11. Final model---------------------------------------------------------------
 
 m_hurdle_woop <- glmmTMB(
-  Seal_Presence_Rate ~ TAST_Status + Time_index,
-  ziformula = ~ TAST_Status + Time_index,
+  Seal_Presence_Rate ~ TAST_Status + (1|Time_index),
+  ziformula = ~ TAST_Status + (1|Time_index),
   family = lognormal(link = "log"),
   data = BV_fullday)
 

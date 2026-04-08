@@ -86,15 +86,11 @@ removed_rows <- BV_fullday %>%
       File_Duration_s <= 0 |
       File_Duration_s >= 1000)
 
-View(removed_rows)
-
 #Removing the bad time durations
 BV_fullday <- BV_fullday %>%
   filter(!is.na(File_Duration_s),
          File_Duration_s > 0,
          File_Duration_s < 1000)
-
-
 
 ## 4. Normalizing using presence rate-------------------------------------------
 
@@ -137,8 +133,8 @@ hist(BV_fullday$File_Duration_s, breaks = 50)
 
 ## 4. Normalizing using time analyzed-------------------------------------------
 
-# Need to determine the cumulative time in beam for ON/OFF Status to normalize,
-# and also find the average for each status (not counting the zero values)
+# Need to determine the cumulative time in beam for ON/OFF Status for normalizing
+# the entire dataset, and also find the average for each status 
 BV_cumul <- BV_fullday %>% 
   group_by(TAST_Status) %>% 
   summarise(Total_Beam_Time_s = sum(Cumulative_Time_s),
@@ -240,7 +236,7 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[1:2], 
                     name = NULL, 
-                    labels = c("Seal Absence", "Seal Presence"))+
+                    labels = c("Seal Presence", "Seal Absence"))+
   theme(text = element_text(size = 48, family = "Times New Roman"),
         axis.text = element_text(size = 36, family = "Times New Roman"),
         axis.title.x = element_text(size = 48, family = "Times New Roman",
