@@ -172,7 +172,7 @@ BV_fullday %>%
   geom_violin(width = 0.6)+
   geom_jitter(color = "black", alpha = 0.1)+
   labs(x = "TAST Status", 
-       y = "Time in Beam (s)")+
+       y = "Residency Time (s)")+
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[3:4])+
   guides(fill = "none")+
@@ -240,7 +240,7 @@ ggplot(BV_proportions_long, aes(x = TAST_Status,
   theme_cowplot()+
   scale_fill_manual(values = clrblind_pal[1:2], 
                     name = NULL, 
-                    labels = c("Seal Absence", "Seal Presence"))+
+                    labels = c("Seal Presence", "Seal Absence"))+
   theme(text = element_text(size = 48, family = "Times New Roman"),
         axis.text = element_text(size = 36, family = "Times New Roman"),
         axis.title.x = element_text(size = 48, family = "Times New Roman",
