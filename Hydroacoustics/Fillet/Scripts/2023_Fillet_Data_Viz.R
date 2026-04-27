@@ -20,6 +20,375 @@ pacman::p_load(pwr,
                vegan,
                wesanderson,
                ggrepel,
+               ggformula,
+               showtext,
+               ggeffects)
+
+# Aesthetics color palette
+clrblind_pal <- c(
+  "navy",  
+  "#0B6ED9",  
+  "#78b41f",  
+  "#7487ff",  
+  "#b41f78")
+
+clrblind_pal_fun <- function(n) {
+  if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")
+  clrblind_pal[1:n]}
+
+# Font aesthetics
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
+
+## Set working directory for KK WORK
+setwd("Z:/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
+
+## Set working directory for KK HOME 
+setwd("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/TAST")
+
+# 2. Reading in & formatting BlueView Time in Beam Files -----------------------
+
+# Reading in file
+BV_fullday <- read_csv("~/Documents/GitHub/PGST-Natural-Resources/Hydroacoustics/Fillet/2023/2023_FGS_full_days_seal_presence_final.csv")
+
+# Selecting columns of interest
+BV_fullday <- BV_fullday %>% 
+  select(File,
+         File_Timestamp,
+         Date,
+         Cumulative_Time_s,
+         TAST_Status)
+
+#Reformatting the dates
+BV_fullday$Date <- as.Date(BV_fullday$Date)
+
+# Extracting the time component and pasting it with the correct date because
+# of Excel adding 1899-12-31 to each time entry...
+time_part <- format(BV_fullday$File_Timestamp, format = "%H:%M:%S")
+BV_fullday$DateTime <- as.POSIXct(paste(BV_fullday$Date, time_part), format = "%Y-%m-%d %H:%M:%S")
+
+
+## 3. Sorting and Wrangling ----------------------------------------------------
+
+# Making sure that data are ordered properly
+BV_fullday <- BV_fullday %>% 
+  arrange(DateTime)
+
+# Calculate file end time and duration
+BV_fullday <- BV_fullday %>%
+  mutate(File_EndTime = lead(DateTime),
+         File_Duration_s = as.numeric(difftime(File_EndTime, DateTime, units = "secs")))
+
+# Any bad time durations to be removed?
+removed_rows <- BV_fullday %>%
+  filter(
+    is.na(File_Duration_s) |
+      File_Duration_s <= 0 |
+      File_Duration_s >= 1000)
+
+#Removing the bad time durations
+BV_fullday <- BV_fullday %>%
+  filter(!is.na(File_Duration_s),
+         File_Duration_s > 0,
+         File_Duration_s < 1000)
+
+## 4. Normalizing using presence rate-------------------------------------------
+
+# Creating normalized column for rate of seal presence
+# Seal_Presence_Rate describes the percentage of time a seal was in that file
+BV_fullday <- BV_fullday %>%
+  mutate(
+    Seal_Presence_Rate = Cumulative_Time_s / File_Duration_s)
+
+# Creating binary for use in stats later on
+BV_fullday <- BV_fullday %>%
+  mutate(
+    Seal_Present = Cumulative_Time_s > 0)
+
+# Quick look at the data
+summary(BV_fullday$File_Duration_s)
+summary(BV_fullday$Seal_Presence_Rate)
+
+# Sanity check, presence rate should never exceed 1
+any(BV_fullday$Seal_Presence_Rate > 1)
+
+# Shows why we needed to normalize the data
+BV_fullday %>%
+  group_by(TAST_Status) %>%
+  summarise(
+    n_files = n(),
+    total_effort_hr = sum(File_Duration_s) / 3600,
+    mean_file_min = mean(File_Duration_s) / 60)
+
+# Quick plot
+ggplot(BV_fullday, aes(TAST_Status, Seal_Presence_Rate, fill = TAST_Status)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.4) +
+  scale_fill_manual(values = clrblind_pal_fun(2)) +
+  theme_classic()
+
+# Sanity check for the file duration distribution
+hist(BV_fullday$File_Duration_s, breaks = 50)
+
+
+## 4. Normalizing using time analyzed-------------------------------------------
+
+# Need to determine the cumulative time in beam for ON/OFF Status for normalizing
+# the entire dataset, and also find the average for each status 
+BV_cumul <- BV_fullday %>% 
+  group_by(TAST_Status) %>% 
+  summarise(Total_Beam_Time_s = sum(Cumulative_Time_s),
+            Avg_Beam_Time_s = mean(Cumulative_Time_s[Cumulative_Time_s !=0]))
+
+
+#this was calculated by dividing total ON time analyzed / total OFF time analyzed
+# should only be applied to OFF times to downsample since there are more OFF files
+OFF_norm <- 0.89
+ON_norm <- 1
+
+
+# create normalization column for time in beam
+BV_fullday <- BV_fullday %>% 
+  mutate(BV_Normalized_time_in_beam = if_else(TAST_Status == "ON", 
+                                              Cumulative_Time_s * ON_norm, 
+                                              Cumulative_Time_s * OFF_norm))
+
+
+## 5. Create non-zero values----------------------------------------------------
+
+# Filter out non-zero values for boxplot
+BV_non_zero_data <- BV_fullday[BV_fullday$Cumulative_Time_s != 0, ]
+
+
+## 6. BV Plotting --------------------------------------------------------------
+
+# Violin plot
+BV_fullday %>% 
+  ggplot(aes(x = TAST_Status, y = Cumulative_Time_s, fill = TAST_Status))+
+  geom_violin(width = 0.6)+
+  geom_jitter(color = "black", alpha = 0.1)+
+  labs(x = "TAST Status", 
+       y = "Residency Time (s)")+
+  theme_cowplot()+
+  scale_fill_manual(values = clrblind_pal[3:4])+
+  guides(fill = "none")+
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 25)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 25)),
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
+
+ggsave("2023_violin.png")
+
+
+# Create the boxplot for non-zero values
+ggplot(BV_non_zero_data, aes(x = TAST_Status, y = Cumulative_Time_s)) +
+  geom_boxplot(fill = clrblind_pal[3:4], width = 0.6)+
+  labs(x = "TAST Status", y = "Time in Beam (s)", title = "Seal Presence Duration Per Sampling Period")+
+  theme_cowplot()+
+  guides(fill = "none")+
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title = element_text(size = 48, family = "Times New Roman"),
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
+
+# Create the bar chart for # of zero values
+BV_fullday %>%
+  group_by(TAST_Status) %>%
+  summarise(Count_Zero_Values = sum(Cumulative_Time_s == 0)) %>%
+  ggplot(aes(x = TAST_Status, y = Count_Zero_Values)) +
+  geom_bar(stat = "identity", fill = clrblind_pal[3:4], color = "black", width = 0.6) +
+  labs(x = "TAST Status", y = "Number of Zero Values", title = "Number of Zero Values Between Treatments") +
+  theme_cowplot() +
+  guides(fill = "none") +
+  theme(text = element_text(size = 18),
+        axis.text = element_text(size = 18),
+        axis.title = element_text(size = 20),
+        plot.title = element_text(size = 25, vjust = 2.0))
+
+# normalize the bar chart and stack it 
+BV_proportions <- BV_fullday %>% 
+  group_by(TAST_Status) %>% 
+  summarise(Count_Zero = sum(Cumulative_Time_s == 0),
+            Count_Nonzero = sum(Cumulative_Time_s > 0)) %>% 
+  mutate(Total_Count = Count_Zero + Count_Nonzero)
+
+#Calculate proportions
+BV_proportions <- BV_proportions %>%
+  mutate(Count_Proportion_Zero = Count_Zero / Total_Count,
+         Count_Proportion_Nonzero = Count_Nonzero / Total_Count)
+
+# pivot longer for plotting
+BV_proportions_long <- BV_proportions %>%
+  pivot_longer(cols = c(Count_Proportion_Zero, Count_Proportion_Nonzero),
+               names_to = "Value_Type",
+               values_to = "Proportion")
+
+# Stacked barplot
+ggplot(BV_proportions_long, aes(x = TAST_Status, 
+                                y = Proportion, 
+                                fill = Value_Type)) +
+  geom_bar(stat = "identity", width = 0.6)+
+  labs(x = "TAST Status",
+       y= "Proportion")+
+  theme_cowplot()+
+  scale_fill_manual(values = clrblind_pal[1:2], 
+                    name = NULL, 
+                    labels = c("Seal Presence", "Seal Absence"))+
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 25)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 25)),
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
+
+ggsave("2023_stacked_bar.png")
+
+#Only plotting the count_nonzero data for HCB management meeting
+BV_mini <- data.frame(
+  TAST_Status = c("ON", "OFF"),
+  Count_Nonzero = c(70,194))
+
+ggplot(BV_mini, aes(x = TAST_Status, 
+                    y = Count_Nonzero,
+                    fill = TAST_Status)) +
+  geom_bar(stat = "identity",width = 0.6) +
+  labs(x = "TAST Status",
+       y = "Seal Observations") +
+  theme_cowplot() +
+  scale_fill_manual(values = clrblind_pal[1:2], 
+                    labels = c("TAST OFF", "TAST ON")) +
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.position = "none",
+        plot.title = element_text(size = 48, family = "Times New Roman", vjust = 2.0))
+
+ggsave("2023_Obs_reduction_barplot.png")
+
+# 7. Aggregating by monitoring period-------------------------------------------
+
+# Aggregating seal time by monitoring period since status switches midday
+# Aggregate by date and TAST status period
+period_summary <- BV_fullday %>%
+  group_by(Date, TAST_Status) %>%
+  summarise(
+    Cumulative_Time_s     = sum(Cumulative_Time_s),
+    Total_Time_Analyzed_s = sum(File_Duration_s),
+    .groups = "drop") %>%
+  mutate(Date = as.Date(Date),
+         Normalized_Seal_Time = Cumulative_Time_s / Total_Time_Analyzed_s)
+
+# Line graph
+period_summary %>%
+  ggplot(aes(x = Date, y = Normalized_Seal_Time, color = TAST_Status, group = TAST_Status)) +
+  geom_point(size = 4) +
+  geom_line() +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 days") +
+  scale_color_manual(values = clrblind_pal[3:4]) +
+  labs(x = "Date",
+       y = "Proportion of Seal Presence",
+       color = "TAST Status") +
+  theme_cowplot() +
+  theme(text = element_text(size = 48, family = "Times New Roman"),
+        axis.text = element_text(size = 36, family = "Times New Roman"),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        axis.title.x = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(t = 20)),
+        axis.title.y = element_text(size = 48, family = "Times New Roman",
+                                    margin = margin(r = 20)),
+        legend.text = element_text(size = 36, family = "Times New Roman"),
+        legend.title = element_text(size = 36, family = "Times New Roman"))
+
+ggsave("2023_linegraph.png")
+
+# 8. Statistics-----------------------------------------------------------------
+
+# checking the normality of the data distribution
+# Visual check
+ggplot(BV_non_zero_data, aes(x = Cumulative_Time_s)) +
+  geom_histogram() +
+  facet_wrap(~TAST_Status)
+
+# Shapiro-Wilk test (if n < 5000)
+shapiro.test(BV_fullday$Cumulative_Time_s[BV_fullday$TAST_Status == "ON"])
+shapiro.test(BV_fullday$Cumulative_Time_s[BV_fullday$TAST_Status == "OFF"])
+
+# PART 1: Did seals show up? (Binary: presence/absence)
+BV_fullday <- BV_fullday %>%
+  mutate(Seal_Present = as.integer(Seal_Present))  # TRUE/FALSE to 1/0
+
+# Contingency table of TAST status vs actual seal presence
+seal_table <- table(BV_fullday$TAST_Status, BV_fullday$Seal_Present)
+print(seal_table)
+
+# Chi-square test
+chisq.test(seal_table)
+
+# PART 2: When present, how long? (Non-zero values only)
+# Mann-Whitney U test on non-zero durations
+wilcox.test(Cumulative_Time_s ~ TAST_Status, data = BV_non_zero_data)
+
+# Compare medians/means when present
+BV_non_zero_data %>%
+  group_by(TAST_Status) %>%
+  summarize(
+    median_duration = median(Cumulative_Time_s),
+    mean_duration = mean(Cumulative_Time_s),
+    n = n())
+
+# Tests if ON vs OFF differ in overall distribution (including zeros)
+wilcox.test(Cumulative_Time_s ~ TAST_Status, data = BV_fullday)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1. Setup ---------------------------------------------------------------------
+
+## Load packages
+pacman::p_load(pwr, 
+               ggplot2, 
+               tidyr, 
+               dplyr,
+               cowsay,
+               lubridate,
+               tidyverse,
+               openxlsx,
+               readxl,
+               corrplot,
+               cowplot,
+               changepoint,
+               strucchange,
+               ggpubr,
+               stats,
+               ggfortify,
+               vegan,
+               wesanderson,
+               ggrepel,
                ggformula)
 
 # Aesthetics color palette
@@ -28,8 +397,8 @@ clrblind_pal <- c(
   "#1dd2d3",  # teal
   "#78b41f",  # green
   "#7487ff",  # periwinkle
-  "#b41f78"   # magenta
-)
+  "#b41f78")   # magenta
+
 
 clrblind_pal_fun <- function(n) {
   if (n > length(clrblind_pal)) stop("Palette only has ", length(clrblind_pal), " colors.")

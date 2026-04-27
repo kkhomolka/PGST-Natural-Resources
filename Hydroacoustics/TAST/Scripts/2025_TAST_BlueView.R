@@ -515,8 +515,8 @@ AIC(m_hurdle_2025_v5, m_hurdle_2025_v6)
 # 11. Final model---------------------------------------------------------------
 
 m_hurdle_woop <- glmmTMB(
-  Seal_Presence_Rate ~ TAST_Status + (1|Time_index),
-  ziformula = ~ TAST_Status + (1|Time_index),
+  Seal_Presence_Rate ~ TAST_Status + (1|time_index),
+  ziformula = ~ TAST_Status + (1|time_index),
   family = lognormal(link = "log"),
   data = BV_fullday)
 
@@ -539,12 +539,12 @@ print(pred_zi_2025)
 # 12. Figures-------------------------------------------------------------------
 
 # Conditional component - predicted presence rate when seals are detected
-pred_conditional_2025 <- ggpredict(m_hurdle_2025, 
+pred_conditional_2025 <- ggpredict(m_hurdle_woop, 
                                    terms = "TAST_Status",
                                    type = "fixed")
 
 # Zero-inflation component - predicted probability of seal absence
-pred_zi_2025 <- ggpredict(m_hurdle_2025, 
+pred_zi_2025 <- ggpredict(m_hurdle_woop, 
                           terms = "TAST_Status", 
                           type = "zi_prob")
 
