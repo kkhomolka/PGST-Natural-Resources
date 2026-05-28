@@ -1,0 +1,243 @@
+taxonomic_path	common_name	% samples positive in project
+Eukaryota	""	80.17
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae	Hering	26.45
+Animalia;Chordata;Actinopteri	Chordates	56.2
+Animalia;Chordata;Actinopteri;Siluriformes	Catfishes	0.83
+Animalia;Chordata;Mammalia;Primates;Hominidae	Great Apes	83.47
+Animalia;Chordata;Mammalia;Artiodactyla;Phocoenidae	Porpoises	4.96
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	Myotis Bat species	13.22
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	Human	96.69
+Animalia;Chordata;Mammalia;Primates	Primates	73.55
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan	Chimpanzees	12.4
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	Bonobo	47.93
+Animalia;Chordata;Mammalia;Primates;Hylobatidae;Nomascus;Nomascus leucogenys	Nordlicher Wei 3 wangengibbon	7.44
+Animalia;Chordata;Mammalia;Primates;Cheirogaleidae	Dwarf lemurs	4.13
+Animalia;Chordata;Mammalia;Primates;Lemuridae	Bamboo lemurs	3.31
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	Aurochs	17.36
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus;Sus scrofa	Wild Boar/Pig	15.7
+Animalia;Chordata	Chordates	97.52
+Animalia;Chordata;Actinopteri;Perciformes;Cyclopteridae	Lumpfishes	3.31
+Animalia;Chordata;Actinopteri;Perciformes;Liparidae;Paraliparis;Paraliparis copei	Wilson’s Paraliparis	4.13
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	Bovine	34.71
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Ammodytes;Ammodytes marinus	Launce	9.09
+Animalia;Chordata;Actinopteri;NA;Embiotocidae	Surf perches	9.92
+Animalia;Chordata;Actinopteri;Perciformes	Perch-like fishes	19.01
+Animalia;Chordata;Mammalia;Rodentia;Muridae	Small Mouse	4.13
+Animalia;Chordata;Aves;Passeriformes;Paridae	Chickadees	4.96
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Panthera	Roaring cats	4.96
+Animalia;Chordata;Mammalia;Chiroptera;Phyllostomidae	New World leaf-nosed bats	5.79
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea;Clupea harengus	Atlantic herring	24.79
+Animalia;Chordata;Actinopteri;Perciformes;Cyclopteridae;Lethotremus;Lethotremus awae	Coast lumpfish	3.31
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae	Hamsters, Voles, Lemmings, And Allies	9.92
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus californicus	Amargosa Vole	6.61
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Meleagris	Turkeys	2.48
+Animalia;Chordata;Mammalia	Mammals	95.87
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Ulvaria;Ulvaria subbifurcata	Radiated shanny	5.79
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	Cattle	22.31
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae	Groupers	6.61
+Animalia;Chordata;Mammalia;Artiodactyla;Delphinidae	Dolphins	4.96
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	Old World monkeys	24.79
+Animalia;Chordata;Aves;Passeriformes;Fringillidae	Finches	0.83
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Pleuronichthys	Right-eye flounders	1.65
+Animalia;Chordata;Aves	Birds	16.53
+Animalia;Chordata;Aves;Strigiformes;Strigidae;Ninox	Owls	1.65
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo	Hominoids	7.44
+Animalia;Chordata;Aves;Charadriiformes	Alcids	9.09
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	Chimpanzee	33.06
+Animalia;Chordata;Aves;Anseriformes;Anatidae	Ducks	10.74
+Animalia;Chordata;Mammalia;Carnivora;Viverridae;Paradoxurus;Paradoxurus hermaphroditus	Asian Palm Civet	1.65
+Animalia;Chordata;Actinopteri;Centrarchiformes;Sinipercidae;Siniperca	Chordates	4.13
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis	Dog	7.44
+Animalia;Chordata;Aves;Passeriformes	Perching Birds	9.09
+Animalia;Chordata;Chondrichthyes;Squaliformes	Dogfish sharks	3.31
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Panthera;Panthera pardus	Leopard	2.48
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Hippoglossoides	Right-eye flounders	2.48
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	Bornean Orangutan	9.09
+Animalia;Chordata;Mammalia;Carnivora	Carnivores	19.01
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Erimonax;Erimonax monachus	Spotfin Chub	0.83
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus	Pacific salmon	14.88
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Euryoryzomys;Euryoryzomys sp. ALA-2015	Hamsters, Voles, Lemmings, And Allies	4.96
+Animalia;Chordata;Actinopteri;Perciformes;Agonidae	Alligatorfishes	3.31
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae	Salmonids	7.44
+Animalia;Chordata;Actinopteri;Perciformes;Peristediidae	Armour searobins	2.48
+Animalia;Chordata;Actinopteri;Perciformes;Agonidae;Stellerina;Stellerina xyosterna	Pixie poacher	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae	Bullheads	13.22
+Animalia;Chordata;Actinopteri;Clupeiformes	Anchovies	14.88
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus;Lutjanus fulvus	Black-tail Snapper	4.96
+Animalia;Chordata;Actinopteri;Perciformes;Triglidae	Gurnard	4.96
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Sauvagella	Hering	3.31
+Animalia;Chordata;Aves;Columbiformes;Columbidae	Dove	5.79
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus	Snappers	6.61
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae	Eelpouts	1.65
+Animalia;Chordata;Amphibia;Gymnophiona;Siphonopidae	Caecilians	10.74
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae;Sylvisorex	Shrew	1.65
+Animalia;Chordata;Mammalia;Artiodactyla	Artiodactyls	25.62
+Animalia;Chordata;Aves;Gruiformes;Gruidae	Cranes	3.31
+Animalia;Chordata;Actinopteri;Cypriniformes;Gobionidae	Minnows	1.65
+Animalia;Chordata;Mammalia;Chiroptera;Pteropodidae;Balionycteris;Balionycteris maculata	Bornean Spotted-winged Fruit Bat	1.65
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus subterraneus	Common Pine Vole	7.44
+Animalia;Chordata;Aves;Galliformes	Fowls	7.44
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae	Minnows	3.31
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae	Greenlings	3.31
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae	Sand-eels	10.74
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae;Epinephelus	Groupers	4.13
+Animalia;Chordata;Aves;Pelecaniformes;Sulidae;Sula;Sula sula	Boobies	1.65
+Animalia;Chordata;Actinopteri;Centrarchiformes	Chordates	0.83
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Meleagris;Meleagris gallopavo	Domestic Turkey	6.61
+Animalia;Chordata;Mammalia;Artiodactyla;Platanistidae;Platanista	Ganges dolphins	1.65
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae	Right-eye flounders	4.96
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea	Hering	24.79
+Animalia;Chordata;Mammalia;Primates;Hominidae;Gorilla;Gorilla gorilla	Lowland Gorilla	12.4
+Animalia;Chordata;Actinopteri;Perciformes;Pholidae;Pholis	Gunnels	7.44
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Neotoma	Packrats	7.44
+Animalia;Chordata;Chondrichthyes;Squaliformes;Squalidae;Squalus	Spiny dogfish	2.48
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Eulemur	Brown lemurs	10.74
+Animalia;Chordata;Actinopteri;Centrarchiformes;Centrarchidae;Lepomis	Common sunfishes	3.31
+Animalia;Chordata;Mammalia;Primates;Galagidae;Galago;Galago senegalensis	Kenya Lesser Galago (braccatus)	4.96
+Animalia;Chordata;Mammalia;Rodentia;Sciuridae	Chipmunks	5.79
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae	Mustelids	2.48
+Animalia;Chordata;Aves;Ciconiiformes;Thinocoridae;Thinocorus;Thinocorus rumicivorus	Least Seedsnipe	2.48
+Animalia;Chordata;Mammalia;Carnivora;Herpestidae	Civets	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Ophiodon;Ophiodon elongatus	Lingcod	1.65
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupus	Wolf/Dog	4.96
+Animalia;Chordata;NA;Testudines	Chordates	8.26
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae	Buck	4.13
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupaster	African Golden Wolf	1.65
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Hyperoplus;Hyperoplus immaculatus	Corbin's sand eel	4.96
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus thomasi	Thomas s Pine Vole	5.79
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus;Lutjanus fulviflamma	Black-spot Sea Perch	2.48
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus tshawytscha	Chinook salmon	7.44
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae	Shrew	4.13
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Lycenchelys;Lycenchelys sarsii	Sar's eelpout	0.83
+Animalia;Chordata;Actinopteri;Blenniiformes;Gobiesocidae	Clingfishes	2.48
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Cyclopsettidae;Citharichthys;Citharichthys xanthostigma	Longfin Sanddab	3.31
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Microstomus;Microstomus kitt	Lemon Sole	0.83
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Columba;Columba livia	Colom roquer	2.48
+Animalia;Chordata;Actinopteri;Perciformes;Pholidae;Pholis;Pholis ornata	Saddled Blenny	3.31
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Sauvagella;Sauvagella robusta	Hering	15.7
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Martes;Martes foina	Beech Marten	4.13
+Animalia;Chordata;Aves;Charadriiformes;Alcidae	Auks	1.65
+Animalia;Chordata;Aves;Charadriiformes;Laridae	Gulls	4.13
+Animalia;Chordata;Aves;Sphenisciformes;Spheniscidae	Penguins	3.31
+Animalia;Chordata;Aves;Charadriiformes;Laridae;Pinguinus;Pinguinus impennis	Great Auk	0.83
+Animalia;Chordata;Actinopteri;Osmeriformes;Osmeridae	Smelts	1.65
+Animalia;Chordata;Actinopteri;Chaetodontiformes;Chaetodontidae	Butterflyfishes	1.65
+Animalia;Chordata;Actinopteri;Galaxiiformes;Galaxiidae	Galaxiids	2.48
+Animalia;Chordata;Mammalia;Carnivora;Felidae	Cats	3.31
+Animalia;Chordata;Actinopteri;Cypriniformes;Cyprinidae	Carps	0.83
+Animalia;Chordata;Actinopteri;Pleuronectiformes	Flatfishes	6.61
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Columba;Columba palumbus	Common Wood Pigeon	0.83
+Animalia;Chordata;Aves;Psittaciformes;Psittacidae	African & New World Parrots	2.48
+Animalia;Chordata;Mammalia;Primates;Hylobatidae	Gibbons	5.79
+Animalia;Chordata;Chondrichthyes	Chordates	3.31
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus	Meadow Mice	9.09
+Animalia;Chordata;Aves;Passeriformes;Passerellidae;Pipilo;Pipilo erythrophthalmus	Eastern Towhee	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Cottus;Cottus pollux	Japanese Fluvial Sculpin	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Hexagrammos;Hexagrammos decagrammus	Kelp greenling	2.48
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae	Sea Perches	8.26
+Animalia;Chordata;Aves;Passeriformes;Vangidae;Tylas;Tylas eduardi	Tylas Vanga	2.48
+Animalia;Chordata;Aves;Pelecaniformes;Phalacrocoracidae;Phalacrocorax	Cormorants	3.31
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Cyprinella	Satinfin shiners	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Psychrolutidae;Malacocottus	Fathead sculpins	4.13
+Animalia;Chordata;Mammalia;Carnivora;Odobenidae;Odobenus;Odobenus rosmarus	Atlantic Walrus	5.79
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus	Palawan Bearded Pig	7.44
+Animalia;Chordata;Actinopteri;Esociformes	Mudminnows	1.65
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Salvelinus	Chars	0.83
+Animalia;Chordata;Actinopteri;Osmeriformes;Osmeridae;Hypomesus;Hypomesus pretiosus	Surf Smelt	1.65
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Hapalemur	Bamboo lemurs	5.79
+Animalia;Chordata;Mammalia;Artiodactyla;Phocoenidae;Phocoena	Common porpoises	4.13
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae;Epinephelus;Epinephelus coeruleopunctatus	Garrupa	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae	Hogs	9.92
+Animalia;Chordata;Mammalia;Artiodactyla;Delphinidae;Cephalorhynchus	Piebald dolphins	1.65
+Animalia;Chordata;Aves;Charadriiformes;Scolopacidae	Sandpiper	2.48
+Animalia;Chordata;Actinopteri;Perciformes;Gasterosteidae;Gasterosteus	Threespine sticklebacks	0.83
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae;Theropithecus;Theropithecus gelada	Gelada	3.31
+Animalia;Chordata;Aves;Pelecaniformes	Herons	2.48
+Animalia;Chordata;Actinopteri;Cypriniformes	Minnows	4.13
+Animalia;Chordata;Actinopteri;Characiformes	Leporins	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Sebastidae;Sebastes	Rockcod	0.83
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus pennsylvanicus	Admiralty Island Meadow Vole (admiraltiae)	5.79
+Animalia;Chordata;Aves;Pelecaniformes;Phalacrocoracidae	Cormorants	2.48
+Animalia;Chordata;Mammalia;Perissodactyla	Odd-toed Ungulates	0.83
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Columba	Pigeon	2.48
+Animalia;Chordata;Actinopteri;Aulopiformes	Aulopiforms	1.65
+Animalia;Chordata;Actinopteri;Labriformes;Labridae	Wrasse	4.13
+Animalia;Chordata;Amphibia;Gymnophiona	Caecilians	4.13
+Animalia;Chordata;Aves;Gruiformes	Cranes	2.48
+Animalia;Chordata;Aves;Passeriformes;Timaliidae;Gampsorhynchus;Gampsorhynchus rufulus	White-hooded Babbler	2.48
+Animalia;Chordata;Aves;Pelecaniformes;Phalacrocoracidae;Phalacrocorax;Phalacrocorax featherstoni	Pitt Island Shag	0.83
+Animalia;Chordata;Actinopteri;Osmeriformes	Argentines	1.65
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus;Lutjanus malabaricus	Big-mouth Nannygai	2.48
+Animalia;Chordata;Mammalia;Carnivora;Procyonidae	Procyonids	3.31
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Artedius	Bullheads	3.31
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Hemilepidotus;Hemilepidotus hemilepidotus	Bullhead	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Niphonidae;Niphon;Niphon spinosus	Perch-like fishes	1.65
+Animalia;Chordata;Actinopteri;Labriformes;Labridae;Halichoeres;Halichoeres melanurus	Hoeven's wrasse	0.83
+Animalia;Chordata;Mammalia;Rodentia;Heteromyidae;Perognathus;Perognathus longimembris	Little Pocket Mouse	4.96
+Animalia;Chordata;Mammalia;Didelphimorphia;Didelphidae	American opossums	0.83
+Animalia;Chordata;Chondrichthyes;Myliobatiformes	Stingrays	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Percidae;Etheostoma	Smoothbelly darters	4.13
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Hemilepidotus	Bullheads	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Cottus	Bullhead	3.31
+Animalia;Chordata;Actinopteri;Chaetodontiformes;Chaetodontidae;Chaetodon	Butterflyfishes	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Xenolumpenus;Xenolumpenus longipterus	Longwing eelblenny	0.83
+Animalia;Chordata;Aves;Pelecaniformes;Ardeidae;Ardea;Ardea alba	American Egret	0.83
+Animalia;Chordata;Actinopteri;Holocentriformes;Holocentridae	Soldierfishes	2.48
+Animalia;Chordata;Mammalia;Rodentia;Heteromyidae	Kangaroo Mice	1.65
+Animalia;Chordata;Mammalia;Chiroptera	Bats	3.31
+Plantae;Chordata;Actinopteri;Perciformes;Liparidae;Liparis	Twayblade	0.83
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Nyctomys;Nyctomys sumichrasti	Sumichrast s Vesper Rat	3.31
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Gila;Gila orcuttii	Arroyo Chub	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae	Pricklebacks	1.65
+Animalia;Chordata;Amphibia;Caudata;Plethodontidae	Lungless Salamanders	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Pholidae;Pholis;Pholis gunnellus	Butter-fish	8.26
+Animalia;Chordata;Actinopteri;Syngnathiformes;Syngnathidae;Amphelikturus;Amphelikturus dendriticus	Pipehorse	4.13
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Cyclopsettidae	Flatfishes	1.65
+Animalia;Chordata;Actinopteri;Gobiiformes;Gobiidae	Goby	4.13
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Leptocottus;Leptocottus armatus	Pacific staghorn sculpin	1.65
+Animalia;Chordata;Mammalia;Carnivora;Phocidae;Phoca;Phoca groenlandica	Harp seal	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Agonidae;Agonopsis;Agonopsis vulsa	Northern spearnose poacher	0.83
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Felis;Felis catus	Cat	0.83
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Cyprinella;Cyprinella lutrensis	Red Shiner	0.83
+Animalia;Chordata;Mammalia;Chiroptera;Pteropodidae;Pteropus	Flying foxes	2.48
+Animalia;Chordata;Aves;Charadriiformes;Stercorariidae;Stercorarius	Jaegers	0.83
+Animalia;Chordata;Aves;Gruiformes;Heliornithidae;Podica;Podica senegalensis	African Finfoot	1.65
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Scorpaenichthys;Scorpaenichthys marmoratus	Cabezon	2.48
+Animalia;Chordata;Chondrichthyes;Rajiformes;Rajidae	Skates and rays	0.83
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Notropis;Notropis maculatus	Taillight Shiner	0.83
+Animalia;Chordata;Aves;Pelecaniformes;Ardeidae	Bitterns	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Mazama;Mazama nemorivaga	Amazonian Brown Brocket	0.83
+Animalia;Chordata;Mammalia;Lagomorpha;Leporidae;Sylvilagus;Sylvilagus andinus	Andean Cottontail	2.48
+Animalia;Chordata;Actinopteri;Cypriniformes;Cyprinidae;Mystacoleucus	Carps	0.83
+Animalia;Chordata;Aves;Galliformes;Cracidae;Oreophasis;Oreophasis derbianus	Horned Guan	1.65
+Animalia;Chordata;Actinopteri;Siluriformes;Ariidae	Fork-tailed catfishes	0.83
+Animalia;Chordata;NA;Testudines;Trionychidae;Cycloderma;Cycloderma aubryi	Aubry's Flapshell Turtle	1.65
+Animalia;Chordata;Aves;Procellariiformes	Petrels	1.65
+Animalia;Chordata;Aves;Gruiformes;Rallidae;Fulica	Coots	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Anarhichadidae;Anarhichas	Atlantic wolffishes	1.65
+Animalia;Chordata;Mammalia;Diprotodontia	Diprotodont marsupial	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Ziphiidae;Mesoplodon	Beaked whales	0.83
+Animalia;Chordata;Aves;Passeriformes;Fringillidae;Emberiza	Eurasian Buntings	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Pholidae	Gunnels	0.83
+Animalia;Chordata;Mammalia;Didelphimorphia;Didelphidae;Didelphis;Didelphis virginiana	North American Opossum	0.83
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Caesio;Caesio lunaris	Blue Fusilier	1.65
+Animalia;Chordata;Chondrichthyes;Chimaeriformes	Chimaeras	1.65
+Animalia;Chordata;Actinopteri;Osmeriformes;Osmeridae;Hypomesus;Hypomesus nipponensis	Japanese smelt	0.83
+Animalia;Chordata;Aves;Anseriformes;Anatidae;Anas;Anas hottentota	Blue-billed Teal	1.65
+Animalia;Chordata;Mammalia;Rodentia;Castoridae;Castor;Castor canadensis	American Beaver	0.83
+Animalia;Chordata;Aves;Anseriformes;Anatidae;Cygnus;Cygnus melancoryphus	Black-necked Swan	1.65
+Animalia;Chordata;Actinopteri;Labriformes;Labridae;Halichoeres;Halichoeres pictus	Painted wrasse	0.83
+Animalia;Chordata;Actinopteri;Cichliformes;Cichlidae;Sarotherodon;Sarotherodon mvogoi	Brushtooth tilapias	0.83
+Animalia;Chordata;Aves;Gruiformes;Rallidae	Coots	0.83
+Animalia;Chordata;Mammalia;Carnivora;Phocidae	Earless seals	1.65
+Animalia;Chordata;Aves;Galliformes;Numididae;Guttera;Guttera pucherani	Crested Guineafowl	1.65
+Animalia;Chordata;Mammalia;Rodentia;Castoridae;Castor	Beavers	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Phocoenidae;Phocoena;Phocoena phocoena	Eastern Pacific Harbor Porpoise	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Delphinidae;Orcaella;Orcaella brevirostris	Irawadi dolphin	0.83
+Animalia;Chordata;Aves;Ciconiiformes;Ciconiidae;Ciconia;Ciconia nigra	Black Stork	0.83
+Animalia;Chordata;Aves;Passeriformes;Timaliidae;Illadopsis	Babblers, Scimitar Babblers	0.83
+Animalia;Chordata;Actinopteri;Cypriniformes;Cyprinidae;Labeo	Carps	0.83
+Animalia;Chordata;Actinopteri;Perciformes;Sebastidae	Rockfishes, Rockcods And Thornyheads	0.83
+Animalia;Chordata;Aves;Pelecaniformes;Ardeidae;Ardea	Great Herons	0.83
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Muntiacus	Muntjaks	0.83
+Animalia;Chordata;Actinopteri;Labriformes;Labridae;Macropharyngodon;Macropharyngodon choati	Choat's wrasse	0.83

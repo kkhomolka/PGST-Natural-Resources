@@ -1,0 +1,148 @@
+taxonomy,number_of_samples_observed,total_reads_observed_across_dataset
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Lepidopsetta,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae,1,1
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Glyptocephalus;Glyptocephalus stelleri,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Stichaeus;Stichaeus punctatus,1,1
+Animalia;Chordata;Aves;Bucerotiformes;Bucerotidae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Zoarchias,1,1
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo,112,4559
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Cyclopsettidae,1,1
+Animalia;Chordata;Mammalia;Rodentia;Laonastidae;Laonastes;Laonastes aenigmamus,1,1
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus californicus,2,4
+Animalia;Chordata;Actinopteri;Synbranchiformes;Synbranchidae,1,1
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae,2,2
+Animalia;Chordata;Actinopteri;NA;Sphyraenidae;Sphyraena,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Pleurogrammus;Pleurogrammus monopterygius,2,2
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus keta,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Cottus,2,2
+Animalia;Chordata;Actinopteri;Perciformes,4,4
+Animalia;Chordata;Actinopteri;Perciformes;Sebastidae;Sebastes;Sebastes fasciatus,1,1
+Animalia;Chordata;Mammalia;Rodentia;Bathyergidae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Psychrolutidae;Ebinania;Ebinania brephocephala,4,4
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Ovis;Ovis canadensis,1,1
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan,2,2
+Animalia;Chordata;Amphibia;Anura;Centrolenidae;Hyalinobatrachium,2,2
+Animalia;Chordata;Actinopteri;Gadiformes,1,1
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Embassichthys;Embassichthys bathybius,1,1
+Animalia;Chordata;Mammalia;Artiodactyla,4,4
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes,2,2
+Animalia;Chordata;Chondrichthyes;Chimaeriformes;Chimaeridae;Hydrolagus,3,3
+Animalia;Chordata;Mammalia;Eulipotyphla,1,1
+Animalia;Chordata;Mammalia,25,25
+Animalia;Chordata;Actinopteri;Perciformes;Cyclopteridae,1,1
+Animalia;Chordata;Mammalia;Carnivora;Procyonidae;Procyon;Procyon lotor,1,1
+Animalia;Chordata;Actinopteri;Labriformes;Labridae;Bodianus,1,1
+Animalia;Chordata;Chondrichthyes,3,3
+Animalia;Chordata;Chondrichthyes;Chimaeriformes;Rhinochimaeridae;Harriotta;Harriotta raleighana,1,1
+Animalia;Chordata;Lepidosauria;Squamata;Scincidae;Scincus;Scincus scincus,1,1
+Animalia;Chordata;Mammalia;Carnivora;Ursidae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Cottus;Cottus marginatus,1,1
+Animalia;Chordata;Mammalia;Chiroptera;Phyllostomidae;Desmodus;Desmodus rotundus,1,1
+Animalia;Chordata;Mammalia;Primates,11,11
+Animalia;Chordata;Actinopteri;Cypriniformes;Cyprinidae;Labeo,1,1
+Animalia;Chordata;Aves;Accipitriformes;Accipitridae;Aquila,1,1
+Animalia;Chordata;Actinopteri;Syngnathiformes;Syngnathidae,4,4
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Prosopium,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Niphonidae;Niphon;Niphon spinosus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Agonidae,1,1
+Animalia;Chordata;Lepidosauria;Squamata,2,2
+Animalia;Chordata;Actinopteri;Anabantiformes;Badidae;Dario;Dario dario,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Myoxocephalus;Myoxocephalus brandtii,1,1
+Animalia;Chordata;Chondrichthyes;Rajiformes;Rajidae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Plectobranchus;Plectobranchus evides,1,1
+Animalia;Chordata;Actinopteri;Galaxiiformes;Galaxiidae;Galaxias;Galaxias aff. paucispondylus Southland,1,1
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos,3,3
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis,11,2163
+Animalia;Chordata;Lepidosauria;Squamata;Scincidae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Psychrolutidae;Malacocottus,3,3
+Animalia;Chordata;Actinopteri;Spariformes;Lethrinidae,1,1
+Animalia;Chordata,5,5
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae,3,3
+Animalia;Chordata;Amphibia;Anura;Dendrobatidae;Hyloxalus,1,1
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bison;Bison bonasus,2,2
+Animalia;Chordata;Mammalia;Lagomorpha;Leporidae;Sylvilagus;Sylvilagus bachmani,4,7
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Hexagrammos;Hexagrammos decagrammus,1,1
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Herklotsichthys;Herklotsichthys quadrimaculatus,2,2
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Meleagris;Meleagris gallopavo,1,1
+Animalia;Chordata;Actinopteri;Gerreiformes;Gerreidae;Gerres,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Opisthocentrus;Opisthocentrus zonope,1,1
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Bothidae;Engyprosopon;Engyprosopon macrolepis,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Gymnocanthus,1,1
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupus,12,6070
+Animalia;Chordata;Actinopteri;Anabantiformes,2,2
+Animalia;Chordata;Actinopteri;Aulopiformes,1,1
+Animalia;Chordata;Actinopteri;Centrarchiformes;Percichthyidae,2,2
+Animalia;Chordata;Actinopteri;Tetraodontiformes;Diodontidae,2,2
+Animalia;Chordata;Mammalia;Chiroptera;Phyllostomidae,3,3
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Leptoclinus;Leptoclinus maculatus,2,2
+Animalia;Chordata;Mammalia;Rodentia;Muridae;Rattus;Rattus norvegicus,2,2
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Gallus;Gallus gallus,2,2
+Animalia;Chordata;Amphibia;Anura,11,11
+Animalia;Chordata;Mammalia;Primates;Cebidae;Callithrix;Callithrix jacchus,1,1
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus;Sus scrofa,4,4
+Animalia;Chordata;Amphibia;Anura;Megophryidae,7,7
+Animalia;Chordata;Actinopteri;Clupeiformes;Chirocentridae;Chirocentrus,1,1
+Animalia;Chordata;Mammalia;Rodentia;Anomaluridae,1,1
+Animalia;Chordata;Mammalia;Carnivora;Otariidae;Arctocephalus;Arctocephalus forsteri,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Lycodes;Lycodes sp. ADK-2014,1,1
+Animalia;Chordata;Actinopteri;Gadiformes;Gadidae;Arctogadus;Arctogadus glacialis,1,1
+Animalia;Chordata;Actinopteri;NA;Embiotocidae;Micrometrus;Micrometrus minimus,1,1
+Animalia;Chordata;Chondrichthyes;Chimaeriformes;Chimaeridae,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Percidae;Etheostoma,1,1
+Animalia;Chordata;Amphibia;Anura;Alsodidae,1,1
+Animalia;Chordata;Actinopteri;Zeiformes,1,1
+Animalia;Chordata;Actinopteri;Cypriniformes;Cobitidae,1,1
+Animalia;Chordata;Actinopteri;NA;Polynemidae;Eleutheronema,1,1
+Animalia;Chordata;Actinopteri;Anguilliformes;Muraenesocidae;Oxyconger;Oxyconger leptognathus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Hexagrammos,1,1
+Animalia;Chordata;Mammalia;Primates;Hominidae,111,18425
+Animalia;Chordata;Aves;Galliformes,1,1
+Animalia;Chordata;Actinopteri;Gobiiformes,2,2
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus gorbuscha,1,1
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea;Clupea pallasii,3,3
+Animalia;Chordata;Actinopteri;Perciformes;Sebastidae;Sebastes;Sebastes iracundus,1,1
+Animalia;Chordata;Actinopteri;NA;Pomacentridae;Stegastes,1,1
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Ammodytes;Ammodytes tobianus,1,1
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae,1,1
+Animalia;Chordata;Aves;Galliformes;Odontophoridae;Odontophorus;Odontophorus capueira,1,1
+Animalia;Chordata;Actinopteri;Gadiformes;Gadidae;Gadus;Gadus macrocephalus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Liparidae,1,1
+Eukaryota,13,13
+Animalia;Chordata;Actinopteri;Cypriniformes,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Myoxocephalus;Myoxocephalus quadricornis,2,2
+Animalia;Chordata;Aves;Accipitriformes;Accipitridae,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Kasatkia;Kasatkia memorabilis,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Lumpenus;Lumpenus lampretaeformis,3,3
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae,1,1
+Animalia;Chordata;Aves,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Jordaniidae;Jordania;Jordania zonope,1,1
+Animalia;Chordata;Mammalia;Artiodactyla;Phocoenidae;Phocoena;Phocoena phocoena,2,2
+Animalia;Chordata;Aves;Apodiformes;Trochilidae,1,1
+Animalia;Chordata;Chondrichthyes;Squaliformes,2,2
+Animalia;Chordata;Aves;Pelecaniformes;Phalacrocoracidae,1,1
+Animalia;Chordata;Actinopteri;Esociformes;Umbridae;Dallia;Dallia pectoralis,1,1
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Sprattus;Sprattus sprattus,2,2
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Bero;Bero elegans,2,2
+Animalia;Chordata;Aves;Galliformes;Odontophoridae;Odontophorus,1,1
+Animalia;Chordata;Aves;Anseriformes;Anatidae,1,1
+Animalia;Chordata;Mammalia;Rodentia,3,3
+Animalia;Chordata;Actinopteri;Perciformes;Percidae;Gymnocephalus;Gymnocephalus cernua,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Stichaeus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Cottus;Cottus koreanus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Lumpenus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Lycozoarces;Lycozoarces regani,1,1
+Animalia;Chordata;Amphibia;Caudata,1,1
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea;Clupea harengus,3,3
+Animalia;Chordata;Mammalia;Carnivora;Phocidae;Phoca,1,1
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens,1,1
+Animalia;Chordata;Aves;Tinamiformes;Tinamidae;Nothocercus;Nothocercus nigrocapillus,1,1
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Enophrys;Enophrys bison,1,1
+Animalia;Chordata;Actinopteri,6,6
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Streptopelia,1,1
+Animalia;Chordata;Mammalia;Carnivora,3,3
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Icelinus;Icelinus borealis,1,1
+Animalia;Chordata;Aves;Strigiformes,1,1
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Pternistis,1,1

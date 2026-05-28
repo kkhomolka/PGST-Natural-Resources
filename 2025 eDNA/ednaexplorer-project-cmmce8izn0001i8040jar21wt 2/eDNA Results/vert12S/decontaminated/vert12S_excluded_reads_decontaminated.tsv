@@ -1,0 +1,504 @@
+taxonomic_path	sample_id	reason	reads
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae;Epinephelus;Epinephelus guttatus	JDFB_04_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Cyclopteridae;Eumicrotremus	JDFB_04_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Anoplopomatidae	JDFB_04_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Delphinidae;Orcinus;Orcinus orca	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Amphibia;Caudata	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Peramelemorphia;Peroryctidae	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Gaviiformes;Gaviidae;Gavia	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Macroscelidea;Macroscelididae;Rhynchocyon	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Cypriniformes;Cyprinidae;Labeo;Labeo potail	JDFB_09_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Procyonidae;Procyon;Procyon lotor	JDFB_10_062525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Carnivora;Ursidae	JDFB_10_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Viverridae	JDFB_10_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae;Cephalopholis;Cephalopholis miniata	JDFB_16_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Anguilliformes	JDFB_16_062625	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Characiformes;Distichodontidae;Neolebias;Neolebias ansorgii	JDFB_16_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Apodiformes;Apodidae;Collocalia	JDFB_22_062625	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Aves;Gruiformes;Rallidae;Fulica;Fulica atra	JDFB_22_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Lepidosauria;Squamata;Chamaeleonidae;Chamaeleo;Chamaeleo zeylanicus	JDFB_24_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Hyperlophus;Hyperlophus vittatus	JDFB_29_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Cephalophus;Cephalophus dorsalis	JDFB_31_072425	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Aves;Apodiformes;Trochilidae	JDFB_36_073025	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae;Phenacobius;Phenacobius mirabilis	JDFB_65_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae;Crocidura	JDFB_67_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Perissodactyla;Equidae;Equus	JDFB_67_082825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Lagomorpha;Ochotonidae;Ochotona	JDFB_67_082825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus;Lutjanus sebae	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Acanthuriformes;Acanthuridae	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Perciformes;Serranidae;Variola	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Actinopteri;Cyprinodontiformes;Nothobranchiidae	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Dictyosoma	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Hexagrammidae;Hexagrammos	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Triglidae;Lepidotrigla	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pempheriformes;Pentacerotidae;Histiopterus;Histiopterus typus	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;NA;Sciaenidae;Menticirrhus	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Anabantiformes;Channidae;Parachanna	JDFB_83_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Cingulata	JDFB_88_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae;Blarina;Blarina brevicauda	JDFB_88_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Chiroptera;Emballonuridae	JDFB_88_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Cingulata	JDFB_89_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	17
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Aves	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	476
+Animalia;Chordata;Aves;Passeriformes	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	981
+Eukaryota	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Aves;Passeriformes;Regulidae;Regulus;Regulus satrapa	JDFB_BK1_01_062525	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Aves;Passeriformes;Hirundinidae	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	26
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	14
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	34278
+Animalia;Chordata;Actinopteri	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Aves;Charadriiformes;Stercorariidae;Stercorarius	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	279
+Animalia;Chordata;Aves;Charadriiformes	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	151
+Animalia;Chordata;Mammalia;Primates;Galagidae;Galago;Galago senegalensis	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	15
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Panthera	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	582
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Hapalemur	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	172
+Animalia;Chordata;Mammalia;Macroscelidea;Macroscelididae;Elephantulus;Elephantulus fuscipes	JDFB_BK1_03_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	1058
+Animalia;Chordata;Actinopteri	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	42505
+Eukaryota	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	15
+Animalia;Chordata	JDFB_BK1_05_072425	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Aves	JDFB_BK1_05_072425	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Meleagris;Meleagris gallopavo	JDFB_BK1_06_073025	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata	JDFB_BK1_06_073025	Decontaminated read was in sample with fewer than 1 reads	34
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_06_073025	Decontaminated read was in sample with fewer than 1 reads	2287
+Animalia;Chordata;Mammalia	JDFB_BK1_06_073025	Decontaminated read was in sample with fewer than 1 reads	12
+Animalia;Chordata;Mammalia	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	146
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	3422
+Eukaryota	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus pennsylvanicus	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	16
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus subterraneus	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	72
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	36419
+Animalia;Chordata;Mammalia;Rodentia;Muridae	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus californicus	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	184
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	23701
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Nyctomys;Nyctomys sumichrasti	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Euryoryzomys;Euryoryzomys sp. ALA-2015	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	19
+Animalia;Chordata;Mammalia;Rodentia;Heteromyidae;Perognathus;Perognathus longimembris	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus thomasi	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	13
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Neotoma	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	53
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	111
+Animalia;Chordata;Actinopteri	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	4199
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	213
+Animalia;Chordata	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	847
+Animalia;Chordata;Actinopteri	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	49148
+Eukaryota	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	15
+Animalia;Chordata;Amphibia;Gymnophiona;Siphonopidae	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	20
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	626
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Martes;Martes foina	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Amphibia;Gymnophiona;Siphonopidae	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	30
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupus	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2885
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	20
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	10738
+Animalia;Chordata	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2050
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Taxidea;Taxidea taxus	JDFB_BK1_12_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	371
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	46
+Animalia;Chordata;Mammalia;Artiodactyla	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	261
+Eukaryota	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	14
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;NA;Testudines	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	79548
+Animalia;Chordata;Mammalia;Eulipotyphla;Talpidae;Talpa	JDFB_BK1_12_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	23
+Animalia;Chordata;Mammalia;Macroscelidea;Macroscelididae;Elephantulus;Elephantulus fuscipes	JDFB_BK1_12_082825	Taxon had fewer than 5 total project-wide reads	2
+Eukaryota	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	17
+Animalia;Chordata;Mammalia	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	68
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	3898
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	118
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	19562
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	43
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	1521
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	423
+Animalia;Chordata;Mammalia;Primates;Hylobatidae;Nomascus;Nomascus leucogenys	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	16
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	1066
+Animalia;Chordata	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	1053
+Animalia;Chordata;Mammalia;Primates;Hominidae;Gorilla;Gorilla gorilla	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2797
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	26
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	31
+Animalia;Chordata;Mammalia;Artiodactyla	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	48
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	63408
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	252
+Animalia;Chordata;Mammalia;Chiroptera	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	261
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Hapalemur	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	320
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus;Sus scrofa	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	1751
+Eukaryota	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia;Carnivora	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	11
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hylobatidae	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Mazama;Mazama nemorivaga	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	39
+Animalia;Chordata;Mammalia	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	38
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	13923
+Animalia;Chordata;Mammalia;Chiroptera	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	238
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupaster	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus;Sus scrofa	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	101
+Animalia;Chordata;Mammalia;Artiodactyla	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Rodentia;Sciuridae	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	88
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	337
+Animalia;Chordata;Mammalia;Eulipotyphla;Soricidae	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	417
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Pleuronichthys	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	115
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	55
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	116
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	49
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	555
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2420
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Hyperoplus;Hyperoplus immaculatus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Perciformes	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	1631
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea;Clupea harengus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	1109
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	17
+Animalia;Chordata;Mammalia;Primates	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Perciformes;Psychrolutidae;Malacocottus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Lumpenus;Lumpenus lampretaeformis	JDFB_BK2_04_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri;NA;Embiotocidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	420
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Sauvagella	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Perciformes;Stichaeidae;Xenolumpenus;Xenolumpenus longipterus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Labriformes;Labridae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;NA;Testudines	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Eukaryota	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	10
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Sauvagella;Sauvagella robusta	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	75
+Animalia;Chordata;Actinopteri	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2410
+Animalia;Chordata;Actinopteri;Galaxiiformes;Galaxiidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Caesio;Caesio lunaris	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	409
+Animalia;Chordata;Actinopteri;Perciformes;Triglidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Actinopteri;Chaetodontiformes;Chaetodontidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Actinopteri;Clupeiformes	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	68
+Animalia;Chordata;Actinopteri;Syngnathiformes;Syngnathidae;Amphelikturus;Amphelikturus dendriticus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Ammodytes;Ammodytes marinus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	5048
+Animalia;Chordata;Actinopteri;Labriformes;Labridae;Halichoeres;Halichoeres melanurus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Salvelinus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Lutjanus;Lutjanus fulvus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	17
+Animalia;Chordata;Aves;Anseriformes;Anatidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves;Sphenisciformes;Spheniscidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	26744
+Animalia;Chordata;Mammalia	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	14
+Animalia;Chordata;Actinopteri	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	11
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Galagidae;Galago;Galago senegalensis	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	573
+Animalia;Chordata;Mammalia	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	156
+Animalia;Chordata;Amphibia;Gymnophiona;Siphonopidae	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Panthera	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	20
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	26
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	36464
+Eukaryota	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Primates	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	54
+Animalia;Chordata	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	587
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	135
+Animalia;Chordata;Mammalia	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	34
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	9080
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	40120
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupus	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	825
+Animalia;Chordata;Mammalia;Primates	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	357
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2722
+Animalia;Chordata	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	825
+Animalia;Chordata;Mammalia	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	200
+Animalia;Chordata;Actinopteri	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Eukaryota	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	10
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	23
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos;Bos taurus	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	12
+Animalia;Chordata	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	1122
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	20
+Animalia;Chordata;Mammalia;Primates;Hylobatidae	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	189
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	89
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae;Bos	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	1643
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	11
+Eukaryota	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	11
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	46816
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	119
+Animalia;Chordata;Mammalia;Artiodactyla	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Actinopteri	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	37
+Animalia;Chordata;Mammalia	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	110
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	436
+Eukaryota	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	26947
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	371
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	26
+Eukaryota	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	605
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	38
+Animalia;Chordata;Mammalia;Primates;Hylobatidae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	162
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	41161
+Animalia;Chordata;Actinopteri	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Aves;Ciconiiformes;Thinocoridae;Thinocorus	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Vulpes	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Pleuronichthys;Pleuronichthys cornutus	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Mammalia;Rodentia;Muridae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Lagomorpha;Leporidae;Sylvilagus;Sylvilagus andinus	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Eulemur	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	44
+Animalia;Chordata	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	164
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus subterraneus	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	34019
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	1983
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Neotoma	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	101
+Animalia;Chordata;Mammalia;Primates;Cebidae	OAK_BK1_01_072825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	7010
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	554
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus californicus	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	88
+Animalia;Chordata;Mammalia;Primates;Hominidae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	16
+Eukaryota	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;NA;Testudines;Chelidae	OAK_BK2_02_072825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;NA;Testudines	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	39
+Animalia;Chordata;Mammalia;Primates;Cheirogaleidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Aves	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	4923
+Animalia;Chordata;Aves;Sphenisciformes;Spheniscidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves;Anseriformes;Anatidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Odocoileus;Odocoileus sp.	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	12
+Animalia;Chordata;Actinopteri	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Aves;Passeriformes;Timaliidae;Gampsorhynchus;Gampsorhynchus rufulus	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	15330
+Animalia;Chordata;Actinopteri;Cypriniformes;Gobionidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	23
+Animalia;Chordata;Mammalia;Chiroptera;Pteropodidae;Eonycteris;Eonycteris major	OAK_BK2_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Bovidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	24
+Animalia;Chordata;Mammalia;Carnivora;Mephitidae;Mydaus;Mydaus marchei	OAK_BK2_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Odocoileus	OAK_BK2_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Columbiformes;Columbidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	327
+Animalia;Chordata	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	488
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Eulemur	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	18
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	14249
+Animalia;Chordata;Aves;Passeriformes	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Aves;Charadriiformes	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	24
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	7980
+Animalia;Chordata;Mammalia;Primates;Hominidae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Aves;Charadriiformes;Laridae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	10
+Animalia;Chordata;Mammalia	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	132
+Animalia;Chordata;Mammalia;Artiodactyla;Cervidae;Cervus;Cervus nippon	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	59
+Animalia;Chordata;Mammalia;Primates;Lemuridae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae;Macaca	PBN_TOW_BTM_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus nerka	PBN_TOW_BTM_3m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Anoplopomatidae	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pempheriformes;Pentacerotidae;Histiopterus;Histiopterus typus	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Gadiformes;Gadidae	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Gobiiformes;Gobiidae;Gnatholepis	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Felis;Felis silvestris	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Thymallus	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;NA;Sciaenidae	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Chiroptera;Pteropodidae;Nyctimene	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Holocentriformes;Holocentridae;Myripristis	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Procellariiformes;Procellariidae;Calonectris;Calonectris diomedea	PBN_TOW_PORT_3m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Lycenchelys	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Uranoscopiformes;Ammodytidae;Hyperoplus;Hyperoplus lanceolatus	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Zoarcidae;Lycodes	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Pholidae;Apodichthys;Apodichthys flavidus	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Limanda;Limanda limanda	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Primates	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	74
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	18134
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	265
+Animalia;Chordata;Actinopteri	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus;Sus scrofa	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	470
+Eukaryota	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Aves;Passeriformes	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	143
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	31928
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Meleagris;Meleagris gallopavo	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	1251
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Primates	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	445
+Animalia;Chordata;Mammalia;Artiodactyla;Suidae;Sus	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	184
+Animalia;Chordata;Mammalia;Carnivora	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	244
+Animalia;Chordata;Mammalia;Artiodactyla	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	15
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis;Canis lupus	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	113
+Animalia;Chordata	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	582
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	567
+Animalia;Chordata;Aves;Passeriformes;Paridae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	415
+Animalia;Chordata;NA;Testudines	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	18
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Columba;Columba livia	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Aves;Charadriiformes;Laridae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Actinopteri;Cypriniformes	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	24137
+Animalia;Chordata;Mammalia;Primates;Cheirogaleidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus;Microtus californicus	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	22
+Animalia;Chordata;Aves;Galliformes	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	3363
+Animalia;Chordata;Aves;Strigiformes;Strigidae;Ninox	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Neotoma	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	6
+Eukaryota	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Didelphimorphia;Didelphidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	42
+Animalia;Chordata;Aves;Charadriiformes	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	25
+Animalia;Chordata	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	493
+Animalia;Chordata;Actinopteri	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Aves;Anseriformes;Anatidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Martes;Martes foina	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	110
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Aves;Columbiformes;Columbidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	410
+Animalia;Chordata;Aves;Sphenisciformes;Spheniscidae;Eudyptula	PG_ext_blank_2	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Microtus	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	90
+Animalia;Chordata;Aves;Passeriformes	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	33
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Eulemur	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	19
+Animalia;Chordata;Mammalia;Didelphimorphia;Didelphidae;Didelphis;Didelphis virginiana	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	198
+Animalia;Chordata;Aves;Columbiformes;Columbidae;Columba	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Aves	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	7319
+Animalia;Chordata;Actinopteri;Cypriniformes;Leuciscidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Primates;Hominidae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Aves;Passeriformes;Icteridae	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Nandiniidae;Nandinia;Nandinia binotata	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Syngnathiformes;Syngnathidae;Syngnathus	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Ziphiidae	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Mammalia;Artiodactyla;Balaenopteridae;Balaenoptera	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Caesio;Caesio caerulaurea	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Artiodactyla;Delphinidae;Tursiops;Tursiops aduncus	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Limanda;Limanda limanda	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Anabantiformes;Channidae;Channa	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Felis;Felis silvestris	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Carnivora;Nandiniidae;Nandinia;Nandinia binotata	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Cyprinodontiformes;Aphaniidae;Anatolichthys;Anatolichthys danfordii	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Artedius;Artedius lateralis	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Lutjaniformes;Lutjanidae;Caesio;Caesio caerulaurea	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Lophophorus;Lophophorus impejanus	SJI_01_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pempheriformes;Polyprionidae;Stereolepis;Stereolepis gigas	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Actinopteri;Anabantiformes;Channidae;Channa	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Chondrichthyes;Orectolobiformes;Orectolobidae;Eucrossorhinus;Eucrossorhinus dasypogon	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Amphibia;Anura;Megophryidae;Leptobrachium	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Siluriformes;Callichthyidae;Corydoras;Corydoras cf. aeneus 'Gold Laser CW10'	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus clarkii	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Alepocephaliformes	SJI_05_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Cypriniformes;Tanichthyidae;Tanichthys;Tanichthys albonubes	SJI_06_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Cuculiformes;Centropidae;Centropus;Centropus sinensis	SJI_06_072125	Taxon had fewer than 5 total project-wide reads	2
+Eukaryota	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Panthera	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Carnivora;Felidae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	10
+Animalia;Chordata	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	301
+Animalia;Chordata;Mammalia;Carnivora;Procyonidae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	485
+Animalia;Chordata;Mammalia;Carnivora	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	26211
+Animalia;Chordata;Mammalia;Chiroptera;Pteropodidae;Pteropus	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Phocidae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Martes;Martes foina	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	86
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	51
+Animalia;Chordata;Actinopteri	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Carnivora;Odobenidae;Odobenus;Odobenus rosmarus	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	51
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	16599
+Animalia;Chordata;Mammalia;Primates;Hominidae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	129
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae;Meles;Meles meles	SJI_BK1_01_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Rodentia;Muridae	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	110
+Animalia;Chordata	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	469
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan paniscus	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Hominidae	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	319
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	24547
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	9
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	14
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Leptailurus;Leptailurus serval	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Chiroptera;Vespertilionidae;Myotis;Myotis brandtii	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Perissodactyla;Rhinocerotidae;Coelodonta;Coelodonta antiquitatis	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Rodentia;Muridae;Apodemus;Apodemus mystacinus	SQU_02_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Scophthalmidae	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Amphibia;Caudata;Salamandridae	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Psittaciformes;Psittaculidae;Lorius;Lorius lory	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Triglops	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Anguilliformes;Congridae;Rhynchoconger	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Aves;Passeriformes;Leiothrichidae;Minla;Minla ignotincta	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Cyclopsettidae;Etropus;Etropus microstomus	SQU_04_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Perciformes;Gasterosteidae	SQU_06_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Ondatra;Ondatra zibethicus	SQU_06_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae;Arvicola;Arvicola amphibius	SQU_06_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Aves;Psittaciformes	SQU_07_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Galliformes;Phasianidae;Tetrao;Tetrao urogallus	SQU_07_072925	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Chordata;Aves;Anseriformes;Anatidae;Dendrocygna	SQU_07_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Amphibia;Caudata;Plethodontidae;Aneides	SQU_08_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	45
+Animalia;Chordata;Mammalia;Rodentia;Cricetidae	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	30
+Animalia;Chordata;Mammalia;Carnivora	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	13
+Animalia;Chordata;Mammalia;Carnivora;Mustelidae	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	311
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pan;Pan troglodytes	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Chordata;Mammalia;Primates;Cercopithecidae	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Chordata;Mammalia;Primates;Hylobatidae;Nomascus;Nomascus leucogenys	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Lemuridae;Eulemur	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	43
+Animalia;Chordata;Mammalia;Primates	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	10972
+Animalia;Chordata;Mammalia;Lagomorpha;Leporidae;Lepus	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	1195
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Otocolobus;Otocolobus manul	SQU_BK1_01_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Mammalia;Lagomorpha;Leporidae;Sylvilagus;Sylvilagus andinus	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	74
+Animalia;Chordata;Mammalia;Primates;Hominidae	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	11
+Animalia;Chordata	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	515
+Eukaryota	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Chordata;Mammalia	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	126
+Animalia;Chordata;Mammalia;Primates;Hominidae	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	11
+Animalia;Chordata;Mammalia;Primates;Hominidae;Pongo;Pongo pygmaeus	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;Primates;Hominidae;Homo;Homo sapiens	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	34300
