@@ -1,0 +1,368 @@
+taxonomic_path	sample_id	reason	reads
+Chromista;NA;Dinophyceae;Prorocentrales;Prorocentraceae;Prorocentrum;Prorocentrum mexicanum	JDFB_03_062525	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Basidiomycota;Pucciniomycetes;Pucciniales;Melampsoraceae;Melampsora	JDFB_03_062525	Taxon had fewer than 5 total project-wide reads	4
+Fungi;Basidiomycota;Agaricomycetes;Boletales;Boletaceae	JDFB_03_062525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Insecta;Lepidoptera;Hesperiidae	JDFB_03_062525	Taxon had fewer than 5 total project-wide reads	3
+Chromista;Phaeophyceae;NA;Laminariales;Laminariaceae	JDFB_05_062525	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Basidiomycota;Agaricomycetes;Agaricales;Psathyrellaceae;Psathyrella	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Ascomycota;Sordariomycetes;Hypocreales;Nectriaceae;Fusarium;Fusarium oxysporum	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Hymenoptera;Braconidae	JDFB_08_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Arachnida;Trombidiformes	JDFB_10_062525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Dinophyceae;Gonyaulacales;Goniodomataceae;Gambierdiscus;Gambierdiscus toxicus	JDFB_11_062525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;Stylommatophora;Hygromiidae;Trochulus	JDFB_12_062525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Dinophyceae;Gonyaulacales;Gonyaulacaceae;Alexandrium;Alexandrium catenella	JDFB_14_062525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Bacillariophyceae;Naviculales;Naviculaceae;Mayamaea;Mayamaea permitis	JDFB_15_062625	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Arthropoda;Malacostraca;Decapoda;Xanthidae	JDFB_15_062625	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Aspergillus;Aspergillus terreus	JDFB_16_062625	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Insecta;Hymenoptera;Figitidae	JDFB_18_062625	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Maxillopoda	JDFB_18_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Lepidoptera;Pyralidae	JDFB_20_062625	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Corallinales;Corallinaceae	JDFB_21_062625	Taxon had fewer than 5 total project-wide reads	3
+Fungi;Ascomycota;Sordariomycetes;Hypocreales;Nectriaceae;Thelonectria;Thelonectria veuillotiana	JDFB_26_062625	Taxon had fewer than 5 total project-wide reads	3
+Chromista;NA;Dinophyceae;Peridiniales;Peridiniaceae;Peridinium;Peridinium sp. ES18-126	JDFB_28_062625	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;NA;Bovidae;Bos;Bos taurus	JDFB_32_073025	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Dinophyceae;Peridiniales;Peridiniaceae;Peridinium	JDFB_35_073025	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Insecta;Diptera;Cecidomyiidae	JDFB_35_073025	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Chrysophyceae	JDFB_38_082625	Taxon had fewer than 5 total project-wide reads	3
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae	JDFB_38_082625	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Arthropoda;Arachnida;Araneae;Linyphiidae	JDFB_44_082625	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Gigartinales;Kallymeniaceae;Austrokallymenia;Austrokallymenia rosea	JDFB_45_082725	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Rotifera;Monogononta;Ploima;Trichocercidae;Trichocerca	JDFB_45_082725	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Nemastomatales;Schizymeniaceae;Schizymenia	JDFB_45_082725	Taxon had fewer than 5 total project-wide reads	2
+Bacteria;Proteobacteria;Gammaproteobacteria;Vibrionales;Vibrionaceae;Photobacterium;Photobacterium profundum	JDFB_45_082725	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Arthropoda;Insecta;Lepidoptera;Noctuidae	JDFB_46_082725	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Amphipoda;Phoxocephalidae	JDFB_49_082725	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Lepidoptera;Geometridae;Hydriomena	JDFB_51_082725	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Diptera;Chironomidae;NA;Chironomidae sp. BOLD-2016	JDFB_51_082725	Taxon had fewer than 5 total project-wide reads	4
+Chromista;NA;Dinophyceae;Suessiales;Symbiodiniaceae;Symbiodinium;Symbiodinium sp. clade D	JDFB_56_082735	Taxon had fewer than 5 total project-wide reads	4
+Chromista;Phaeophyceae;NA;Ectocarpales;Chordariaceae;Laminariocolax	JDFB_59_082825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Annelida;Clitellata;Haplotaxida;Megascolecidae;Amynthas	JDFB_60_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Lepidoptera;Tortricidae;Lobesia;Lobesia sp. BOLD:ACO0243	JDFB_60_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Arachnida;Trombidiformes;Tetranychidae	JDFB_63_082825	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Palmariales;Rhodothamniellaceae;Rhodothamniella;Rhodothamniella floridula	JDFB_63_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Amphipoda	JDFB_64_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Diptera;Tabanidae	JDFB_69_082825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Ophiuroidea;Ophiurida;Ophiuridae	JDFB_81_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Chordata;Actinopteri;Salmoniformes;Salmonidae;Oncorhynchus;Oncorhynchus tshawytscha	JDFB_82_092525	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Mollusca;Gastropoda;NA;Limapontiidae;Alderia;Alderia modesta	JDFB_82_092525	Taxon had fewer than 5 total project-wide reads	3
+Chromista;NA;Dinophyceae;Peridiniales;Peridiniaceae;Peridinium;Peridinium sp. ES18-122	JDFB_84_092525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Dinophyceae;Prorocentrales;Prorocentraceae;Prorocentrum;Prorocentrum sp. ES5-50	JDFB_85_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Maxillopoda;Calanoida;Clausocalanidae	JDFB_86_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Maxillopoda;Calanoida;Paracalanidae;Paracalanus;Paracalanus sp. B AC-2013	JDFB_86_092525	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Gigartinales;Kallymeniaceae;Austrokallymenia;Austrokallymenia rosea	JDFB_87_092525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Bacillariophyceae;Bacillariales;Bacillariaceae;Pseudo-nitzschia;Pseudo-nitzschia lundholmiae	JDFB_89_092525	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	222
+Eukaryota	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	1245
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	2
+Fungi;Basidiomycota;Microbotryomycetes;Sporidiobolales;Sporidiobolaceae;Rhodotorula;Rhodotorula taiwanensis	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	2027
+Fungi;Basidiomycota;Agaricomycetes;Agaricales	JDFB_BK1_01_062525	Decontaminated read was in sample with fewer than 1 reads	50
+Eukaryota	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	1073
+Protozoa;NA;Heterolobosea;Schizopyrenida;Vahlkampfiidae;Naegleria;Naegleria clarki	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	289
+Fungi;Ascomycota;Leotiomycetes	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Arthropoda	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	182
+Protozoa;NA;Heterolobosea;Schizopyrenida;Vahlkampfiidae;Naegleria	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	38
+Chromista;NA;Dinophyceae;Peridiniales;Protoperidiniaceae;Protoperidinium;Protoperidinium cf. depressum	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	39
+Animalia;Nemertea;Anopla;Heteronemertea;Lineidae;Maculaura;Maculaura alaskensis	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	781
+Fungi;Basidiomycota;Agaricomycetes;Boletales;Boletaceae;Boletus	JDFB_BK1_03_062625	Decontaminated read was in sample with fewer than 1 reads	16
+Eukaryota	JDFB_BK1_05_072425	Decontaminated read was in sample with fewer than 1 reads	5
+Eukaryota	JDFB_BK1_06_073025	Decontaminated read was in sample with fewer than 1 reads	13
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	25
+Animalia;Arthropoda;Insecta	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Arthropoda;Arachnida;Trombidiformes;Demodicidae;Demodex;Demodex folliculorum	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	8
+Eukaryota	JDFB_BK1_08_082625	Decontaminated read was in sample with fewer than 1 reads	213
+Chromista;NA;Dinophyceae	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	20
+Plantae;Chlorophyta;NA;NA;Pycnococcaceae	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	6936
+Plantae;Chlorophyta	JDFB_BK1_10_082725	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Arthropoda;Maxillopoda;Calanoida;Paracalanidae;Paracalanus;Paracalanus sp. C AC-2013	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Arthropoda;Arachnida;Trombidiformes;Demodicidae;Demodex;Demodex brevis	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	16
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	124
+Plantae;Chlorophyta	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;NA;Phaeocystales;Phaeocystaceae;Phaeocystis;Phaeocystis globosa	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	23
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Membraniporidae;Membranipora;Membranipora membranacea	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	2
+Plantae;Chlorophyta;Mamiellophyceae;Mamiellales;Bathycoccaceae;Bathycoccus;Bathycoccus prasinos	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	427
+Eukaryota	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	8314
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Membraniporidae;Membranipora	JDFB_BK1_12_082825	Decontaminated read was in sample with fewer than 1 reads	66
+Fungi;Ascomycota;Taphrinomycetes;Taphrinales;Taphrinaceae;Taphrina;Taphrina wiesneri	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	2616
+Eukaryota	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	712
+Fungi;Ascomycota;Leotiomycetes;Helotiales	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	103
+Fungi;Ascomycota;Leotiomycetes;Helotiales;Chaetomellaceae;Synchaetomella;Synchaetomella acerina	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	11
+Chromista;Bacillariophyta;Bacillariophyceae;Naviculales	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	14
+Fungi;Ascomycota;Leotiomycetes;Helotiales;NA;Rhynchosporium	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	1116
+Chromista;NA;Dinophyceae	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	16
+Fungi;Ascomycota;Dothideomycetes;Capnodiales;Cladosporiaceae;Cladosporium;Cladosporium bruhnei	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;NA;Dinophyceae;Suessiales;Symbiodiniaceae;Symbiodinium	JDFB_BK1_14_092425	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Nemertea;Palaeonemertea;NA;Tubulanidae;Carinina;Carinina sp. chocolate	JDFB_BK1_16_092525	Taxon had fewer than 5 total project-wide reads	3
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros;Chaetoceros socialis	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	78
+Chromista;NA;Synurophyceae;Ochromonadales;Ochromonadaceae;Poterioochromonas;Poterioochromonas malhamensis	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	21
+Animalia;Arthropoda	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	9
+Chromista;NA;Dinophyceae;Peridiniales;Protoperidiniaceae;Protoperidinium;Protoperidinium cf. depressum	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Arthropoda;Maxillopoda;Calanoida;Paracalanidae;Paracalanus;Paracalanus sp. C AC-2013	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	14
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	104
+Animalia;Arthropoda;Diplopoda;Julida;Julidae;Cylindroiulus;Cylindroiulus caeruleocinctus	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	310
+Eukaryota	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	242
+Animalia;Cnidaria;Hydrozoa;Leptothecata;Campanulariidae;Clytia	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	13
+Animalia;Rotifera;Monogononta;Ploima	JDFB_BK1_16_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	JDFB_BK2_02_062525	Decontaminated read was in sample with fewer than 1 reads	101
+Animalia;Arthropoda;Maxillopoda;Calanoida;Clausocalanidae;Pseudocalanus;Pseudocalanus newmani	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	742
+Eukaryota	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2027
+Animalia;Chordata;Mammalia;NA;Suidae;Sus	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	247
+Animalia;Chordata;Mammalia;NA;Suidae;Sus;Sus scrofa	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2022
+Chromista;NA;Dinophyceae;Peridiniales;Protoperidiniaceae;Protoperidinium;Protoperidinium cf. depressum	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata;Mammalia;NA;Suidae	JDFB_BK2_04_062625	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;Dinophyceae	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	32
+Eukaryota	JDFB_BK2_07_073025	Decontaminated read was in sample with fewer than 1 reads	53
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales;Thalassiosiraceae;Thalassiosira;Thalassiosira nordenskioeldii	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	1951
+Chromista;Bacillariophyta	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	12
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	65
+Chromista;NA;Oomycetes;Peronosporales;NA;Phytophthora	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	6
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	15
+Animalia;Cnidaria;Hydrozoa;Siphonophorae	JDFB_BK2_09_082625	Taxon had fewer than 5 total project-wide reads	2
+Eukaryota	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	6301
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	58
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros;Chaetoceros socialis	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	4177
+Protozoa;NA;NA;NA;Vannellidae;Ripella;Ripella tribonemae	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	46
+Plantae;Chlorophyta;Mamiellophyceae;Mamiellales;Mamiellaceae;Micromonas;Micromonas pusilla	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	37
+Protozoa;NA;NA;NA;Vannellidae;Ripella	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	35
+Chromista;NA;Oomycetes;Peronosporales	JDFB_BK2_09_082625	Taxon had fewer than 5 total project-wide reads	3
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK2_09_082625	Decontaminated read was in sample with fewer than 1 reads	79
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2012
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales;Skeletonemataceae;Skeletonema	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	86
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales;Thalassiosiraceae;Thalassiosira;Thalassiosira nordenskioeldii	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2218
+Chromista;NA;NA;Isochrysidales;Noelaerhabdaceae;Emiliania;Emiliania huxleyi	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	41
+Chromista;NA;Dictyochophyceae;Florenciellales;NA;Pseudochattonella;Pseudochattonella farcimen	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	258
+Animalia;Mollusca;Bivalvia	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Arthropoda;Arachnida;Araneae;Lycosidae;Hogna;Hogna radiata	JDFB_BK2_11_082725	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;Dinophyceae	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Cnidaria;Hydrozoa;Leptothecata;Campanulariidae;Clytia	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	189
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Membraniporidae;Membranipora;Membranipora membranacea	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	24
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Membraniporidae;Membranipora	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	47
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros;Chaetoceros socialis	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	383
+Chromista;Bacillariophyta;Bacillariophyceae;Bacillariales;Bacillariaceae;Pseudo-nitzschia;Pseudo-nitzschia delicatissima	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	58
+Chromista;Bacillariophyta;Fragilariophyceae;Thalassionemales;Thalassionemataceae;Thalassionema;Thalassionema nitzschioides	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	280
+Animalia;Porifera;Demospongiae;Clionaida;Clionaidae;Cliona;Cliona chilensis	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Mollusca;Bivalvia;Mytiloida;Mytilidae;Modiolus;Modiolus modiolus	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2
+Plantae;Chlorophyta;NA;NA;Pycnococcaceae	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	28
+Eukaryota	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	25
+Animalia;Cnidaria;Hydrozoa	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;Bacillariophyta	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	15
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	21
+Chromista;Bacillariophyta;Fragilariophyceae	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;Dictyochophyceae;Florenciellales;NA;Pseudochattonella	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	18
+Animalia;Mollusca;Bivalvia;Mytiloida;Mytilidae	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	44
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Attheyaceae;Attheya;Attheya longicornis	JDFB_BK2_11_082725	Decontaminated read was in sample with fewer than 1 reads	5
+Animalia;Arthropoda;Maxillopoda	JDFB_BK2_11_082725	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Aves;Trochiliformes;Trochilidae;Lophornis	JDFB_BK2_13_082825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Maxillopoda;Calanoida;Clausocalanidae;Pseudocalanus;Pseudocalanus moultoni	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	1117
+Animalia;Arthropoda;Maxillopoda;Calanoida;Clausocalanidae;Pseudocalanus	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	47
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros;Chaetoceros socialis	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	10
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Membraniporidae;Membranipora;Membranipora membranacea	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	3626
+Chromista;Bacillariophyta;Mediophyceae;Lithodesmiales;Lithodesmiaceae;Ditylum;Ditylum brightwellii	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	94
+Animalia;Arthropoda	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	24
+Animalia;Chordata;Actinopteri;Gobiiformes;Gobiidae;Ponticola	JDFB_BK2_13_082825	Taxon had fewer than 5 total project-wide reads	2
+Eukaryota	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	252
+Fungi;Basidiomycota;Microbotryomycetes;Sporidiobolales;Sporidiobolaceae;Rhodotorula;Rhodotorula taiwanensis	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	225
+Animalia;Bryozoa	JDFB_BK2_13_082825	Decontaminated read was in sample with fewer than 1 reads	4
+Animalia;Cnidaria;Hydrozoa;Leptothecata	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	11
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	5
+Fungi;Basidiomycota;Microbotryomycetes;Sporidiobolales;Sporidiobolaceae;Rhodotorula;Rhodotorula taiwanensis	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	19083
+Animalia;Cnidaria;Hydrozoa;Leptothecata;Campanulariidae;Clytia	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	5
+Eukaryota	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	557
+Animalia;Cnidaria;Hydrozoa	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	8
+Animalia;Cnidaria;Hydrozoa;Siphonophorae;Diphyidae;Muggiaea;Muggiaea atlantica	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	20
+Fungi;Ascomycota;Dothideomycetes;Pleosporales	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	106
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK2_15_092425	Decontaminated read was in sample with fewer than 1 reads	1413
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales;Skeletonemataceae;Skeletonema	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	26
+Plantae;Chlorophyta	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales;Aspergillaceae;Penicillium;Penicillium verrucosum	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Protozoa;NA;NA;NA;Paramoebidae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	4
+Chromista;Bacillariophyta;Mediophyceae;Cymatosirales;Cymatosiraceae;Minutocellus;Minutocellus polymorphus	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	654
+Bacteria;Bacteroidetes;Flavobacteriia;Flavobacteriales;Flavobacteriaceae;Flavobacterium;Flavobacterium johnsoniae	JDFB_BK2_17_092525	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Amphipoda;Niphargidae;Niphargus	JDFB_BK2_17_092525	Taxon had fewer than 5 total project-wide reads	2
+Chromista;NA;NA;Isochrysidales;Noelaerhabdaceae;Emiliania;Emiliania huxleyi	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	6
+Chromista;Bacillariophyta	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Arthropoda;Maxillopoda;Calanoida;Paracalanidae;Paracalanus;Paracalanus sp. C AC-2013	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	6
+Plantae;Chlorophyta;NA;NA;Pycnococcaceae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	714
+Animalia;Chordata;Mammalia;Carnivora;Felidae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	8
+Eukaryota	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	110
+Animalia;Chordata;Mammalia;Carnivora;Felidae;Felis	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	45
+Animalia;Arthropoda;Insecta;Lepidoptera;NA;NA;Lepidoptera sp. BOLD:AAU0257	JDFB_BK2_17_092525	Taxon had fewer than 5 total project-wide reads	2
+Bacteria;Bacteroidetes;Flavobacteriia;Flavobacteriales;Flavobacteriaceae	JDFB_BK2_17_092525	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Cnidaria;Hydrozoa;Anthoathecata;Tubulariidae;Hybocodon;Hybocodon prolifer	OAK_01_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Hydrozoa;Leptothecata;Campanulariidae;Clytia;Clytia hemisphaerica	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	4
+Protozoa;NA;NA;Himatismenida;NA;Parvamoeba;Parvamoeba rugata	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;NA;Squamata	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Phyllodocida;Glyceridae;Hemipodia;Hemipodia simplex	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Annelida;Polychaeta;Terebellida;Terebellidae;Neoamphitrite;Neoamphitrite robusta CMC02	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Nemertea;Anopla;Heteronemertea;Cerebratulidae;Cerebratulus;Cerebratulus sp. spade head	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Annelida;Polychaeta;Phyllodocida;Glyceridae;Glycera;Glycera capitata	OAK_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Porifera;Demospongiae;Poecilosclerida	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Nemertea;Anopla;Heteronemertea;Riseriellidae;Riserius;Riserius pugetensis	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;NA;Sciaenidae	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;NA;Squamata	OAK_03_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Mammalia;Cetacea;Phocoenidae;Phocoena;Phocoena phocoena	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Phyllodocida;Polynoidae;Malmgreniella;Malmgreniella nigralba	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Hydrozoa;Anthoathecata;Stylasteridae;Stylaster;Stylaster californicus	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Annelida;Polychaeta;Terebellida;Terebellidae;Eupolymnia;Eupolymnia heterobranchia	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Nemertea;Anopla;Heteronemertea;Lineidae;Maculaura;Maculaura oregonensis	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Porifera;Homoscleromorpha;Homosclerophorida;Plakinidae	OAK_04_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Nemertea;Anopla;Heteronemertea;Lineidae;Maculaura;Maculaura oregonensis	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Lepidopsetta;Lepidopsetta bilineata	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Phaeophyceae;NA;Ectocarpales;Chordariaceae;Leathesia;Leathesia marina	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;Nudibranchia	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Annelida;Polychaeta;Terebellida;Terebellidae;Eupolymnia;Eupolymnia heterobranchia	OAK_05_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Decapoda;Oregoniidae;Oregonia;Oregonia gracilis	OAK_06_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;NA;Cyclophoridae;Cyclophorus;Cyclophorus rangunensis	OAK_06_072825	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Phyllodocida;Nereididae;Alitta;Alitta sp. CMC01	OAK_06_072825	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Bacillariophyceae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;NA;Oomycetes;Saprolegniales;Saprolegniaceae	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	9
+Chromista;Bacillariophyta;Coscinodiscophyceae;Chaetocerotales;Chaetocerotaceae;Chaetoceros;Chaetoceros socialis	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	73
+Chromista;NA;Oomycetes;Peronosporales;NA;Phytophthora	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	14
+NA;NA;Oomycetes	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	200
+Chromista;Bacillariophyta	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Arthropoda;Malacostraca;Decapoda;Mictyridae;Mictyris;Mictyris guinotae	OAK_BK1_01_072825	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Bacillariophyceae;Bacillariales;Bacillariaceae;Nitzschia;Nitzschia cf. recta RT-2009	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	8
+Eukaryota	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	996
+Fungi;Ascomycota;Leotiomycetes;Helotiales;Helotiaceae;Glarea;Glarea lozoyensis	OAK_BK1_01_072825	Decontaminated read was in sample with fewer than 1 reads	16121
+Animalia;Arthropoda;Insecta;Hemiptera;Cicadellidae;Onukigallia	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	13
+NA;NA;Oomycetes	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	437
+Chromista;NA;NA;Isochrysidales;Noelaerhabdaceae;Emiliania;Emiliania huxleyi	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	807
+Animalia;Arthropoda;Insecta;Diptera;Chironomidae;NA;Chironomidae sp. PA17	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	746
+Chromista;Bacillariophyta;Coscinodiscophyceae;Thalassiosirales;Stephanodiscaceae;Cyclotella;Cyclotella cryptica	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	14
+Chromista;NA;NA;Isochrysidales;Noelaerhabdaceae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	21
+Animalia;Platyhelminthes;Trematoda;Strigeidida;Diplostomatidae;Diplostomum	OAK_BK2_02_072825	Taxon had fewer than 5 total project-wide reads	2
+Eukaryota	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	219
+Chromista;NA;Dinophyceae;Peridiniales;Heterocapsaceae;Heterocapsa;Heterocapsa rotundata	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Plantae;NA;Florideophyceae;Ceramiales;Rhodomelaceae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	3
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	4
+Fungi;Ascomycota;Dothideomycetes;Capnodiales;Cladosporiaceae;Cladosporium;Cladosporium bruhnei	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Arthropoda;Insecta;Hemiptera	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;Oomycetes;Saprolegniales;Saprolegniaceae	OAK_BK2_02_072825	Decontaminated read was in sample with fewer than 1 reads	17
+Animalia;Arthropoda;Insecta;Blattodea	PBN_TOW_BTM_15m_092425	Taxon had fewer than 5 total project-wide reads	4
+Chromista;Phaeophyceae;NA;Dictyotales;Dictyotaceae;Dictyota	PBN_TOW_BTM_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Ascidiacea;Stolidobranchia;Pyuridae;Pyura;Pyura chilensis	PBN_TOW_BTM_3m_092425	Taxon had fewer than 5 total project-wide reads	3
+Chromista;NA;Dinophyceae;Gymnodiniales;Gymnodiniaceae;Akashiwo	PBN_TOW_BTM_3m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Arachnida;Araneae	PBN_TOW_BTM_3m_092425	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Ceramiales;Rhodomelaceae;Pterosiphonia;Pterosiphonia bipinnata	PBN_TOW_PORT_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Terebellida;Terebellidae;Pista;Pista wui	PBN_TOW_PORT_3m_092425	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Ophiuroidea;Ophiurida;Ophiactidae;Ophiopholis;Ophiopholis kennerlyi	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	4
+Chromista;Phaeophyceae;NA;Ectocarpales	PBN_TOW_STBD_15m_092425	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Ascomycota;Dothideomycetes;Pleosporales	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	15
+Chromista;NA;Dinophyceae;Peridiniales;Protoperidiniaceae;Protoperidinium;Protoperidinium cf. depressum	PG_PCR_Blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Animalia;Chordata	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	174
+Animalia;Chordata;Mammalia;Carnivora;Canidae;Canis	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	4
+Eukaryota	PG_ext_blank_1	Decontaminated read was in sample with fewer than 1 reads	383
+Animalia;Arthropoda;Insecta;Diptera	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	28
+Eukaryota	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2568
+Fungi;Ascomycota;Dothideomycetes;Pleosporales	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	4446
+Plantae;NA;Florideophyceae	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	2
+Fungi;Ascomycota;Leotiomycetes;Helotiales;Helotiaceae;Glarea;Glarea lozoyensis	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	1313
+NA;NA;Oomycetes	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	12
+Fungi;Mucoromycota;NA;Umbelopsidales;Umbelopsidaceae;Umbelopsis;Umbelopsis ramanniana	PG_ext_blank_2	Decontaminated read was in sample with fewer than 1 reads	1275
+Animalia;Cnidaria;Staurozoa;Stauromedusae;Haliclystidae;Haliclystus;Haliclystus sanjuanensis	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Mollusca;Gastropoda;NA;Margaritidae;Margarites;Margarites pupillus	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Hippothoidae;Celleporella;Celleporella hyalina	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Cottidae;Scorpaenichthys;Scorpaenichthys marmoratus	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Plantae;NA;Florideophyceae;Acrochaetiales;Acrochaetiaceae;Acrochaetium;Acrochaetium densum	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Chromista;Bacillariophyta;Bacillariophyceae;Bacillariales;Bacillariaceae;Pseudo-nitzschia	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Rhodymeniales;Rhodymeniaceae;Botryocladia;Botryocladia sp. GVF-2017a	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Liparidae;Liparis;Liparis fucensis	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Rhodymeniales;Rhodymeniaceae;Sparlingia;Sparlingia pertusa	PTBAY_TOW_BTM_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Bacillariophyceae;Naviculales;Pleurosigmataceae;Pleurosigma;Pleurosigma strigosum	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Hydrozoa;Leptothecata;Campanulariidae;Campanularia;Campanularia volubilis	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Echinoidea;Echinoida;Strongylocentrotidae	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Chromista;Bacillariophyta;Bacillariophyceae;Bacillariales;Bacillariaceae;Pseudo-nitzschia;Pseudo-nitzschia lundholmiae	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Bryozoa;Gymnolaemata;Ctenostomatida;Vesiculariidae;Amathia;Amathia imbricata	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Gigartinales;Kallymeniaceae;Salishia;Salishia firma	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Protozoa;NA;NA;Himatismenida;NA;Parvamoeba;Parvamoeba rugata	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Terebellida;Sternaspidae;Sternaspis;Sternaspis fossor	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Plantae;NA;Florideophyceae;Gigartinales;Gigartinaceae;Mazzaella;Mazzaella sanguinea	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;NA;Planorbidae;Bulinus;Bulinus umbilicatus	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Echinodermata;Echinoidea;Echinoida;Strongylocentrotidae;Mesocentrotus;Mesocentrotus franciscanus	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Gigartinales;Phyllophoraceae;Stenogramma	PTBAY_TOW_PORT_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Halymeniales;Halymeniaceae;Prionitis;Prionitis sternbergii	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	3
+Plantae;NA;Florideophyceae;Gigartinales;Gigartinaceae;Mazzaella;Mazzaella sanguinea	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	4
+Chromista;Bacillariophyta;Fragilariophyceae;Striatellales;Grammatophoraceae;Grammatophora;Grammatophora sp. B LG-2014	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Ceramiales;Ceramiaceae;Microcladia	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Capitellida;Maldanidae;Nicomache;Nicomache personata	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Ceramiales;Rhodomelaceae;Pterosiphonia;Pterosiphonia hamata	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Decapoda;Epialtidae;Pugettia;Pugettia producta	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	4
+Plantae;NA;Florideophyceae;Gigartinales;NA;Opuntiella;Opuntiella sp. 2californica	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Anthozoa;Actiniaria	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Bryozoa;Gymnolaemata;Cheilostomatida;Hippothoidae;Celleporella;Celleporella hyalina	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Gigartinales;Peyssonneliaceae;Peyssonnelia	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Palmariales;Palmariaceae;Devaleraea;Devaleraea mollis	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Echinodermata;Asteroidea;Forcipulatida;Asteriidae;Evasterias;Evasterias troschelii	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Hydrozoa;Anthoathecata;Bougainvilliidae;Bougainvillia;Bougainvillia superciliaris	PTBAY_TOW_STBD_8m_092225	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Terebellida;Terebellidae;Pista;Pista wui	SJI_01_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;NA;Calyptraeidae;Calyptraea;Calyptraea fastigata	SJI_01_072125	Taxon had fewer than 5 total project-wide reads	2
+Plantae;NA;Florideophyceae;Ceramiales;Rhodomelaceae;Pterosiphonia;Pterosiphonia bipinnata	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Holothuroidea;Dendrochirotida;Phyllophoridae;Pentamera	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Cnidaria;Scyphozoa;Semaeostomeae;Ulmaridae;Aurelia	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Annelida;Polychaeta;Sabellida;Sabellidae;NA;Sabellidae sp. CMC01	SJI_02_072125	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Insecta;Mantodea	SJI_03_072125	Taxon had fewer than 5 total project-wide reads	4
+Bacteria;Bacteroidetes;Flavobacteriia;Flavobacteriales;Flavobacteriaceae;Dokdonia;Dokdonia sp. 4H-3-7-5	SJI_03_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Terebellida;Ampharetidae;NA;Ampharetidae sp. BOLD:AAG7386	SJI_03_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Clitellata	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Porifera;Homoscleromorpha;Homosclerophorida;Plakinidae;Oscarella;Oscarella pearsei	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Nemertea;Enopla;Monostilifera;Oerstediidae;Oerstedia;Oerstedia verae	SJI_04_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Nemertea;Anopla;Heteronemertea;Lineidae;Lineus;Lineus sp. 1 TCH-2015	SJI_05_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Lepidoptera;Noctuidae	SJI_05_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;NA;Olividae;Agaronia	SJI_06_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Bivalvia;Veneroida;Psammobiidae;Nuttallia;Nuttallia olivacea	SJI_06_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Perciformes;Cryptacanthodidae;Cryptacanthodes;Cryptacanthodes giganteus	SJI_06_072125	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Insecta;Thysanoptera;Phlaeothripidae;Haplothrips;Haplothrips tenuipennis	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	23
+Animalia;Arthropoda;Insecta	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	42
+Eukaryota	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	15104
+NA;NA;Oomycetes	SJI_BK1_01_072125	Decontaminated read was in sample with fewer than 1 reads	11
+Chromista;NA;Dinophyceae	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Chromista;NA;Raphidophyceae;Chattonellales;Chattonellaceae;Heterosigma;Heterosigma akashiwo	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	2
+Eukaryota	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	455
+Fungi;Ascomycota;Saccharomycetes;Saccharomycetales;Dipodascaceae	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	33
+Animalia;Rotifera;Monogononta;Ploima;Synchaetidae;Synchaeta	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	7
+Animalia;Arthropoda;Arachnida;Oribatida;Oribatulidae;NA;Oribatulidae sp. BOLD:ACD8939	SJI_BK2_02_072125	Decontaminated read was in sample with fewer than 1 reads	1142
+Animalia;Chordata;Actinopteri;Batrachoidiformes;Batrachoididae;Porichthys;Porichthys notatus	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Paralichthyidae;Citharichthys	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Bacillariophyta;Coscinodiscophyceae;Melosirales;Melosiraceae;Melosira;Melosira nummuloides	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Pleuronectiformes;Pleuronectidae;Psettichthys;Psettichthys melanostictus	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Anthozoa;Pennatulacea	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Malacostraca;Decapoda;Varunidae;Hemigrapsus;Hemigrapsus oregonensis	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Entoprocta;NA;NA;Loxosomatidae;Loxosomella	SQU_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;Stylommatophora;Ariophantidae;Everettia	SQU_02_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Holothuroidea;Dendrochirotida;Sclerodactylidae;Eupentacta;Eupentacta quinquesemita	SQU_02_072925	Taxon had fewer than 5 total project-wide reads	2
+Chromista;Eustigmatophyceae;NA;Eustigmatales;Monodopsidaceae;Nannochloropsis	SQU_02_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Mollusca;Gastropoda;NA;Cyclophoridae;Cyclophorus;Cyclophorus rangunensis	SQU_02_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Spionida;Chaetopteridae;Mesochaetopterus;Mesochaetopterus taylori	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Cnidaria;Anthozoa;Alcyonacea;Spongiodermidae	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;NA;Orbiniidae;Scoloplos	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	4
+Animalia;Arthropoda;Insecta;Ephemeroptera;Leptohyphidae;Haplohyphes	SQU_03_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Annelida;Polychaeta;Phyllodocida;Nereididae;Alitta;Alitta sp. CMC01	SQU_04_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Holothuroidea;Apodida;Synaptidae;Leptosynapta;Leptosynapta clarki	SQU_04_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Decapoda;Aeglidae;Aegla	SQU_05_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Echinodermata;Holothuroidea;Apodida;Synaptidae;Leptosynapta;Leptosynapta clarki	SQU_05_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Arthropoda;Malacostraca;Amphipoda;Niphargidae;Niphargus	SQU_06_072925	Taxon had fewer than 5 total project-wide reads	2
+Animalia;Chordata;Actinopteri;Clupeiformes;Clupeidae;Clupea	SQU_08_072925	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Ascomycota;Sordariomycetes;Hypocreales;Cordycipitaceae;Cordyceps;Cordyceps militaris	SQU_BK1_01_072925	Taxon had fewer than 5 total project-wide reads	2
+Fungi;Basidiomycota;Agaricomycetes	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	51
+Animalia;Arthropoda;Insecta;Lepidoptera;Crambidae	SQU_BK1_01_072925	Taxon had fewer than 5 total project-wide reads	4
+Fungi;Ascomycota;Leotiomycetes;NA;NA;Leohumicola	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	32
+Chromista;NA;Oomycetes;Albuginales;Albuginaceae;Wilsoniana;Wilsoniana amaranthi	SQU_BK1_01_072925	Taxon had fewer than 5 total project-wide reads	3
+Animalia;Arthropoda;Arachnida;NA;NA;NA;Arachnida sp. BOLD:ACM9770	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	8
+Eukaryota	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	1363
+Fungi;Ascomycota;Leotiomycetes	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	229
+Animalia;Arthropoda;Insecta;Lepidoptera	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	3
+Animalia;Arthropoda;Insecta;Hemiptera	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	2
+NA;NA;Oomycetes	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	8
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales	SQU_BK1_01_072925	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Arthropoda;Insecta;Hymenoptera;Formicidae;Linepithema;Linepithema humile	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	10851
+Eukaryota	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	1753
+Animalia;Cnidaria;Hydrozoa	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	6
+Animalia;Arthropoda;Insecta;Hymenoptera;Formicidae	SQU_BK2_02_072925	Taxon had fewer than 5 total project-wide reads	3
+Fungi;Ascomycota;Eurotiomycetes;Eurotiales	SQU_BK2_02_072925	Decontaminated read was in sample with fewer than 1 reads	2

@@ -1,0 +1,11 @@
+Include metadata: True
+Include total reads: True
+Include basic %: True
+First date: 2025-06-24
+Last date: 2025-09-25
+Confidence value: 3
+Taxonomic rank: max::species
+Taxonomic backbone version: 2026.03.31.1
+Primers requested: 12S_MiFish_U, 18S_Euk, CO1_Metazoa, vert12S
+Project ID: cmmce8izn0001i8040jar21wt
+Project URL: https://www.ednaexplorer.org/projects/cmmce8izn0001i8040jar21wt
