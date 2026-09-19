@@ -28,20 +28,20 @@ showtext_auto()
 # 2. Read in files--------------------------------------------------------------
 df <- read_excel("Zooplankton_microscopy_counts.xlsx")
 
-#3. Dataframe transformations---------------------------------------------------
+#3. Dataframe cleaning----------------------------------------------------------
 
 #Reformatting the dates
 df$Date <- as.Date(df$Date)
 
-# Extracting the time component and pasting it with the correct date because
-# of Excel adding 1899-12-31 to each time entry...
-time_part <- format(df$Time, format = "%H:%M:%S")
-df$DateTime <- as.POSIXct(paste(df$Date, time_part), format = "%Y-%m-%d %H:%M:%S")
-
-#Select columns of interest
-df <- df |> select(Location, 
-                   DateTime, 
-                   `Environmental Plankton Concentration`, 
+#Select columns of interest for zoop
+df <- df %>% select(`Sample Number`, 
+                   Location, 
+                   Date,
                    `Zooplankton Species`, 
                    Lifestage,
-                   Count)
+                   Count,
+                   `Species Concentration (Individuals/L)`,
+                   `Species Concentration Multiplier (Individuals/L)`)
+
+
+
