@@ -78,7 +78,7 @@ height_long <- df %>%
                               "Kelp_Height_2_m" = "Mid",
                               "Kelp_Height_3_m" = "Deep"))
 
-ggplot(height_long, aes(x = Date, y = Height_m, color = Depth_Class)) +
+p_height <- ggplot(height_long, aes(x = Date, y = Height_m, color = Depth_Class)) +
   geom_point(alpha = 0.5) +
   geom_smooth(se = FALSE, method = "loess", span = 0.9) +
   facet_wrap(~ Habitat_Type) +
@@ -100,7 +100,7 @@ epibiont_long <- df %>%
   ) %>%
   filter(!is.na(Score))
 
-ggplot(epibiont_long, aes(x = Date, y = Score, color = Habitat_Type)) +
+p_epiboint <- ggplot(epibiont_long, aes(x = Date, y = Score, color = Habitat_Type)) +
   geom_point(alpha = 0.6) +
   geom_smooth(se = FALSE, method = "loess", span = 0.9, linewidth = 0.8) +
   facet_wrap(~ Epibiont_Type, ncol = 2) +
@@ -117,19 +117,40 @@ ggsave("epibiont_scores_over_time.png", p_epibiont, width = 9, height = 7, dpi =
 salmon_cols <- c("Chum", "Coho", "Pink", "Cutthroat", "Chinook", "Unknown_Salmon")
 
 salmon_long <- df %>%
-  select(Date, Habitat_Type, all_of(salmon_cols)) %>%
+  mutate(Month = floor_date(Date, "month")) %>%
+  select(Month, Habitat_Type, all_of(salmon_cols)) %>%
   pivot_longer(cols = all_of(salmon_cols), names_to = "Species", values_to = "Present") %>%
   filter(Present == "Yes") %>%
-  count(Date, Species, name = "Sightings")
+  count(Month, Habitat_Type, Species, name = "Sightings")
 
-ggplot(salmon_long, aes(x = Date, y = Sightings, fill = Species)) +
+p_salmon <- ggplot(salmon_long, aes(x = Month, y = Sightings, fill = Species)) +
   geom_col(position = "stack") +
-  labs(x = "Survey Date", y = "Number of Stations with Sighting", fill = "Species") +
+  facet_wrap(~Habitat_Type)+
+  scale_x_date(date_labels = "%b", date_breaks = "1 month")+
+  labs(x = "Month", y = "Number of Observations", fill = "Species") +
   theme_bw(base_size = 12) +
   theme(legend.position = "bottom")
 
 ggsave("salmonid_sightings_by_date.png", p_salmon, width = 9, height = 6, dpi = 300)
 
+
+#Trying to visualize the data in a different way with a weird "heat map"
+salmon_presence <- df %>%
+  select(Date, Habitat_Type, all_of(salmon_cols)) %>%
+  pivot_longer(cols = all_of(salmon_cols), names_to = "Species", values_to = "Present") %>%
+  mutate(Present = replace_na(Present, "No"))  # treat NA as absent/not recorded
+
+p_salmon_heat <- ggplot(salmon_presence, aes(x = Date, y = Species, fill = Present)) +
+  geom_tile(color = "grey90", linewidth = 0.2) +
+  facet_wrap(~ Habitat_Type, nrow = 4, axes = "all", scales = "free_x") +
+  scale_fill_manual(values = c("No" = "white", "Yes" = "darkblue"), guide = "none",) +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 weeks") +
+  labs(x = "Survey Date", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+ggsave("salmonid_presence_heatmap.png", p_salmon_heat, width = 10, height = 7, dpi = 300)
 
 # 6. Forage fish presence by survey date----------------------------------------
 
@@ -137,34 +158,38 @@ forage_cols <- c("Herring", "Sand_Lance", "Surf_Smelt", "Three_Spine_Stickleback
                  "Anchovy", "Unknown_Forage_Fish")
 
 forage_long <- df %>%
-  select(Date, Habitat_Type, all_of(forage_cols)) %>%
+  mutate(Month = floor_date(Date, "month")) %>%
+  select(Month, Habitat_Type, all_of(forage_cols)) %>%
   pivot_longer(cols = all_of(forage_cols), names_to = "Species", values_to = "Present") %>%
   filter(Present == "Yes") %>%
-  count(Date, Species, name = "Sightings")
+  count(Habitat_Type, Month, Species, name = "Sightings")
 
-ggplot(forage_long, aes(x = Date, y = Sightings, fill = Species)) +
+p_forage <- ggplot(forage_long, aes(x = Month, y = Sightings, fill = Species)) +
   geom_col(position = "stack") +
-  labs(x = "Survey Date", y = "Number of Stations with Sighting", fill = "Species") +
-  theme_bw(base_size = 12) +
-  theme(legend.position = "bottom")
-
-ggsave("forage_fish_sightings_by_date.png", p_forage, width = 9, height = 6, dpi = 300)
-
-
-# 7. Harbor seal sightings over time--------------------------------------------
-
-p_seals <- df %>%
-  filter(!is.na(Number_of_Seal_Sightings)) %>%
-  ggplot(aes(x = Date, y = Number_of_Seal_Sightings)) +
-  geom_col(fill = "steelblue") +
   facet_wrap(~ Habitat_Type) +
-  labs(
-    title = "Harbor Seal Sightings During Snorkel Surveys",
-    subtitle = "Portage Canal, 2024",
-    x = "Survey Date", y = "Number of Seals Sighted"
-  ) +
-  theme_minimal(base_size = 12)
+  scale_x_date(date_labels = "%b", date_breaks = "1 month") +
+  labs(x = "Month", y = "Number of Sightings", fill = "Species") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1))
 
-ggsave("seal_sightings_over_time.png", p_seals, width = 9, height = 6, dpi = 300)
+ggsave("forage_fish_sightings_by_month_habitat.png", p_forage, width = 9, height = 7, dpi = 300)
 
+#Trying to plot this the same as the salmonid "heat map"
+forage_presence <- df %>%
+  select(Date, Habitat_Type, all_of(forage_cols)) %>%
+  pivot_longer(cols = all_of(forage_cols), names_to = "Species", values_to = "Present") %>%
+  mutate(Present = replace_na(Present, "No"))
+
+p_forage_heat <- ggplot(forage_presence, aes(x = Date, y = Species, fill = Present)) +
+  geom_tile(color = "grey90", linewidth = 0.2) +
+  facet_wrap(~ Habitat_Type, nrow = 4, axes = "all", scale = "free_x") +
+  scale_fill_manual(values = c("No" = "white", "Yes" = "darkred"), guide = "none") +
+  scale_x_date(date_labels = "%b %d", date_breaks = "2 weeks") +
+  labs(x = "Survey Date", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank())
+
+ggsave("forage_fish_presence_heatmap.png", p_forage_heat, width = 10, height = 7, dpi = 300)
 
