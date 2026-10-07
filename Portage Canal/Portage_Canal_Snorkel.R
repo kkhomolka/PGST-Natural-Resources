@@ -25,6 +25,10 @@ pacman::p_load(pwr,
 font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
 
+#Use for windows operating systems
+font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+showtext_auto()
+
 # 2. Read and clean-------------------------------------------------------------
 df <- read_csv("Portage Canal Snorkel Survey.csv")
 
@@ -100,7 +104,7 @@ epibiont_long <- df %>%
   ) %>%
   filter(!is.na(Score))
 
-p_epiboint <- ggplot(epibiont_long, aes(x = Date, y = Score, color = Habitat_Type)) +
+p_epibiont <- ggplot(epibiont_long, aes(x = Date, y = Score, color = Habitat_Type)) +
   geom_point(alpha = 0.6) +
   geom_smooth(se = FALSE, method = "loess", span = 0.9, linewidth = 0.8) +
   facet_wrap(~ Epibiont_Type, ncol = 2) +
