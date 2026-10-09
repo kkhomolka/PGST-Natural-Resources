@@ -139,3 +139,40 @@ ggplot(total, aes(Location, `Species Concentration (Individuals/L)`)) +
   geom_jitter(aes(color = Date), width = 0.2, size = 4) +
   labs(y = "Total Species Concentration (Individuals/L)") +
   theme_bw()
+
+# 9. GLMM for station-----------------------------------------------------------
+
+# comparing total concentration by station. The model needs location and date as 
+# factors. Will keep date as a date class
+
+total <- total |>
+  mutate(Location = factor(Location),
+         Date_f   = factor(Date))
+
+## pick the station everything is compared against (the reference level) which 
+# will be North Portage Canal as the kelp bed 
+m_nb <- glmmTMB(
+  Count ~ Location + (1 | Date_f) + (1 | Date_f:Location) +
+    offset(log(`Volume Filtered (L)`)),
+  family = nbinom2,
+  data = total)
+
+summary(m_nb)
+
+#testing with and without station 
+m_null <- update(m_nb, . ~ . - Location)
+anova(m_null, m_nb)
+
+#pairwise comparison
+emm <- emmeans(m_nb, ~ Location, type = "response", offset = 0)  # estimated individuals/L per station
+emm
+pairs(emm, type = "response")   # ratios between stations, with p-values
+
+# all pairwise comparisons as ratios
+pairs(emm, type = "response")
+
+# test model residuals
+plot(simulateResiduals(m_nb))
+
+# 10. GLMM for species composition----------------------------------------------
+
