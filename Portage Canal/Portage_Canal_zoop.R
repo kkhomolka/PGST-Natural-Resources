@@ -175,4 +175,42 @@ pairs(emm, type = "response")
 plot(simulateResiduals(m_nb))
 
 # 10. GLMM for species composition----------------------------------------------
+## work on a copy so df keeps all species
+#need to lump before summing, so the other category is added up within each replicate
+df_comp <- df |>
+  mutate(
+    `Zooplankton Species` = tools::toTitleCase(tolower(`Zooplankton Species`)),
+    `Zooplankton Species` = fct_lump_n(
+      `Zooplankton Species`, n = 6, w = Count, other_level = "Other"))
+
+#fill taxa that were absent from a replicate with a count of 0
+comp <- df_comp |>
+  group_by(Location, Date, `Sample Number`, `Zooplankton Species`) |>
+  summarise(Count = sum(Count),
+            `Volume Filtered (L)` = first(`Volume Filtered (L)`),
+            .groups = "drop") |>
+ complete(nesting(Location, Date, `Sample Number`, `Volume Filtered (L)`),
+           `Zooplankton Species`, fill = list(Count = 0)) |>
+  mutate(Location = factor(Location),
+         Date_f   = factor(Date),
+         Rep_id   = interaction(Location, Date, `Sample Number`, drop = TRUE))
+
+#check - should be 294 (42 replicates x 7 taxa)
+nrow(comp)
+
+#fit the model
+#random effects are the replicates that is captured by rep_id
+m_comp <- glmmTMB(
+  Count ~ `Zooplankton Species` * Location +
+    (1 | Date_f) + (1 | Date_f:Location) + (1 | Rep_id) +
+    offset(log(`Volume Filtered (L)`)),
+  family = nbinom2,
+  data = comp)
+
+summary(m_comp)
+
+#using ANOVA to look at if there is a difference between 
+m_add <- update(m_comp, . ~ . - `Zooplankton Species`:Location)
+anova(m_add, m_comp)
+
 
