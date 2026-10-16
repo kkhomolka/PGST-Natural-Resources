@@ -128,7 +128,7 @@ survey_cond <- survey_cond %>%
 df_cond  <- df %>% filter(survey_date != ymd("2024-05-24")) %>% left_join(survey_cond, by = "survey_date")
 veg_cond <- df_cond %>% filter(PlantHeight_m > 0)
 
-tide_cols <- c(Flood = "olivedrab4", Ebb = "turquoise3")
+tide_cols <- c(Flood = "olivedrab4", Ebb = "cornflowerblue")
 
 # summarise and group
 cond_summary <- veg_cond %>%
@@ -153,13 +153,14 @@ p_speed
 # boxplot of plant heights by current speed
 p_dist <- ggplot(veg_cond, aes(x = label, y = PlantHeight_m, fill = tide_stage)) +
   geom_boxplot(outlier.shape = NA, alpha = 0.6) +
-  geom_jitter(aes(color = tide_stage), width = 0.15, alpha = 0.25, size = 0.8,
+  geom_jitter(aes(color = tide_stage), width = 0.15, alpha = 0.25, size = 2,
               show.legend = FALSE) +
   scale_fill_manual(values = tide_cols) +
   scale_color_manual(values = tide_cols) +
-  labs(x = "Survey date and current velocity (kts)",
+  labs(x = "Survey date and predicted current velocity (kts)",
        y = "Plant height (m)", fill = "Tidal stage") +
-  theme_classic(base_size = 12)
+  theme_classic(base_size = 18, base_family = "Times New Roman")
+  
 
 p_dist
 
