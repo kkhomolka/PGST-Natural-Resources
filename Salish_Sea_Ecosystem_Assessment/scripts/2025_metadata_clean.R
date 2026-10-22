@@ -10,6 +10,10 @@ pacman::p_load(tidyverse,
 font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
 
+#Use for windows operating systems
+font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+showtext_auto()
+
 #create file objects
 meta_raw_file   <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_Sample_Metadata_SQL.csv"
 meta_clean_file <- "data/raw/eDNA_explorer/Metadata/2025_sample_metadata_clean.csv"
@@ -59,7 +63,7 @@ meta <- meta %>%
   rename(sample       = `Sample ID`,    # MUST match the sequencing column names
          station      = `Station ID`,
          site_text    = Site,
-         sample_type_meta = `Sample Type`,
+         sample_type  = `Sample Type`,
          lat          = Latitude,
          lon          = Longitude,
          date         = `Sample Date`,
@@ -71,17 +75,10 @@ meta <- meta %>%
          preservation = `Preservation Method`) %>%
   select(-`Running No.`, -Substrate)    # not needed (substrate is always "water")
 
-# 3. Clean spelling errors and convert to station codes-------------------------
-meta %>% count(site_text, station) %>% print(n = Inf)   # see the problem
+# 3. Clean spelling errors and find missing station id's if there are any
+meta %>% count(site_text, station) %>% print(n = Inf)   
 
-# The SeQuench tows have no Station ID. Fill it in from the sample name.
-meta <- meta %>%
-  mutate(station = case_when(
-    !is.na(station)                ~ station,
-    str_detect(sample, "^PBN_TOW")   ~ "PBN_tow",
-    str_detect(sample, "^PTBAY_TOW") ~ "PTBAY_tow"))
-
-# The SeQuench tows have no station id in the metadata, so I ust assign
+# The SeQuench tows have no station id in the metadata, so I must assign
 meta <- meta %>%
   mutate(station = case_when(
     !is.na(station)                           ~ station,   # keep existing IDs
@@ -90,51 +87,30 @@ meta <- meta %>%
     str_detect(sample, "^PTBAY_TOW_.*_8m_")   ~ "PTBAY_TOW_8m"))
 
 # Every sample should now have a station
-meta %>% filter(is.na(station))          # should print 0 rows
+meta %>% filter(is.na(station))   
 
 # Which samples have a station that isn't in the official station list?
-anti_join(meta, stations, by = c("station" = "station_id")) %>%
+anti_join(meta, coords, by = c("station" = "station_id")) %>%
   count(station)
 
+#just the blanks don't have stations so we're good to move on!
 
-# ---- 4. Standardise categories and pull flags out of the notes -------------------
+# 4. Standardise categories and pull flags out of the notes --------------------
+
+# sanity check number of rows before we join
+nrow(meta)
+
+#join coords with meta df
 meta <- meta %>%
-  mutate(
-    # "Rosette Cast" vs "Rosette cast" -> one spelling
-    method = case_when(
-      str_detect(notes, regex("sequench", ignore_case = TRUE)) ~ "SeQuench tow",
-      str_detect(notes, regex("blank",    ignore_case = TRUE)) ~ "Field blank",
-      str_detect(notes, regex("rosette",  ignore_case = TRUE)) ~ "Rosette cast",
-      str_detect(notes, regex("grab",     ignore_case = TRUE)) ~ "3 m grab"),
-    
-    # filter system: pore size + preservation together describe it
-    # ("\u00b5" is the code for the micro sign; it avoids encoding problems)
-    filter_type = case_when(
-      filter_um == 1.2 ~ "1.2 \u00b5m PES, silica gel",
-      filter_um == 5   ~ "5 \u00b5m, self-preserving",
-      filter_um == 50  ~ "50 \u00b5m SeQuench tow"),
-    # factor() fixes the order things appear in legends and facets
-    filter_type = factor(filter_type, levels = c("1.2 \u00b5m PES, silica gel",
-                                                 "5 \u00b5m, self-preserving",
-                                                 "50 \u00b5m SeQuench tow")),
-    
-    # TRUE/FALSE flags from the free-text notes, so we can filter/colour by them
-    flag_delaminated = str_detect(notes, regex("delaminat", ignore_case = TRUE)),
-    flag_valve_open  = str_detect(notes, regex("valve left open", ignore_case = TRUE)),
-    tech_rep_of      = str_extract(notes, "[A-Z]+_\\d{2}_\\d{6}"),
-    
-    habitat = str_to_sentence(habitat),
-    date    = as.Date(date))
+  left_join(coords, by = c("station" = "station_id"))
 
-# Check the new columns. Every sample should have a method and a filter type.
-count(meta, method, filter_type, preservation)
-stopifnot(!any(is.na(meta$method)), !any(is.na(meta$filter_type)))
-
-meta %>% filter(flag_delaminated | flag_valve_open) %>%
-  select(sample, station, depth_m, notes)
+# sanity check nrow after the join 
+nrow(meta)
 
 
-# ---- 6. Save ---------------------------------------------------------------------
+
+
+# 6. Save ----------------------------------------------------------------------
 meta_clean <- meta %>%
   select(sample, area, station, station_name, sample_type_meta, date,
          lat, lon, depth_m, habitat, method, volume_L, filter_um,
