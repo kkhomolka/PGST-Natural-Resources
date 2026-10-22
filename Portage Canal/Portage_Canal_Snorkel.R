@@ -62,7 +62,8 @@ p_condition <- ggplot(condition_long, aes(x = Date, y = Score, color = Habitat_T
   facet_wrap(~ Metric, ncol = 2) +
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
   labs(x = "Month", y = "Qualitative Score (1-5)", color = "Habitat Type") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 22) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(legend.position = "bottom")
 
 ggsave("kelp_condition_over_time.png", p_condition, width = 10, height = 8, dpi = 300)
@@ -110,7 +111,8 @@ p_epibiont <- ggplot(epibiont_long, aes(x = Date, y = Score, color = Habitat_Typ
   facet_wrap(~ Epibiont_Type, ncol = 2) +
   scale_y_continuous(limits = c(1, 5), breaks = 1:5) +
   labs( x = "Survey Date", y = "Qualitative Score (1-5)", color = "Habitat Type") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 22) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(legend.position = "bottom")
 
 ggsave("epibiont_scores_over_time.png", p_epibiont, width = 9, height = 7, dpi = 300)
@@ -132,7 +134,8 @@ p_salmon <- ggplot(salmon_long, aes(x = Month, y = Sightings, fill = Species)) +
   facet_wrap(~Habitat_Type)+
   scale_x_date(date_labels = "%b", date_breaks = "1 month")+
   labs(x = "Month", y = "Number of Observations", fill = "Species") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 18) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(legend.position = "bottom")
 
 ggsave("salmonid_sightings_by_date.png", p_salmon, width = 9, height = 6, dpi = 300)
@@ -150,7 +153,8 @@ p_salmon_heat <- ggplot(salmon_presence, aes(x = Date, y = Species, fill = Prese
   scale_fill_manual(values = c("No" = "white", "Yes" = "darkblue"), guide = "none",) +
   scale_x_date(date_labels = "%b %d", date_breaks = "2 weeks") +
   labs(x = "Survey Date", y = NULL) +
-  theme_minimal(base_size = 11) +
+  theme_minimal(base_size = 20) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         panel.grid = element_blank())
 
@@ -173,7 +177,8 @@ p_forage <- ggplot(forage_long, aes(x = Month, y = Sightings, fill = Species)) +
   facet_wrap(~ Habitat_Type) +
   scale_x_date(date_labels = "%b", date_breaks = "1 month") +
   labs(x = "Month", y = "Number of Sightings", fill = "Species") +
-  theme_minimal(base_size = 12) +
+  theme_minimal(base_size = 20) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(legend.position = "bottom",
         axis.text.x = element_text(angle = 45, hjust = 1))
 
@@ -191,7 +196,8 @@ p_forage_heat <- ggplot(forage_presence, aes(x = Date, y = Species, fill = Prese
   scale_fill_manual(values = c("No" = "white", "Yes" = "darkred"), guide = "none") +
   scale_x_date(date_labels = "%b %d", date_breaks = "2 weeks") +
   labs(x = "Survey Date", y = NULL) +
-  theme_minimal(base_size = 11) +
+  theme_minimal(base_size = 18) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         panel.grid = element_blank())
 

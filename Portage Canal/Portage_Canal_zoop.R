@@ -109,6 +109,8 @@ ggplot(rep_conc_box,
   labs(y = "Species Concentration (Individuals/L)",
        fill = "Zooplankton Species", color = "Zooplankton Species") +
   theme_bw() +
+  theme(text = element_text(size = 22))+
+  theme(text = element_text(family = "Times New Roman"))+
   theme(axis.text.x = element_text(angle = 45, hjust = 1),
         strip.background = element_blank(),
         strip.text = element_text(face = "bold"))
