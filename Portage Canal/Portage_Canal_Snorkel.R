@@ -88,7 +88,8 @@ p_height <- ggplot(height_long, aes(x = Date, y = Height_m, color = Depth_Class)
   geom_smooth(se = FALSE, method = "loess", span = 0.9) +
   facet_wrap(~ Habitat_Type) +
   labs(x = "Survey Date", y = "Kelp Height (m)", color = "Depth Position") +
-  theme_bw(base_size = 12) +
+  theme_bw(base_size = 22) +
+  theme(text = element_text(family = "Times New Roman"))+
   theme(legend.position = "bottom")
 
 ggsave("kelp_height_over_time.png", p_height, width = 9, height = 7, dpi = 300)
