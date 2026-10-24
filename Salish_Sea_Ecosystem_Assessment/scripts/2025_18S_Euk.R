@@ -198,7 +198,7 @@ n_top <- 20
 # each taxon's share of its sample's reads
 aug <- clean_long %>%
   filter(month(date) == 8, station %in% aug_stations) %>%
-  mutate(taxon = coalesce(species, genus, family, order, class, phylum, kingdom)) %>%
+  mutate(taxon = coalesce(class, phylum, kingdom)) %>% # use this to revert back: mutate(taxon = coalesce(species, genus, family, order, class, phylum, kingdom)
   group_by(sample) %>%
   mutate(rel_abund = reads / sum(reads)) %>%
   ungroup()
@@ -223,7 +223,7 @@ bar_data <- aug %>%
          station = factor(station, levels = aug_stations),
          depth_f = factor(depth_m, levels = sort(unique(depth_m), decreasing = TRUE)))
 
-# 20 distinguishable colours (Kelly's palette) + grey for "Other"
+# 20 distinguishable colours
 taxa_cols <- c("#F3C300", "#875692", "#F38400", "#A1CAF1", "#BE0032",
                "#C2B280", "#848482", "#008856", "#E68FAC", "#0067A5",
                "#F99379", "#604E97", "#F6A600", "#B3446C", "#DCD300",
@@ -235,14 +235,16 @@ p_bar <- ggplot(bar_data, aes(x = rel_abund, y = depth_f, fill = taxon)) +
   geom_col(width = 0.85, colour = "white", linewidth = 0.1) +
   facet_wrap(~ station, nrow = 1, scales = "free_y") +
   scale_x_continuous(breaks = c(0, 0.25, 0.5, 0.75, 1),
+                     labels = scales::label_number(drop0trailing = TRUE),
                      expand = c(0, 0), position = "top") +
   scale_fill_manual(values = taxa_cols) +
   labs(x = "Relative read abundance", y = "Depth (m)", fill = NULL) +
   theme_poster +
-  theme(legend.position = "bottom", legend.text = element_text(size = 11)) +
-  guides(fill = guide_legend(nrow = 4))
+  theme(legend.position = "bottom", legend.text = element_text(size = 18)) +
+  guides(fill = guide_legend(nrow = 5))
 
 p_bar
 
 ggsave("output/18S_August_top20_by_depth.png", p_bar,
        width = 15, height = 8, dpi = 300, bg = "white")
+
