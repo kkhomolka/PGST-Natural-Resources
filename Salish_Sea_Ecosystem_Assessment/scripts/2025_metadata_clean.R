@@ -1,7 +1,6 @@
 # 1. Setup ---------------------------------------------------------------------
 pacman::p_load(tidyverse, 
                sf,
-               ggplot2,
                rnaturalearth,
                rnaturalearthdata,
                showtext)
@@ -11,8 +10,8 @@ font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
 
 #Use for windows operating systems
-font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
-showtext_auto()
+#font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+#showtext_auto()
 
 #create file objects
 meta_raw_file   <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_Sample_Metadata_SQL.csv"
@@ -23,21 +22,25 @@ coords_file <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_sampling_coordinates.c
 
 # 2. Sample map-----------------------------------------------------------------
 
-# read in coordinates and station_ids
-coords <- read_csv(coords_file)
+# read in coordinates file
+coords <- read_csv(coords_file, show_col_types = FALSE)          
 
-# need to convert to an sf object adn extract the map I want
-coords <- st_as_sf(coords, coords = c("longitude", "latitude"), crs = 4326)
+# need to convert to sf object for plotting, but it will override the normal coords
+# so need to keep them separate
+coords_sf <- st_as_sf(coords, coords = c("longitude", "latitude"),
+                      crs = 4326, remove = FALSE)                    
+
+# create the basemap that I want
 detailed_land <- ne_countries(scale = "large", returnclass = "sf")
 
 # plot the stations
 ggplot()+
   geom_sf(data = detailed_land, color = "black", fill = "grey")+
-  geom_sf(data = coords, aes(color = station_id), size = 3)+
+  geom_sf(data = coords_sf, aes(color = station_id), size = 3)+
   theme_bw()+
   theme(text = element_text(size = 16, family = "Times New Roman"))+
-  coord_sf(xlim = c(st_bbox(coords)$xmin - 0.08, st_bbox(coords)$xmax + 0.08),
-           ylim = c(st_bbox(coords)$ymin - 0.08, st_bbox(coords)$ymax + 0.08)) +
+  coord_sf(xlim = c(st_bbox(coords_sf)$xmin - 0.08, st_bbox(coords_sf)$xmax + 0.08),
+           ylim = c(st_bbox(coords_sf)$ymin - 0.08, st_bbox(coords_sf)$ymax + 0.08)) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
   labs(x = "Longitude", 
        y = "Latitude",
@@ -51,7 +54,6 @@ meta_raw <- read_csv(meta_raw_file, na = c("", "NA", "-"),
 
 # drop the empty rows 
 meta <- meta_raw %>% filter(!is.na(`Sample ID`))
-nrow(meta)
 
 # check for duplicate sample ID's (should come back zero)
 meta %>% count(`Sample ID`) %>% filter(n > 1)   
@@ -75,47 +77,81 @@ meta <- meta %>%
          preservation = `Preservation Method`) %>%
   select(-`Running No.`, -Substrate)    # not needed (substrate is always "water")
 
-# 3. Clean spelling errors and find missing station id's if there are any
+# 5. Clean spelling errors and find missing station id's if there are any
 meta %>% count(site_text, station) %>% print(n = Inf)   
-
-# The SeQuench tows have no station id in the metadata, so I must assign
-meta <- meta %>%
-  mutate(station = case_when(
-    !is.na(station)                           ~ station,   # keep existing IDs
-    str_detect(sample, "^PBN_TOW_.*_3m_")     ~ "PBN_TOW_3m",
-    str_detect(sample, "^PBN_TOW_.*_15m_")    ~ "PBN_TOW_15m",
-    str_detect(sample, "^PTBAY_TOW_.*_8m_")   ~ "PTBAY_TOW_8m"))
 
 # Every sample should now have a station
 meta %>% filter(is.na(station))   
 
-# Which samples have a station that isn't in the official station list?
+# Which samples have a station that isn't in the official station list? 
+# should just be the blanks
 anti_join(meta, coords, by = c("station" = "station_id")) %>%
   count(station)
 
-#just the blanks don't have stations so we're good to move on!
-
-# 4. Standardise categories and pull flags out of the notes --------------------
+# 6. Standardise categories and pull flags out of the notes --------------------
 
 # sanity check number of rows before we join
 nrow(meta)
 
-#join coords with meta df
+# join coords with meta df
 meta <- meta %>%
   left_join(coords, by = c("station" = "station_id"))
 
-# sanity check nrow after the join 
+# sanity check nrow after the join (should still be 146)
 nrow(meta)
 
+# what did the join add?
+names(meta)
 
+# Do the field sheet and the station list agree on site names?
+meta %>% filter(site_text != site) %>% select(sample, station, site_text, site)
 
+# 7. ---------------------------------------------------------------------------
 
-# 6. Save ----------------------------------------------------------------------
-meta_clean <- meta %>%
-  select(sample, area, station, station_name, sample_type_meta, date,
-         lat, lon, depth_m, habitat, method, volume_L, filter_um,
-         preservation, filter_type, flag_delaminated, flag_valve_open,
-         tech_rep_of, notes)
+# Coordinates agree? (0.0001 degrees ≈ 10 m). Should be 0 rows.
+meta %>%
+  filter(abs(lat - latitude) > 0.0001 | abs(lon - longitude) > 0.0001) %>%
+  select(sample, station, lat, latitude, lon, longitude)
 
-write_csv(meta_clean, meta_clean_file)
-message("Saved ", nrow(meta_clean), " samples to ", meta_clean_file)
+# Keep one copy of each (field-sheet versions also cover the blanks)
+meta <- meta %>%
+  select(-site, -latitude, -longitude) %>%
+  rename(site = site_text)
+
+# 8. Add analysis columns ------------------------------------------------------
+meta <- meta %>%
+  mutate(
+    # broad area, for grouping in figures
+    area = case_when(
+      str_starts(sample, "JDFB|PBN_TOW") ~ "Partridge Bank",
+      str_starts(sample, "PTBAY")        ~ "Port Townsend Bay",
+      str_starts(sample, "OAK")          ~ "Oak Bay",
+      str_starts(sample, "SJI")          ~ "San Juan Islands",
+      str_starts(sample, "SQU")          ~ "Squamish Harbor"),
+    
+    # sampling method, from the notes ("Rosette Cast" vs "Rosette cast" -> one)
+    method = case_when(
+      str_detect(notes, regex("sequench", ignore_case = TRUE)) ~ "SeQuench tow",
+      str_detect(notes, regex("blank",    ignore_case = TRUE)) ~ "Field blank",
+      str_detect(notes, regex("rosette",  ignore_case = TRUE)) ~ "Rosette cast",
+      str_detect(notes, regex("grab",     ignore_case = TRUE)) ~ "3 m grab"),
+    
+    # filter system ("\u00b5" = the micro sign, written safely)
+    filter_type = factor(case_when(
+      filter_um == 1.2 ~ "1.2 \u00b5m",
+      filter_um == 5   ~ "5 \u00b5m",
+      filter_um == 50  ~ "50 \u00b5m tow"),
+      levels = c("1.2 \u00b5m", "5 \u00b5m", "50 \u00b5m tow")),
+    
+    # TRUE/FALSE flags from the notes
+    flag_delaminated = str_detect(notes, regex("delaminat", ignore_case = TRUE)),
+    flag_valve_open  = str_detect(notes, regex("valve left open", ignore_case = TRUE)),
+    tech_rep_of      = str_extract(notes, "[A-Z]+_\\d{2}_\\d{6}"))
+
+# Nothing should be NA in these
+stopifnot(!any(is.na(meta$area)), !any(is.na(meta$method)),
+          !any(is.na(meta$filter_type)))
+count(meta, area, method, filter_type)
+
+# 9. Save -----------------------------------------------------------------------
+write_csv(meta, meta_clean_file)
