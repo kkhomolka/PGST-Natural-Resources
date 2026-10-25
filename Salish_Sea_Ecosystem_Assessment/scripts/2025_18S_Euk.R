@@ -146,7 +146,7 @@ alpha <- tibble(sample   = rownames(comm_rare),
 
 summary(alpha$richness)
 
-# 10. Depth profiles: one panel per month, one line per station cast -----------------
+# 9. Depth profiles: one panel per month, one line per station cast -----------------
 
 # isolate partridge bank for the baseline
 alpha_pb <- alpha %>%
@@ -190,7 +190,7 @@ p_profile
 ggsave("output/18S_richness_depth_profiles.png", p_profile,
        width = 13, height = 6.5, dpi = 300, bg = "white")
 
-# 11. August community composition: top 20 taxa by depth -------------------------
+# 10. August community composition: top 20 taxa by depth -------------------------
 aug_stations <- c("PBN", "PBW", "PBS", "DW1", "DW2")   # also sets the panel order
 n_top <- 20
 
@@ -248,3 +248,78 @@ p_bar
 ggsave("output/18S_August_top20_by_depth.png", p_bar,
        width = 15, height = 8, dpi = 300, bg = "white")
 
+# 11. Beta diversity and checks for NMDS----------------------------------------
+
+# Same Partridge Bank Niskin samples as the alpha plots, minus JDFB_51
+# (one barnacle dominates it, so it shares almost nothing with any other
+#  sample and squashes the NMDS into a line)
+beta_samples <- setdiff(alpha_pb$sample, "JDFB_51_082725")
+
+comm_pb <- comm[beta_samples, ]
+comm_pb <- comm_pb[, colSums(comm_pb) > 0]    # drop taxa absent from these samples
+dim(comm_pb)                                   # 87 samples x ~614 taxa
+
+# Reads -> proportions (each row sums to 1), then square-root so a few
+# super-abundant dinoflagellates don't dominate the distances
+comm_rel  <- decostand(comm_pb, method = "total")
+comm_sqrt <- sqrt(comm_rel)
+
+set.seed(2025)                                 # NMDS starts from random positions
+nmds <- metaMDS(comm_sqrt, distance = "bray", k = 2,
+                trymax = 100, autotransform = FALSE, trace = 0)
+
+nmds$stress       # want < 0.2
+stressplot(nmds)  # points should hug the red line
+
+# 12. NMDS plot ---------------------------------------------------------------------
+# Pull out each sample's position on the map and attach its metadata
+nmds_scores <- scores(nmds, display = "sites") %>%
+  as_tibble(rownames = "sample") %>%
+  left_join(alpha_pb, by = "sample")
+
+nmds_scores <- nmds_scores %>%
+  mutate(depth_zone = if_else(depth_m <= 20, "\u2264 20 m", "> 20 m"))
+
+month_cols <- c(Jun = "#8DB600", Jul = "#191970", Aug = "#6495ED", Sep = "#CD2990")
+
+p_nmds <- ggplot(nmds_scores, aes(x = NMDS1, y = NMDS2, colour = month)) +
+  stat_ellipse(aes(group = month), level = 0.68, linewidth = 0.8) +
+  geom_point(aes(shape = depth_zone), size = 3.5, alpha = 0.70) +
+  scale_colour_manual(values = month_cols) +
+  annotate("text", x = Inf, y = -Inf, hjust = 1.1, vjust = -0.6, size = 5,
+           label = paste0("Stress = ", round(nmds$stress, 2)),
+           family = "Times New Roman") +
+  coord_equal() +
+  labs(colour = "Month", shape = "Depth") +
+  theme_poster
+
+p_nmds
+
+ggsave("output/18S_NMDS_month.png", p_nmds,
+       width = 8, height = 7, dpi = 300, bg = "white")
+
+# 13. PERMANOVA -------------------------------------------------------------------
+# Distance matrix: same transformation as the NMDS
+bray <- vegdist(comm_sqrt, method = "bray")
+
+# Metadata in EXACTLY the same row order as the distance matrix
+beta_meta <- alpha_pb[match(rownames(comm_sqrt), alpha_pb$sample), ]
+stopifnot(identical(beta_meta$sample, rownames(comm_sqrt)))
+
+# How much community variation do month, depth and station each explain?
+set.seed(2025)
+perm <- adonis2(bray ~ month + depth_m + station, data = beta_meta,
+                by = "margin", permutations = 999)
+perm
+
+# Assumption check: do months differ in how SPREAD OUT they are?
+disp <- betadisper(bray, beta_meta$month)
+set.seed(2025)
+permutest(disp, permutations = 999)
+
+# checking with jaccard instead of bray-curtis to compare
+jac <- vegdist(comm_sqrt > 0, method = "jaccard")
+set.seed(2025)
+perm_jac <- adonis2(jac ~ month + depth_m + station, data = beta_meta,
+                    by = "margin", permutations = 999)
+perm_jac
