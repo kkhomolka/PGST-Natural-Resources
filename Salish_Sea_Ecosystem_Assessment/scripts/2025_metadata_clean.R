@@ -15,7 +15,7 @@ showtext_auto()
 
 #create file objects
 meta_raw_file   <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_Sample_Metadata_SQL.csv"
-meta_clean_file <- "data/raw/eDNA_explorer/Metadata/2025_sample_metadata_clean.csv"
+meta_clean_file <- "data/processed/2025_sample_metadata_clean.csv"
 stopifnot(file.exists(meta_raw_file))
 
 coords_file <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_sampling_coordinates.csv"
