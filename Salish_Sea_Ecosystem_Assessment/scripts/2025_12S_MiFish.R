@@ -219,5 +219,5 @@ p_tow_pie <- ggplot(pie_tows, aes(x = "", y = mean_prop, fill = group)) +
 
 p_tow_pie
 
-ggsave("output/MiFish_PBN_tows_pies.png", p_tow_pie,
+ggsave("output/figures/12S_MiFish/MiFish_PBN_tows_pies.png", p_tow_pie,
        width = 10, height = 5, dpi = 300, bg = "white")
