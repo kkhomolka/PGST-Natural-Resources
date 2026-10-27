@@ -1,9 +1,18 @@
 # 1. Setup ---------------------------------------------------------------------
-pacman::p_load(tidyverse, vegan)
+pacman::p_load(tidyverse,
+               vegan,
+               showtext,
+               scales,
+               patchwork)
 
 # add my fav font
 font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
+showtext_opts(dpi = 300)
+
+#Use for windows operating systems
+#font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+#showtext_auto()
 
 #create objects
 meta_clean_file <- "data/processed/2025_sample_metadata_clean.csv"
@@ -14,7 +23,7 @@ stopifnot(file.exists(meta_clean_file), file.exists(reads_file))
 meta <- read_csv(meta_clean_file, show_col_types = FALSE) %>%
   # CSVs don't remember factor order, so set it again
   mutate(filter_type = factor(filter_type,
-                              levels = c("1.2 \u00b5m", "5 \u00b5m", "50 \u00b5m tow")))
+                              levels = c("1.2 \u00b5m", "5 \u00b5m", "20 \u00b5m tow")))
 
 raw <- read_tsv(reads_file, show_col_types = FALSE)
 
@@ -151,7 +160,7 @@ summary(alpha$richness)
 # isolate partridge bank for the baseline
 alpha_pb <- alpha %>%
   left_join(meta %>% select(sample, habitat), by = "sample") %>%
-  filter(area == "Partridge Bank", method != "SeQuench tow") %>%
+  filter(area == "Partridge Bank", method != "Sequench tow") %>%
   mutate(month   = month(date, label = TRUE, abbr = TRUE),       # Jun, Jul, ...
          station = fct_reorder(station, depth_m, .fun = max))    # shallow -> deep
 
@@ -160,7 +169,7 @@ count(alpha_pb, month)
 count(alpha_pb, station, habitat)
 
 # One theme and one colour set, reused by every plot -> consistent poster figures
-theme_poster <- theme_bw(base_size = 26) +
+theme_poster <- theme_bw(base_size = 24) +
   theme(text = element_text(family = "Times New Roman"),
         panel.grid.minor = element_blank())
 
@@ -183,12 +192,13 @@ p_profile <- ggplot(profile_data, aes(x = richness, y = depth_m, colour = statio
   scale_y_reverse() +                      # surface at the top
   scale_colour_manual(values = station_cols) +
   labs(x = "Taxon richness (rarefied)", y = "Depth (m)", colour = "Station") +
-  theme_poster
+  theme_poster+
+  theme(legend.position = "bottom")
 
 p_profile
 
-ggsave("output/18S_richness_depth_profiles.png", p_profile,
-       width = 13, height = 6.5, dpi = 300, bg = "white")
+ggsave("output/figures/18S_Euk/18S_richness_depth_profiles.png", p_profile,
+       width = 13, height = 7, dpi = 300, bg = "white")
 
 # 10. August community composition: top 20 taxa by depth -------------------------
 aug_stations <- c("PBN", "PBW", "PBS", "DW1", "DW2")   # also sets the panel order
@@ -245,7 +255,7 @@ p_bar <- ggplot(bar_data, aes(x = rel_abund, y = depth_f, fill = taxon)) +
 
 p_bar
 
-ggsave("output/18S_August_top20_by_depth.png", p_bar,
+ggsave("output/figures/18S_Euk/18S_August_top20_by_depth.png", p_bar,
        width = 15, height = 8, dpi = 300, bg = "white")
 
 # 11. Beta diversity and checks for NMDS----------------------------------------
@@ -295,7 +305,7 @@ p_nmds <- ggplot(nmds_scores, aes(x = NMDS1, y = NMDS2, colour = month)) +
 
 p_nmds
 
-ggsave("output/18S_NMDS_month.png", p_nmds,
+ggsave("output/figures/18S_Euk/18S_NMDS_month.png", p_nmds,
        width = 8, height = 7, dpi = 300, bg = "white")
 
 # 13. PERMANOVA -------------------------------------------------------------------

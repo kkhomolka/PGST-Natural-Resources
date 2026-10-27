@@ -1,21 +1,29 @@
 # 1. Setup ---------------------------------------------------------------------
-pacman::p_load(tidyverse, vegan)
+pacman::p_load(tidyverse,
+               showtext,
+               scales,
+               patchwork)
 
 # add my fav font
 font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
+showtext_opts(dpi = 300)
+
+#Use for windows operating systems
+#font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+#showtext_auto()
 
 #create objects
 meta_clean_file <- "data/processed/2025_sample_metadata_clean.csv"
 reads_file      <- "data/raw/eDNA_explorer/eDNA Results/CO1_Metazoa/decontaminated/CO1_metazoa_total_reads_decontaminated.tsv"
 stopifnot(file.exists(meta_clean_file), file.exists(reads_file))
 
-# copied these from 2025_18S_Euk.R script
-# One theme and one colour set, reused by every plot -> consistent poster figures
-theme_poster <- theme_bw(base_size = 32) +
+# consistent figure aesthetics
+theme_poster <- theme_bw(base_size = 24) +
   theme(text = element_text(family = "Times New Roman"),
         panel.grid.minor = element_blank())
 
+# station and month color palettes
 station_cols <- c(PBKN = "#E8A302FF", PBKS = "#00EBF0FF", PBSH = "#CD2990",
                   PBN  = "#6495ED", PBS  = "#E2DD4DFF", PBW  = "#EE6A50",
                   DW1  = "#006400", DW2  = "#191970")
@@ -26,7 +34,7 @@ month_cols <- c(Jun = "#8DB600", Jul = "#191970", Aug = "#6495ED", Sep = "#CD299
 # 2. Read, reshape, join metadata ---------------------------------------------------
 meta <- read_csv(meta_clean_file, show_col_types = FALSE) %>%
   mutate(filter_type = factor(filter_type,
-                              levels = c("1.2 \u00b5m", "5 \u00b5m", "50 \u00b5m tow")))
+                              levels = c("1.2 \u00b5m", "5 \u00b5m", "20 \u00b5m tow")))
 
 raw  <- read_tsv(reads_file, show_col_types = FALSE)
 long <- raw %>%
@@ -98,8 +106,8 @@ inventory <- det %>%
   group_by(phylum, class, taxon, tax_rank) %>%
   summarise(n_samples   = n_distinct(sample),
             n_stations  = n_distinct(station),
-            niskin      = any(method != "SeQuench tow"),
-            tow         = any(method == "SeQuench tow"),
+            niskin      = any(method != "Sequench tow"),
+            tow         = any(method == "Sequench tow"),
             total_reads = sum(reads),
             .groups = "drop") %>%
   arrange(phylum, class, desc(n_samples))
@@ -124,13 +132,13 @@ col_order <- c("PBKN", "PBKS", "PBSH", "PBN", "PBS", "PBW", "DW1", "DW2", "Tow")
 effort <- long %>%
   filter(area == "Partridge Bank") %>%
   distinct(sample, station, method) %>%
-  mutate(column = if_else(method == "SeQuench tow", "Tow", station)) %>%
+  mutate(column = if_else(method == "Sequench tow", "Tow", station)) %>%
   count(column, name = "n_total")
 effort
 
 # Detections per taxon per column, as a count and as a share of that column's samples
 heat <- det %>%
-  mutate(column = if_else(method == "SeQuench tow", "Tow", station)) %>%
+  mutate(column = if_else(method == "Sequench tow", "Tow", station)) %>%
   group_by(phylum, class, taxon, tax_rank, column) %>%
   summarise(n_det = n_distinct(sample), .groups = "drop") %>%
   left_join(effort, by = "column") %>%
@@ -166,6 +174,7 @@ p_inv <- ggplot(heat, aes(x = column, y = taxon, fill = prop)) +
                       labels = scales::percent, limits = c(0, NA)) +
   labs(x = NULL, y = NULL, fill = "Samples with\ndetection") +
   theme_poster +
+  guides(fill = guide_colourbar(title.position = "top", title.hjust = 0.5)) +
   theme(strip.placement = "outside",
         strip.text.y.left = element_text(angle = 0, hjust = 1),
         panel.grid = element_blank(),
@@ -175,7 +184,7 @@ p_inv <- ggplot(heat, aes(x = column, y = taxon, fill = prop)) +
 p_inv
 
 ggsave("output/figures/2025_CO1_Metazoa/CO1_inventory_heatmap.png", p_inv,
-       width = 9, height = 12, dpi = 300, bg = "white")
+       width = 14, height = 14, dpi = 300, bg = "white")
 
 # 7. CO1 read fate per sample, by station -------------------------------------------
 col_order <- c("PBKN", "PBKS", "PBSH", "PBN", "PBS", "PBW", "DW1", "DW2", "Tow")
@@ -188,7 +197,7 @@ fate_cols <- c("Marine animals (target)" = "#CD2990",   # the one colour that ma
 
 bar_fate <- long %>%
   filter(area == "Partridge Bank") %>%
-  mutate(column = factor(if_else(method == "SeQuench tow", "Tow", station),
+  mutate(column = factor(if_else(method == "Sequench tow", "Tow", station),
                          levels = col_order),
          fate = case_when(
            category == "Marine animals"          ~ "Marine animals (target)",
@@ -225,4 +234,4 @@ p_fate <- ggplot(bar_fate, aes(x = factor(sample, levels = sample_order),
 p_fate
 
 ggsave("output/figures/2025_CO1_metazoa/CO1_read_fate_by_station.png", p_fate,
-       width = 13, height = 5.5, dpi = 300, bg = "white")
+       width = 14, height = 5.5, dpi = 300, bg = "white")

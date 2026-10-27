@@ -1,5 +1,22 @@
 # 1. Setup ---------------------------------------------------------------------
-pacman::p_load(tidyverse)
+pacman::p_load(tidyverse,
+               showtext,
+               scales,
+               patchwork)
+
+# add my fav font
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
+showtext_opts(dpi = 300)
+
+#Use for windows operating systems
+#font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+#showtext_auto()
+
+# setup consistent theme for nice figures
+theme_poster <- theme_bw(base_size = 24) +
+  theme(text = element_text(family = "Times New Roman"),
+        panel.grid.minor = element_blank())
 
 meta <- read_csv("data/processed/2025_sample_metadata_clean.csv", show_col_types = FALSE)
 reads_file <- "data/raw/eDNA_explorer/eDNA Results/12S_MiFish_U/decontaminated/12S_MiFish_U_total_reads_decontaminated.tsv"
@@ -7,10 +24,6 @@ stopifnot(file.exists(reads_file))
 
 min_reads <- 10
 ranks <- c("kingdom", "phylum", "class", "order", "family", "genus", "species")
-
-theme_poster <- theme_bw(base_size = 32) +
-  theme(text = element_text(family = "Times New Roman"),
-        panel.grid.minor = element_blank())
 
 # 2. Read and keep only the six PBN tows --------------------------------------------
 raw <- read_tsv(reads_file, show_col_types = FALSE)
@@ -142,8 +155,7 @@ label_fun <- function(x) {
   lapply(x, function(t) {
     if (rank[[t]] %in% c("species", "genus")) bquote(.(common[[t]]) ~ "(" * italic(.(t)) * ")")
     else                                       bquote(.(common[[t]]) ~ "(" * .(t) * ")")
-  }) %>% as.expression()
-}
+  }) %>% as.expression()}
 
 # 9. Plot ----------------------------------------------------------------------------
 p_tows <- ggplot(heat, aes(x = replicate, y = taxon)) +
@@ -164,7 +176,7 @@ p_tows <- ggplot(heat, aes(x = replicate, y = taxon)) +
 p_tows
 
 ggsave("output/figures/12S_MiFish/MiFish_PBN_tows_replicates.png", p_tows,
-       width = 10, height = 8, dpi = 300, bg = "white")
+       width = 14, height = 10, dpi = 300, bg = "white")
 
 # 10. Relative abundance by depth (replicates averaged) ------------------------------
 tows_all <- tows      # keep every detection (incl. family/genus-level) for read proportions
@@ -220,4 +232,4 @@ p_tow_pie <- ggplot(pie_tows, aes(x = "", y = mean_prop, fill = group)) +
 p_tow_pie
 
 ggsave("output/figures/12S_MiFish/MiFish_PBN_tows_pies.png", p_tow_pie,
-       width = 10, height = 5, dpi = 300, bg = "white")
+       width = 9, height = 5, dpi = 300, bg = "white")

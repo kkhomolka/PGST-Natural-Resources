@@ -1,5 +1,22 @@
 # 1. Setup ---------------------------------------------------------------------
-pacman::p_load(tidyverse)
+pacman::p_load(tidyverse,
+               showtext,
+               scales,
+               patchwork)
+
+# add my fav font
+font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+showtext_auto()
+showtext_opts(dpi = 300)
+
+#Use for windows operating systems
+#font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
+#showtext_auto()
+
+# setup consistent theme for nice figures
+theme_poster <- theme_bw(base_size = 24) +
+  theme(text = element_text(family = "Times New Roman"),
+        panel.grid.minor = element_blank())
 
 meta <- read_csv("data/processed/2025_sample_metadata_clean.csv",
                  show_col_types = FALSE)
@@ -94,13 +111,7 @@ perf %>%
   pivot_wider(names_from = status, values_from = n, values_fill = 0)
 
 # 6. Plots ---------------------------------------------------------------------
-# 6. Figure -------------------------------------------------------------------------
-pacman::p_load(scales, patchwork)        # patchwork stacks plots; scales formats axes
 pass_cols <- c(Passed = "#0072B2", Failed = "#D55E00")
-
-theme_poster <- theme_bw(base_size = 32) +
-  theme(text = element_text(family = "Times New Roman"),
-        panel.grid.minor = element_blank())
 
 # A: target reads per sample, with the pass threshold
 p_pass <- ggplot(perf, aes(x = filter_group, y = target_reads + 1, colour = status)) +
@@ -111,7 +122,7 @@ p_pass <- ggplot(perf, aes(x = filter_group, y = target_reads + 1, colour = stat
   scale_colour_manual(values = pass_cols) +
   labs(x = NULL, y = "Target reads\n(+1, log scale)", colour = NULL) +
   theme_poster +
-  theme(legend.position = "top")
+  theme(legend.position = "right")
 
 # B: target taxa per sample (dots coloured by pass/fail from A)
 p_taxa <- ggplot(perf, aes(x = filter_group, y = n_taxa)) +
@@ -127,8 +138,8 @@ p_taxa <- ggplot(perf, aes(x = filter_group, y = n_taxa)) +
   theme_poster
 
 # Stack them and label A / B
-p_cross <- p_pass / p_taxa + plot_annotation(tag_levels = "A")
+p_cross <- p_pass / p_taxa
 p_cross
 
 ggsave("output/figures/cross_marker_filter_performance.png", p_cross,
-       width = 14, height = 10, dpi = 300, bg = "white")
+       width = 18, height = 13, dpi = 300, bg = "white")

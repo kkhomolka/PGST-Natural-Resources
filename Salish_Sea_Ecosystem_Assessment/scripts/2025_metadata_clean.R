@@ -8,6 +8,7 @@ pacman::p_load(tidyverse,
 # add my fav font
 font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
 showtext_auto()
+showtext_opts(dpi = 300)
 
 #Use for windows operating systems
 #font_add("Times New Roman", "C:/Windows/Fonts/times.ttf")
@@ -20,6 +21,11 @@ stopifnot(file.exists(meta_raw_file))
 
 coords_file <- "data/raw/eDNA_explorer/Metadata/2025_eDNA_sampling_coordinates.csv"
 
+# setup consistent theme for nice figures
+theme_poster <- theme_bw(base_size = 24) +
+  theme(text = element_text(family = "Times New Roman"),
+        panel.grid.minor = element_blank())
+
 # 2. Sample map-----------------------------------------------------------------
 
 # read in coordinates file
@@ -28,13 +34,18 @@ coords <- read_csv(coords_file, show_col_types = FALSE)
 # need to convert to sf object for plotting, but it will override the normal coords
 # so need to keep them separate
 coords_sf <- st_as_sf(coords, coords = c("longitude", "latitude"),
-                      crs = 4326, remove = FALSE)                    
+                      crs = 4326, remove = FALSE) 
+
+# removing SQU, OAK, SJI stations for my poster. Comment out if you want all the stations
+# Partridge Bank stations only
+#coords_sf <- coords_sf %>%
+#  filter(!station_id %in% c("SQU", "OAK", "SJI", "PTBAY_TOW_8m"))
 
 # create the basemap that I want
 detailed_land <- ne_countries(scale = "large", returnclass = "sf")
 
 # plot the stations
-ggplot()+
+map <- ggplot()+
   geom_sf(data = detailed_land, color = "black", fill = "grey")+
   geom_sf(data = coords_sf, aes(color = station_id), size = 3)+
   theme_bw()+
@@ -42,9 +53,14 @@ ggplot()+
   coord_sf(xlim = c(st_bbox(coords_sf)$xmin - 0.08, st_bbox(coords_sf)$xmax + 0.08),
            ylim = c(st_bbox(coords_sf)$ymin - 0.08, st_bbox(coords_sf)$ymax + 0.08)) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  theme(axis.title.x = element_text(margin = margin(t = 15)),   
+        axis.title.y = element_text(margin = margin(r = 15))) +  
   labs(x = "Longitude", 
        y = "Latitude",
        color = "Sampling Stations")
+
+ggsave("output/figures/station_map.png", map,
+       width = 5.5, height = 7.5, dpi = 300, bg = "white")
 
 # 3. Read in sample metadata ---------------------------------------------------
 
@@ -106,7 +122,7 @@ names(meta)
 # Do the field sheet and the station list agree on site names?
 meta %>% filter(site_text != site) %>% select(sample, station, site_text, site)
 
-# 7. ---------------------------------------------------------------------------
+# 7. Check the coordinates -----------------------------------------------------
 
 # Coordinates agree? (0.0001 degrees ≈ 10 m). Should be 0 rows.
 meta %>%
@@ -119,6 +135,7 @@ meta <- meta %>%
   rename(site = site_text)
 
 # 8. Add analysis columns ------------------------------------------------------
+# also need to change 50um to 20um because I noticed that was wrong in the metadata
 meta <- meta %>%
   mutate(
     # broad area, for grouping in figures
@@ -131,17 +148,20 @@ meta <- meta %>%
     
     # sampling method, from the notes ("Rosette Cast" vs "Rosette cast" -> one)
     method = case_when(
-      str_detect(notes, regex("sequench", ignore_case = TRUE)) ~ "SeQuench tow",
+      str_detect(notes, regex("sequench", ignore_case = TRUE)) ~ "Sequench tow",
       str_detect(notes, regex("blank",    ignore_case = TRUE)) ~ "Field blank",
       str_detect(notes, regex("rosette",  ignore_case = TRUE)) ~ "Rosette cast",
       str_detect(notes, regex("grab",     ignore_case = TRUE)) ~ "3 m grab"),
+    
+    # Correction: tows were recorded as 50 µm in the field sheet but used 20 µm filters
+    filter_um = if_else(method == "Sequench tow", 20, filter_um),
     
     # filter system ("\u00b5" = the micro sign, written safely)
     filter_type = factor(case_when(
       filter_um == 1.2 ~ "1.2 \u00b5m",
       filter_um == 5   ~ "5 \u00b5m",
-      filter_um == 50  ~ "50 \u00b5m tow"),
-      levels = c("1.2 \u00b5m", "5 \u00b5m", "50 \u00b5m tow")),
+      filter_um == 20  ~ "20 \u00b5m tow"),
+      levels = c("1.2 \u00b5m", "5 \u00b5m", "20 \u00b5m tow")),
     
     # TRUE/FALSE flags from the notes
     flag_delaminated = str_detect(notes, regex("delaminat", ignore_case = TRUE)),
