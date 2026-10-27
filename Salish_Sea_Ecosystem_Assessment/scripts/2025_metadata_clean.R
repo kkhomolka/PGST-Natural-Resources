@@ -26,6 +26,10 @@ theme_poster <- theme_bw(base_size = 24) +
   theme(text = element_text(family = "Times New Roman"),
         panel.grid.minor = element_blank())
 
+station_cols <- c(PBKN = "#E8A302FF", PBKS = "#00EBF0FF", PBSH = "#CD2990",
+                  PBN  = "#6495ED", PBS  = "#E2DD4DFF", PBW  = "#EE6A50",
+                  DW1  = "#006400", DW2  = "#191970")
+
 # 2. Sample map-----------------------------------------------------------------
 
 # read in coordinates file
@@ -48,8 +52,9 @@ detailed_land <- ne_countries(scale = "large", returnclass = "sf")
 map <- ggplot()+
   geom_sf(data = detailed_land, color = "black", fill = "grey")+
   geom_sf(data = coords_sf, aes(color = station_id), size = 3)+
+  scale_colour_manual(values = station_cols) +
   theme_bw()+
-  theme(text = element_text(size = 16, family = "Times New Roman"))+
+  theme_poster +
   coord_sf(xlim = c(st_bbox(coords_sf)$xmin - 0.08, st_bbox(coords_sf)$xmax + 0.08),
            ylim = c(st_bbox(coords_sf)$ymin - 0.08, st_bbox(coords_sf)$ymax + 0.08)) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
@@ -59,8 +64,10 @@ map <- ggplot()+
        y = "Latitude",
        color = "Sampling Stations")
 
+map
+
 ggsave("output/figures/station_map.png", map,
-       width = 5.5, height = 7.5, dpi = 300, bg = "white")
+       width = 8, height = 7, dpi = 300, bg = "white")
 
 # 3. Read in sample metadata ---------------------------------------------------
 

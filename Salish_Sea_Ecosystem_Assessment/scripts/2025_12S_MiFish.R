@@ -5,7 +5,11 @@ pacman::p_load(tidyverse,
                patchwork)
 
 # add my fav font
-font_add("Times New Roman", "/Library/Fonts/Times New Roman.ttf")
+font_add("Times New Roman",
+         regular    = "/Library/Fonts/Times New Roman.ttf",
+         italic     = "/Library/Fonts/Times New Roman Italic.ttf",
+         bold       = "/Library/Fonts/Times New Roman Bold.ttf",
+         bolditalic = "/Library/Fonts/Times New Roman Bold Italic.ttf")
 showtext_auto()
 showtext_opts(dpi = 300)
 
@@ -60,6 +64,8 @@ tows <- tows %>%
                          !is.na(genus)   ~ "genus",
                          TRUE            ~ "family"),
     taxon    = coalesce(species, genus, family))
+
+tows_all <- tows      # keep every detection (incl. family/genus-level) for read proportions
 
 # 5. Collapse nested names within each sample ----------------------------------------
 # e.g. drop "Pholis" (genus) if "Pholis laeta" (species) was detected in the SAME sample
@@ -179,7 +185,6 @@ ggsave("output/figures/12S_MiFish/MiFish_PBN_tows_replicates.png", p_tows,
        width = 14, height = 10, dpi = 300, bg = "white")
 
 # 10. Relative abundance by depth (replicates averaged) ------------------------------
-tows_all <- tows      # keep every detection (incl. family/genus-level) for read proportions
 
 fish_groups <- tows_all %>%
   mutate(group = case_when(

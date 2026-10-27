@@ -94,13 +94,13 @@ perf <- perf_raw %>%                         # always start from perf_raw
   filter(!is.na(method), method != "Field blank") %>%
   mutate(
     filter_group = case_when(
-      method == "SeQuench tow"   ~ "50 \u00b5m\ntow",
+      method == "Sequench tow"   ~ "20 \u00b5m\ntow",
       filter_um == 5             ~ "5 \u00b5m",
       area != "Partridge Bank"   ~ "1.2 \u00b5m\nrep",
       TRUE                       ~ "1.2 \u00b5m\nPB"),
     filter_group = factor(filter_group,
                           levels = c("1.2 \u00b5m\nPB", "1.2 \u00b5m\nrep",
-                                     "5 \u00b5m", "50 \u00b5m\ntow")),
+                                     "5 \u00b5m", "20 \u00b5m\ntow")),
     marker = factor(marker, levels = c("12S MiFish", "12S vert", "CO1", "18S")),
     status = factor(if_else(target_reads >= pass_threshold, "Passed", "Failed"),
                     levels = c("Passed", "Failed")))
@@ -142,4 +142,4 @@ p_cross <- p_pass / p_taxa
 p_cross
 
 ggsave("output/figures/cross_marker_filter_performance.png", p_cross,
-       width = 18, height = 13, dpi = 300, bg = "white")
+       width = 19, height = 13, dpi = 300, bg = "white")
